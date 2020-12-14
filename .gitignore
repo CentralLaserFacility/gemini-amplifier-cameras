@@ -1,0 +1,15 @@
+**envPaths
+**/configure/O.*/
+**/*App/Db/O.*/
+**/*App/src/O.*/
+**/dbd/
+**/bin/
+**/db/
+!**/*App/Db/
+**.log
+**.sav*
+**/.metadata/*
+**BOY Examples*
+**BOY Image Library/*
+
+**.*~
