@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>550</width>
+  <height>160</height>
+  <actions>
+  </actions>
+  <widget type="group" version="2.0.0">
+    <name>Camera settings</name>
+    <width>360</width>
+    <height>160</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="Black" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <actions>
+    </actions>
+    <widget type="group" version="2.0.0">
+      <name>ROI</name>
+      <width>211</width>
+      <height>127</height>
+      <foreground_color>
+        <color name="Black" red="0" green="0" blue="0">
+        </color>
+      </foreground_color>
+      <actions>
+      </actions>
+      <widget type="textentry" version="3.0.0">
+        <name>Text Input</name>
+        <pv_name>$(CAM):ROI_CX</pv_name>
+        <x>36</x>
+        <width>49</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>0</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="textentry" version="3.0.0">
+        <name>Y Pos</name>
+        <pv_name>$(CAM):ROI_CY</pv_name>
+        <x>36</x>
+        <y>36</y>
+        <width>49</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>0</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Label</name>
+        <text>X pos</text>
+        <width>37</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Label</name>
+        <text>Y pos</text>
+        <y>36</y>
+        <width>37</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="action_button" version="3.0.0">
+        <name>Action Button</name>
+        <actions execute_as_one="true">
+          <action type="write_pv">
+            <pv_name>$(pv_name).PROC</pv_name>
+            <value>1</value>
+          </action>
+        </actions>
+        <pv_name>$(CAM):SET_C_TO_CENTROID</pv_name>
+        <text>Centroid</text>
+        <y>69</y>
+        <width>55</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <border_alarm_sensitive>false</border_alarm_sensitive>
+      </widget>
+      <widget type="checkbox" version="2.0.0">
+        <name>Link</name>
+        <pv_name>$(CAM):ROI_LINK</pv_name>
+        <label>Link</label>
+        <x>132</x>
+        <y>72</y>
+        <width>49</width>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <actions>
+        </actions>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Label_1</name>
+        <text>Y size</text>
+        <x>90</x>
+        <y>36</y>
+        <width>43</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Label</name>
+        <text>X size</text>
+        <x>90</x>
+        <width>43</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="textentry" version="3.0.0">
+        <name>X Size</name>
+        <pv_name>$(CAM):ROI_W</pv_name>
+        <x>132</x>
+        <width>49</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>0</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="textentry" version="3.0.0">
+        <name>Y Size</name>
+        <pv_name>$(CAM):ROI_H</pv_name>
+        <x>132</x>
+        <y>36</y>
+        <width>49</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>0</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <rules>
+          <rule name="Disable when linked" prop_id="enabled" out_exp="false">
+            <exp bool_exp="pv0">
+              <value>false</value>
+            </exp>
+            <pv_name>$(CAM):ROI_LINK</pv_name>
+          </rule>
+          <rule name="Grey when disabled" prop_id="background_color" out_exp="false">
+            <exp bool_exp="pv0==1">
+              <value>
+                <color red="240" green="240" blue="240">
+                </color>
+              </value>
+            </exp>
+            <exp bool_exp="pv0==0">
+              <value>
+                <color name="Write_Background" red="128" green="255" blue="255">
+                </color>
+              </value>
+            </exp>
+            <pv_name>$(CAM):ROI_LINK</pv_name>
+          </rule>
+        </rules>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="action_button" version="3.0.0">
+        <name>Action Button</name>
+        <actions execute_as_one="true">
+          <action type="write_pv">
+            <pv_name>$(pv_name).PROC</pv_name>
+            <value>1</value>
+          </action>
+        </actions>
+        <pv_name>$(CAM):SET_FULL_CHIP</pv_name>
+        <text>Full chip</text>
+        <x>60</x>
+        <y>69</y>
+        <width>55</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <border_alarm_sensitive>false</border_alarm_sensitive>
+      </widget>
+    </widget>
+    <widget type="group" version="2.0.0">
+      <name>Exposure</name>
+      <x>204</x>
+      <width>118</width>
+      <height>127</height>
+      <foreground_color>
+        <color name="Black" red="0" green="0" blue="0">
+        </color>
+      </foreground_color>
+      <actions>
+      </actions>
+      <widget type="label" version="2.0.0">
+        <name>Label</name>
+        <text>Gain</text>
+        <y>6</y>
+        <width>37</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Label</name>
+        <text>Shut</text>
+        <y>36</y>
+        <width>37</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="textentry" version="3.0.0">
+        <name>Shut</name>
+        <pv_name>$(CAM):AcquireTime</pv_name>
+        <x>36</x>
+        <y>36</y>
+        <width>38</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>3</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="textentry" version="3.0.0">
+        <name>Gain</name>
+        <pv_name>$(CAM):Gain</pv_name>
+        <x>36</x>
+        <y>6</y>
+        <width>38</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>0</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="label" version="2.0.0">
+        <name>Label</name>
+        <text>Max</text>
+        <y>66</y>
+        <width>37</width>
+        <height>26</height>
+        <font>
+          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+      <widget type="textentry" version="3.0.0">
+        <name>Shut</name>
+        <pv_name>$(CAM):DISP_MAX</pv_name>
+        <x>36</x>
+        <y>66</y>
+        <width>38</width>
+        <height>26</height>
+        <background_color>
+          <color name="WritePV_Background" red="128" green="255" blue="255">
+          </color>
+        </background_color>
+        <precision>0</precision>
+        <show_units>false</show_units>
+        <actions>
+        </actions>
+        <border_color>
+          <color red="0" green="128" blue="255">
+          </color>
+        </border_color>
+      </widget>
+    </widget>
+  </widget>
+  <widget type="group" version="2.0.0">
+    <name>Global settings</name>
+    <x>360</x>
+    <width>188</width>
+    <height>160</height>
+    <font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color name="Black" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <actions>
+    </actions>
+    <widget type="label" version="2.0.0">
+      <name>Label</name>
+      <text>Trig delay</text>
+      <y>12</y>
+      <width>79</width>
+      <height>26</height>
+      <font>
+        <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>Text Input</name>
+      <pv_name>$(CAM):TriggerDelay</pv_name>
+      <x>78</x>
+      <y>12</y>
+      <width>67</width>
+      <height>26</height>
+      <background_color>
+        <color name="WritePV_Background" red="128" green="255" blue="255">
+        </color>
+      </background_color>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="choice" version="2.0.0">
+      <name>Choice Button</name>
+      <pv_name>$(CAM):TriggerMode</pv_name>
+      <x>24</x>
+      <y>54</y>
+      <width>121</width>
+      <height>26</height>
+      <font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </font>
+      <background_color>
+        <color red="240" green="240" blue="240">
+        </color>
+      </background_color>
+      <selected_color>
+        <color name="Minor" red="255" green="128" blue="0">
+        </color>
+      </selected_color>
+      <actions>
+      </actions>
+      <items>
+        <item>Item 1</item>
+        <item>Item 2</item>
+      </items>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label</name>
+      <text>Trig</text>
+      <y>54</y>
+      <width>31</width>
+      <height>26</height>
+      <font>
+        <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+    <widget type="combo" version="2.0.0">
+      <name>Combo</name>
+      <pv_name>loc://color_map&lt;VString&gt;("Jet")</pv_name>
+      <x>45</x>
+      <y>95</y>
+      <height>27</height>
+      <font>
+        <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+        </font>
+      </font>
+      <background_color>
+        <color red="255" green="255" blue="255">
+        </color>
+      </background_color>
+      <actions>
+      </actions>
+      <items>
+        <item>Jet</item>
+        <item>Gray</item>
+        <item>Hot</item>
+        <item>Cool</item>
+        <item>Viridis</item>
+        <item>Shaded</item>
+        <item>Magma</item>
+      </items>
+      <items_from_pv>false</items_from_pv>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label</name>
+      <text>LUT</text>
+      <y>96</y>
+      <width>61</width>
+      <height>26</height>
+      <font>
+        <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+      <actions>
+      </actions>
+      <border_color>
+        <color red="0" green="128" blue="255">
+        </color>
+      </border_color>
+    </widget>
+  </widget>
+</display>

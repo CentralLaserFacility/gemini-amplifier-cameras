@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>830</width>
+  <height>560</height>
+  <actions>
+  </actions>
+  <widget type="embedded" version="2.0.0">
+    <name>cam1-link-fine</name>
+    <macros>
+      <CAM>${CAM1}</CAM>
+    </macros>
+    <file>camera_intensity_view.opi</file>
+    <x>12</x>
+    <y>12</y>
+    <width>380</width>
+    <height>250</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam3-link-fine</name>
+    <macros>
+      <CAM>${CAM3}</CAM>
+    </macros>
+    <file>camera_intensity_view.opi</file>
+    <x>12</x>
+    <y>270</y>
+    <width>380</width>
+    <height>250</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam2-link-fine</name>
+    <macros>
+      <CAM>${CAM2}</CAM>
+    </macros>
+    <file>camera_intensity_view.opi</file>
+    <x>408</x>
+    <y>12</y>
+    <width>380</width>
+    <height>250</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam4-link-fine</name>
+    <macros>
+      <CAM>${CAM4}</CAM>
+    </macros>
+    <file>camera_intensity_view.opi</file>
+    <x>408</x>
+    <y>270</y>
+    <width>380</width>
+    <height>250</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="choice" version="2.0.0">
+    <name>align-mode-choice-button</name>
+    <pv_name>loc://align-view&lt;VString&gt;("Fine")</pv_name>
+    <x>619</x>
+    <y>528</y>
+    <width>169</width>
+    <height>32</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="10.891089108910892">
+      </font>
+    </font>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <selected_color>
+      <color red="255" green="128" blue="0">
+      </color>
+    </selected_color>
+    <actions>
+    </actions>
+    <scripts>
+      <script file="scripts/fine_coarse_switch.py">
+        <pv_name trigger="false">$(P):CAMERA_LIST</pv_name>
+        <pv_name>loc://align-view</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Switch alignment view</tooltip>
+    <items>
+      <item>Fine</item>
+      <item>Coarse</item>
+    </items>
+    <items_from_pv>false</items_from_pv>
+  </widget>
+</display>

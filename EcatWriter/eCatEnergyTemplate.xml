@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GEMINI_LASER_SHOT>
+<DATE>DATA_SUB</DATE>
+<SHOT>
+<SHOTNUM>SHOTNUM_SUB</SHOTNUM>
+<SECTION>
+<SECTIONNAME>LA3/N_COMP/ENERGY</SECTIONNAME>
+<CHANNEL>
+<CHANNELNAME>N_COMP</CHANNELNAME>
+<MEASUREMENT>
+<NAME>N_COMP_CALCULATED_E_VALUE</NAME>       
+<TYPE>ENERGY_SUB</TYPE>                                                
+<VALUE></VALUE>
+<UNITS>Joule</UNITS>
+</MEASUREMENT>
+<MEASUREMENT>
+<NAME>N_COMP_THROUGHPUT_VALUE</NAME>  
+<TYPE>THROUGHPUT_SUB</TYPE>                                        
+<VALUE></VALUE>                               
+<UNITS>Percent</UNITS>                                  
+</MEASUREMENT>
+</CHANNEL>
+</SECTION>
+</SHOT>
+</GEMINI_LASER_SHOT>

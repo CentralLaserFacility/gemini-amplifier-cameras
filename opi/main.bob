@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>860</width>
+  <height>620</height>
+  <actions>
+  </actions>
+  <widget type="tabs" version="2.0.0">
+    <name>Tabbed Container</name>
+    <macros>
+      <CAM1>${P}:cam1</CAM1>
+      <CAM2>${P}:cam2</CAM2>
+      <CAM3>${P}:cam3</CAM3>
+      <CAM4>${P}:cam4</CAM4>
+      <P>GEM:N_AMP</P>
+    </macros>
+    <tabs>
+      <tab>
+        <name>Align</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>Embedded Display_1</name>
+            <file>align-fine.bob</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Shot</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>shot_link_cont</name>
+            <file>shot.opi</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+            <actions>
+            </actions>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Single</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>Embedded Display</name>
+            <file>single_cam.bob</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Settings</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>settings_link_cont</name>
+            <file>settings.opi</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+        </children>
+      </tab>
+    </tabs>
+    <x>8</x>
+    <y>5</y>
+    <width>850</width>
+    <height>605</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <active_tab>1</active_tab>
+    <tab_height>10</tab_height>
+    <actions>
+    </actions>
+  </widget>
+</display>
