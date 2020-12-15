@@ -119,7 +119,7 @@ class EcatWriter:
             f.write(f"TIMES:{self._shot_times}\n")
             f.write(f"SHOTNUM:{self._shot_number:08}\n")
             f.write(f"DIM:2\n")
-            f.write(f"ARRAY:{width},{height}\n")
+            f.write(f"ARRAY:{image_width},{image_height}\n")
             f.write("DATASIZE:EXT_FILE\n")
             f.write("FORMAT:IMAGE\n")
             f.write("BYTEORDER:\n")
