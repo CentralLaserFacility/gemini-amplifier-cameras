@@ -1,8 +1,7 @@
 from __future__ import annotations
 import epics
 import os, datetime, numpy
-
-# from epics_image import EpicsImage
+from epics_image import EpicsImage
 from typing import List
 
 
@@ -13,7 +12,7 @@ class EcatWriter:
         self._image_channels = [
             prefix + "_COMP_FF",
             prefix + "_COMP_NF",
-            prefix + "_FLUOR_PNG",
+            prefix + "_FLUOR",
             prefix + "_INP_NF",
             prefix + "_LEG1_GREEN_NF",
             prefix + "_LEG2_GREEN_NF",
@@ -24,6 +23,7 @@ class EcatWriter:
             channel + suffix for channel in self._image_channels for suffix in suffixes
         ]
         self._datafile_names.append(prefix + "_COMP_E.mdt.xml")
+        self._images = [EpicsImage(ch) for ch in self._image_channels]
 
     def _get_today(self: EcatWriter) -> str:
         return datetime.date.today().strftime("%Y%m%d")
@@ -99,35 +99,42 @@ class EcatWriter:
                 ]
             )
 
-    def _write_dat_files(self: EcatWriter) -> None:
-        filename_prefix = f"{self._shot_date}GS{self._shot_number:08}"
-        for name in self._image_channels:
-            filename = f"{self._datafile_dir}{filename_prefix}{name}.dat"
-            extfile_name = filename_prefix + name + ".png"
-            with open(filename, "w") as f:
-                f.write(f"FNAME:{filename}\n")
-                f.write(f"DATE:{self._shot_date}\n")
-                f.write(f"SECTION:\n")
-                f.write(f"TIME:{self._shot_time}\n")
-                f.write(f"TIMES:{self._shot_times}\n")
-                f.write(f"SHOTNUM:{self._shot_number:08}\n")
-                f.write(f"DIM:2\n")
-                f.write("ARRAY:201,201\n")
-                f.write("DATASIZE:EXT_FILE\n")
-                f.write("FORMAT:IMAGE\n")
-                f.write("BYTEORDER:\n")
-                f.write("CISTIME:OFF\n")
-                f.write("PARENT:\n")
-                f.write("CHANS:1\n")
-                f.write("CNAMES:1\n")
-                f.write("AXIS_NUM:0\n")
-                f.write("UNITS:pixels\n")
-                f.write(f"EXT_FILE:{extfile_name}\n")
-                f.write("EOH]\n")
+    def _write_all_images(self: EcatWriter) -> None:
+        for image, image_name in zip(self._images, self._image_channels):
+            image_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.png"
+            dat_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.dat"
+            width = image.width
+            height = image.height
+            self._write_dat_file(dat_filename, image_filename, width, height)
+            image.write_to_file(image_filename)
+
+    def _write_dat_file(
+        self: EcatWriter, dat_filename, image_filename, image_width, image_height
+    ) -> None:
+        with open(dat_filename, "w") as f:
+            f.write(f"FNAME:{dat_filename}\n")
+            f.write(f"DATE:{self._shot_date}\n")
+            f.write(f"SECTION:\n")
+            f.write(f"TIME:{self._shot_time}\n")
+            f.write(f"TIMES:{self._shot_times}\n")
+            f.write(f"SHOTNUM:{self._shot_number:08}\n")
+            f.write(f"DIM:2\n")
+            f.write(f"ARRAY:{width},{height}\n")
+            f.write("DATASIZE:EXT_FILE\n")
+            f.write("FORMAT:IMAGE\n")
+            f.write("BYTEORDER:\n")
+            f.write("CISTIME:OFF\n")
+            f.write("PARENT:\n")
+            f.write("CHANS:1\n")
+            f.write("CNAMES:1\n")
+            f.write("AXIS_NUM:0\n")
+            f.write("UNITS:pixels\n")
+            f.write(f"EXT_FILE:{image_filename}\n")
+            f.write("EOH]\n")
 
     def write_all_files(self: EcatWriter) -> None:
         self._generate_datafile_dir()
         self._get_shot_details()
+        self._write_all_images()
         self._write_comp_energy_file()
         self._write_datafile_names()
-        self._write_dat_files()
