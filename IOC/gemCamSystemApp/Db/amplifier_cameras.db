@@ -58,9 +58,41 @@ record(ai, "$(P):NF_E_CAL") {
     field(VAL, "1e-4")
 }
 
+record(ai, "$(P):PMP_T_E_CAL") {
+    field(VAL, "1e-4")
+}
+
+record(ai, "$(P):PMP_R_E_CAL") {
+    field(VAL, "1e-4")
+}
+
+record(dfanout, "$(P):PMP_T_E_BKG_W") {
+    field(PINI, "1")
+    field(DESC, "Width to calc t pump bkg")
+    field(OUTA, "$(PUMP_T_CAM):Stats1:BgdWidth PP")
+    field(DOL,  "5")
+    field(OMSL, "supervisory")
+}
+
+record(dfanout, "$(P):PMP_R_E_BKG_W") {
+    field(PINI, "1")
+    field(DESC, "Width to calc r pump bkg")
+    field(OUTA, "$(PUMP_R_CAM):Stats1:BgdWidth PP")
+    field(DOL,  "5")
+    field(OMSL, "supervisory")
+}
+
 record(calc, "$(P):PUMP_TRANS_E") {
-    field(CALC, "1.5*a*RNDM")
-    field(INPA, "25")
+    field(CALC, "A*B")
+    field(INPA, "$(P):PMP_T_E_CAL")
+    field(INPB, "$(PUMP_T_CAM):Stats1:Net_RBV PP")
+    field(EGU, "J")
+}
+
+record(calc, "$(P):PUMP_REF_E") {
+    field(CALC, "A*B")
+    field(INPA, "$(P):PMP_R_E_CAL")
+    field(INPB, "$(PUMP_R_CAM):Stats1:Net_RBV PP")
     field(EGU, "J")
 }
 
@@ -71,11 +103,6 @@ record(calc, "$(P):TOT_PUMP_E") {
     field(EGU, "J")
 }
 
-record(calc, "$(P):PUMP_REF_E") {
-    field(CALC, "1.5*a*RNDM")
-    field(INPA, "25")
-    field(EGU, "J")
-}
 
 record(ai, "$(P):COMP_POINTING_X") {
 }

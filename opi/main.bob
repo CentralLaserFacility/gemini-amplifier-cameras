@@ -12,6 +12,10 @@
       <CAM2>${P}:cam2</CAM2>
       <CAM3>${P}:cam3</CAM3>
       <CAM4>${P}:cam4</CAM4>
+      <CAM5>$(P):cam5</CAM5>
+      <CAM6>$(P):cam6</CAM6>
+      <CAM7>$(P):cam7</CAM7>
+      <CAM8>$(P):cam8</CAM8>
       <P>GEM:N_AMP</P>
     </macros>
     <tabs>
