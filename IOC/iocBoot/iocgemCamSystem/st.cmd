@@ -6,10 +6,18 @@
 < envPaths
 
 epicsEnvSet(PREFIX, "GEM:N_AMP:")
-epicsEnvSet(PUMP_T_CAM, "$(PREFIX)cam5")
-epicsEnvSet(PUMP_R_CAM, "$(PREFIX)cam6")
-epicsEnvSet(COMP_FF_CAM, "$(PREFIX)cam4")
-epicsEnvSet(AMP_OUT_CAM, "$(PREFIX)cam1")
+epicsEnvSet(PUMP_T_CAM, "$(PREFIX):LEG2_GREEN_NF") 
+epicsEnvSet(PUMP_R_CAM, "$(PREFIX):LEG2_GREEN_FF")
+epicsEnvSet(COMP_FF_CAM, "$(PREFIX):COMP_FF")
+epicsEnvSet(AMP_OUT_CAM, "$(PREFIX):UNCOMP_NF")
+epicsEnvSet("CAM1", "UNCOMP_NF")
+epicsEnvSet("CAM2", "INP_NF")
+epicsEnvSet("CAM3", "COMP_NF")
+epicsEnvSet("CAM4", "COMP_FF")
+epicsEnvSet("CAM5", "FLUOR")
+epicsEnvSet("CAM6", "LEG1_GREEN_NF")
+epicsEnvSet("CAM7", "LEG2_GREEN_NF")
+epicsEnvSet("CAM8", "PINHOLE")
 
 cd "${TOP}"
 
@@ -21,14 +29,14 @@ gemCamSystem_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/xxx.db","user=jqg93617")
 dbLoadRecords("db/amplifier_cameras.db","P=GEM:N_AMP, AMP_OUT_CAM=$(AMP_OUT_CAM),PUMP_T_CAM=$(PUMP_T_CAM), PUMP_R_CAM=$(PUMP_R_CAM),COMP_FF_CAM=$(COMP_FF_CAM)")
 
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam1")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam2")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam3")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam4")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam5")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam6")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam7")
-dbLoadRecords("db/display.db","CAM=$(PREFIX)cam8")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM1)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM2)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM3)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM4)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM5)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM6)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM7)")
+dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM8)")
 
 
 cd "${TOP}/iocBoot/${IOC}"
