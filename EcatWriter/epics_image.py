@@ -5,39 +5,55 @@ from PIL import Image
 
 
 class EpicsImage:
-    def __init__(self: EpicsImage, pv_name_root: str, timeout: float = 2) -> None:
+    def __init__(self: EpicsImage, pv_name_root: str, timeout: float = 5) -> None:
         self._array_data_pv = epics.PV(
-            pv_name_root + ":image1:ArrayData", connection_timeout=timeout
+            pv_name_root + ":image1:ArrayData",
+            connection_timeout=timeout,
+            callback=self._on_data_change,
         )
         self._array_width_pv = epics.PV(
-            pv_name_root + ":image1:ArraySize0_RBV", connection_timeout=timeout
+            pv_name_root + ":image1:ArraySize0_RBV",
+            connection_timeout=timeout,
+            callback=self._on_width_change,
         )
         self._array_height_pv = epics.PV(
-            pv_name_root + ":image1:ArraySize1_RBV", connection_timeout=timeout
+            pv_name_root + ":image1:ArraySize1_RBV",
+            connection_timeout=timeout,
+            callback=self._on_height_change,
         )
         self._timeout = timeout
+        self._data = self._width = self._height = None
+
+    def _on_data_change(self, **kwargs):
+        self._data = kwargs["value"]
+
+    def _on_height_change(self, **kwargs):
+        self._height = kwargs["value"]
+
+    def _on_width_change(self, **kwargs):
+        self._width = kwargs["value"]
 
     @property
     def size(self: EpicsImage) -> int:
-        return self._array_data_pv.get(timeout=self._timeout).size
+        return self._data.size
 
     @property
     def data(self: EpicsImage) -> numpy.ndarray:
-        return self._array_data_pv.get(timeout=self._timeout)
+        return self._data
 
     @property
     def width(self: EpicsImage) -> int:
-        return self._array_width_pv.get(timeout=self._timeout)
+        return self._width
 
     @property
     def height(self: EpicsImage) -> int:
-        return self._array_height_pv.get(timeout=self._timeout)
+        return self._height
 
     def write_to_file(self: EpicsImage, filename: str) -> None:
-        data = self.data
-        width = self.width
-        height = self.height
+        data = self._data
+        width = self._width
+        height = self._height
         if data is None or width is None or height is None:
             return
-        image_array = numpy.reshape(self.data, (self.height, self.width))
+        image_array = numpy.reshape(data, (height, width))
         Image.fromarray(image_array).save(filename)

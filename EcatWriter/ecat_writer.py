@@ -40,10 +40,28 @@ class EcatWriter:
         self._images = [
             EpicsImage(pv_prefix + ":" + ch[2:]) for ch in self._image_channels
         ]
-        self._shot_number_pv = epics.PV(pv_prefix + ":SHOT_NUMBER")
+        self._shot_number_pv = epics.PV(
+            pv_prefix + ":SHOT_NUMBER", callback=self._on_shotnumber_change
+        )
         self._comp_energy_pv = epics.PV(pv_prefix + ":COMP_ENERGY")
         self._comp_throughput_pv = epics.PV(pv_prefix + ":COMP_THROUGHPUT")
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
+        self._stop = False
+        self._new_shot = False
+
+    def run(self: EcatWriter, interval: float = 0.5) -> None:
+        self._stop = False
+        while not self._stop:
+            if self._new_shot:
+                self.write_all_files()
+                self._new_shot = False
+                time.sleep(interval)
+
+    def stop(self: EcatWriter):
+        self._stop = True
+
+    def _on_shotnumber_change(self, **kwargs):
+        self._new_shot = True
 
     def _get_comp_energy_template_contents(
         self: EcatWriter, directory: str = os.getcwd()
@@ -70,7 +88,11 @@ class EcatWriter:
         self: EcatWriter, energy: float, throughput: float
     ) -> str:
         template = self._get_comp_energy_template_contents()
-        contents = template.replace("ENERGY_SUB", f"{energy:.2f}")
+        if energy == None or throughput == None:
+            return
+        contents = template.replace("DATE_SUB", f"{self._shot_date}")
+        contents = contents.replace("SHOTNUM_SUB", f"{self._shot_number:08}")
+        contents = contents.replace("ENERGY_SUB", f"{energy:.2f}")
         contents = contents.replace("THROUGHPUT_SUB", f"{throughput:.2f}")
         return contents
 
@@ -85,7 +107,8 @@ class EcatWriter:
         filename = (
             f"{self._datafile_dir}{self._shot_date}GS{self._shot_number}COMP_E.mdt.xml"
         )
-
+        if file_content is None:
+            return
         with open(filename, "w") as comp_e_file:
             comp_e_file.write(file_content)
 
@@ -123,7 +146,7 @@ class EcatWriter:
             dat_file.write("DATASIZE:EXT_FILE\n")
             dat_file.write("FORMAT:IMAGE\n")
             dat_file.write("BYTEORDER:\n")
-            dat_file.write("CISTIME:OFF\n")
+            dat_file.write("CTSTIME:OFF\n")
             dat_file.write("PARENT:\n")
             dat_file.write("CHANS:1\n")
             dat_file.write("CNAMES:1\n")
@@ -142,9 +165,4 @@ class EcatWriter:
 
 if __name__ == "__main__":
     writer = EcatWriter("GEM:N_AMP", "north")
-
-    def write_files(**kwargs):
-        writer.write_all_files()
-
-    shot_pv = epics.PV("GEM:N_AMP:SHOT_NUMBER", callback=write_files)
-    input()
+    writer.run()
