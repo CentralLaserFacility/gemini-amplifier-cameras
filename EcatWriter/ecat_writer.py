@@ -21,22 +21,22 @@ class EcatWriter:
     def __init__(self: EcatWriter, pv_prefix: str, amp: str) -> None:
         if amp.upper() not in ["N", "NORTH", "SOUTH", "S"]:
             raise ValueError
-        amp_code = amp.upper()[0]
+        self._amplifier = "N" if amp.upper()[0] == "N" else "S"
         self._listfile_name = "./AAL-FileList.txt"
         self._image_channels = [
-            amp_code + "_COMP_FF",
-            amp_code + "_COMP_NF",
-            amp_code + "_FLUOR",
-            amp_code + "_INP_NF",
-            amp_code + "_LEG1_GREEN_NF",
-            amp_code + "_LEG2_GREEN_NF",
-            amp_code + "_UNCOMP_NF",
+            self._amplifier + "_COMP_FF",
+            self._amplifier + "_COMP_NF",
+            self._amplifier + "_FLUOR",
+            self._amplifier + "_INP_NF",
+            self._amplifier + "_LEG1_GREEN_NF",
+            self._amplifier + "_LEG2_GREEN_NF",
+            self._amplifier + "_UNCOMP_NF",
         ]
         suffixes = [".dat", ".mdt.xml", ".png"]
         self._datafile_names = [
             channel + suffix for channel in self._image_channels for suffix in suffixes
         ]
-        self._datafile_names.append(amp_code + "_COMP_E.mdt.xml")
+        self._datafile_names.append(self._amplifier + "_COMP_E.mdt.xml")
         self._images = [
             EpicsImage(pv_prefix + ":" + ch[2:]) for ch in self._image_channels
         ]
@@ -131,13 +131,25 @@ class EcatWriter:
             self._write_dat_file(dat_filename, image_filename, width, height)
             image.write_to_file(image_filename)
 
+    def _get_section_name(self: EcatWriter, filename: str) -> str:
+        if "_COMP" in filename:
+            section = "COMP"
+        elif "_LEG" in filename:
+            section = "PUMP"
+        elif "_UNCOMP" in filename or "INP" in filename or "FLUOR" in filename:
+            section = "UNCOMP"
+        else:
+            section = "UNKNOWN"
+        return f"LA3/{self._amplifier}_{section}/IMAGE"
+
     def _write_dat_file(
         self: EcatWriter, dat_filename, image_filename, image_width, image_height
     ) -> None:
+        section_name = self._get_section_name(image_filename)
         with open(dat_filename, "w") as dat_file:
             dat_file.write(f"FNAME:{dat_filename.split('/')[1]}\n")
             dat_file.write(f"DATE:{self._shot_date}\n")
-            dat_file.write("SECTION:\n")
+            dat_file.write(f"SECTION:{section_name}\n")
             dat_file.write(f"TIME:{self._shot_time}\n")
             dat_file.write(f"TIMES:{self._shot_time_seconds}\n")
             dat_file.write(f"SHOTNUM:{self._shot_number:08}\n")
