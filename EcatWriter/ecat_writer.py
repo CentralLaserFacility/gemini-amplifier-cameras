@@ -159,7 +159,7 @@ class EcatWriter:
             mdt_file.write("<GEMINI_LASER_SHOT>\n")
             mdt_file.write(f"<DATE>{self._shot_date}</DATE>\n")
             mdt_file.write("<SHOT>\n")
-            mdt_file.write(f"<SHOTNUM>{self._shot_number:08}<jSHOTNUM>\n")
+            mdt_file.write(f"<SHOTNUM>{self._shot_number:08}</SHOTNUM>\n")
             mdt_file.write("<SECTION>\n")
             mdt_file.write(f"<SECTIONNAME>{section_name}</SECTIONNAME>\n")
             mdt_file.write("<CHANNEL>\n")
