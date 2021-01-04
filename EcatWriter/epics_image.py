@@ -31,9 +31,15 @@ class EpicsImage:
             connection_timeout=timeout,
             callback=self._on_centroid_y_change,
         )
+        self._integration_pv = epics.PV(
+            pv_name_root + ":Stats1:Net_RBV",
+            connection_timeout=timeout,
+            callback=self._on_integration_change,
+        )
         self._timeout = timeout
         self._data = self._width = self._height = None
         self._centroid_x = self._centroid_y = 0.0
+        self._integration = 0.0
 
     def _on_data_change(self, **kwargs):
         self._data = kwargs["value"]
@@ -49,6 +55,9 @@ class EpicsImage:
 
     def _on_width_change(self, **kwargs):
         self._width = kwargs["value"]
+
+    def _on_integration_change(self, **kwargs):
+        self._integration = kwargs["value"]
 
     @property
     def size(self: EpicsImage) -> int:
@@ -73,6 +82,10 @@ class EpicsImage:
     @property
     def height(self: EpicsImage) -> int:
         return self._height
+
+    @property
+    def integration(self: EpicsImage) -> float:
+        return self._integration
 
     def write_to_file(self: EpicsImage, filename: str) -> None:
         data = self._data

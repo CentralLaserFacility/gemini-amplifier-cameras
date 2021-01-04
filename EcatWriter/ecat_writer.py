@@ -127,12 +127,8 @@ class EcatWriter:
             image_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.png"
             dat_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.dat"
             mdt_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.mdt.xml"
-            width = image.width
-            height = image.height
-            centroidX = image.centroidX
-            centroidY = image.centroidY
-            self._write_dat_file(dat_filename, image_filename, width, height)
-            self._write_mdt_file(mdt_filename, image_name, centroidX, centroidY)
+            self._write_dat_file(dat_filename, image_filename, image)
+            self._write_mdt_file(mdt_filename, image_name, image)
             image.write_to_file(image_filename)
 
     def _get_section_name(self: EcatWriter, filename: str) -> str:
@@ -147,11 +143,7 @@ class EcatWriter:
         return f"LA3/{self._amplifier}_{section}/IMAGE"
 
     def _write_mdt_file(
-        self: EcatWriter,
-        mdt_filename: str,
-        image_name: str,
-        centroidX: float,
-        centroidY: float,
+        self: EcatWriter, mdt_filename: str, image_name: str, image: EpicsImage
     ) -> None:
         section_name = self._get_section_name(mdt_filename)
         with open(mdt_filename, "w") as mdt_file:
@@ -167,7 +159,7 @@ class EcatWriter:
             mdt_file.write("<MEASUREMENT>\n")
             mdt_file.write(f"<NAME>{image_name}_INTEGRATION</NAME>\n")
             mdt_file.write("<TYPE>INTEGRATION</TYPE>\n")
-            mdt_file.write("<VALUE>0.0</VALUE>\n")
+            mdt_file.write(f"<VALUE>{image.integration}</VALUE>\n")
             mdt_file.write("<UNITS>Count</UNITS>\n")
             mdt_file.write("</MEASUREMENT>\n")
             mdt_file.write("<MEASUREMENT>\n")
@@ -179,13 +171,13 @@ class EcatWriter:
             mdt_file.write("<MEASUREMENT>\n")
             mdt_file.write(f"<NAME>{image_name}_XPOS</NAME>\n")
             mdt_file.write("<TYPE>XPOS</TYPE>\n")
-            mdt_file.write(f"<VALUE>{centroidX}</VALUE>\n")
+            mdt_file.write(f"<VALUE>{image.centroidX}</VALUE>\n")
             mdt_file.write("<UNITS>Pixel</UNITS>\n")
             mdt_file.write("</MEASUREMENT>\n")
             mdt_file.write("<MEASUREMENT>\n")
             mdt_file.write(f"<NAME>{image_name}_YPOS</NAME>\n")
             mdt_file.write("<TYPE>YPOS</TYPE>\n")
-            mdt_file.write(f"<VALUE>{centroidY}</VALUE>\n")
+            mdt_file.write(f"<VALUE>{image.centroidY}</VALUE>\n")
             mdt_file.write("<UNITS>Pixel</UNITS>\n")
             mdt_file.write("</MEASUREMENT>\n")
             mdt_file.write("</CHANNEL>\n")
@@ -197,8 +189,7 @@ class EcatWriter:
         self: EcatWriter,
         dat_filename: str,
         image_filename: str,
-        image_width: int,
-        image_height: int,
+        image: EpicsImage,
     ) -> None:
         section_name = self._get_section_name(image_filename)
         with open(dat_filename, "w") as dat_file:
@@ -209,7 +200,7 @@ class EcatWriter:
             dat_file.write(f"TIMES:{self._shot_time_seconds}\n")
             dat_file.write(f"SHOTNUM:{self._shot_number:08}\n")
             dat_file.write("DIM:2\n")
-            dat_file.write(f"ARRAY:{image_width},{image_height}\n")
+            dat_file.write(f"ARRAY:{image.width},{image.height}\n")
             dat_file.write("DATASIZE:EXT_FILE\n")
             dat_file.write("FORMAT:IMAGE\n")
             dat_file.write("BYTEORDER:\n")
