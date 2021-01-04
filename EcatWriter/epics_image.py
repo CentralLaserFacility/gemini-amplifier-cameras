@@ -21,14 +21,31 @@ class EpicsImage:
             connection_timeout=timeout,
             callback=self._on_height_change,
         )
+        self._centroid_x_pv = epics.PV(
+            pv_name_root + ":Stats1:CentroidX_RBV",
+            connection_timeout=timeout,
+            callback=self._on_centroid_x_change,
+        )
+        self._centroid_y_pv = epics.PV(
+            pv_name_root + ":Stats1:CentroidY_RBV",
+            connection_timeout=timeout,
+            callback=self._on_centroid_y_change,
+        )
         self._timeout = timeout
         self._data = self._width = self._height = None
+        self._centroid_x = self._centroid_y = 0.0
 
     def _on_data_change(self, **kwargs):
         self._data = kwargs["value"]
 
     def _on_height_change(self, **kwargs):
         self._height = kwargs["value"]
+
+    def _on_centroid_x_change(self, **kwargs):
+        self._centroid_x = kwargs["value"]
+
+    def _on_centroid_y_change(self, **kwargs):
+        self._centroid_y = kwargs["value"]
 
     def _on_width_change(self, **kwargs):
         self._width = kwargs["value"]
@@ -40,6 +57,14 @@ class EpicsImage:
     @property
     def data(self: EpicsImage) -> numpy.ndarray:
         return self._data
+
+    @property
+    def centroidX(self: EpicsImage) -> float:
+        return self._centroid_x
+
+    @property
+    def centroidY(self: EpicsImage) -> float:
+        return self._centroid_y
 
     @property
     def width(self: EpicsImage) -> int:

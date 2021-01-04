@@ -126,9 +126,13 @@ class EcatWriter:
         for image, image_name in zip(self._images, self._image_channels):
             image_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.png"
             dat_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.dat"
+            mdt_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.mdt.xml"
             width = image.width
             height = image.height
+            centroidX = image.centroidX
+            centroidY = image.centroidY
             self._write_dat_file(dat_filename, image_filename, width, height)
+            self._write_mdt_file(mdt_filename, image_name, centroidX, centroidY)
             image.write_to_file(image_filename)
 
     def _get_section_name(self: EcatWriter, filename: str) -> str:
@@ -142,8 +146,59 @@ class EcatWriter:
             section = "UNKNOWN"
         return f"LA3/{self._amplifier}_{section}/IMAGE"
 
+    def _write_mdt_file(
+        self: EcatWriter,
+        mdt_filename: str,
+        image_name: str,
+        centroidX: float,
+        centroidY: float,
+    ) -> None:
+        section_name = self._get_section_name(mdt_filename)
+        with open(mdt_filename, "w") as mdt_file:
+            mdt_file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+            mdt_file.write("<GEMINI_LASER_SHOT>\n")
+            mdt_file.write(f"<DATE>{self._shot_date}</DATE>\n")
+            mdt_file.write("<SHOT>\n")
+            mdt_file.write(f"<SHOTNUM>{self._shot_number:08}<jSHOTNUM>\n")
+            mdt_file.write("<SECTION>\n")
+            mdt_file.write(f"<SECTIONNAME>{section_name}</SECTIONNAME>\n")
+            mdt_file.write("<CHANNEL>\n")
+            mdt_file.write(f"<CHANNELNAME>{image_name}</CHANNELNAME>\n")
+            mdt_file.write("<MEASUREMENT>\n")
+            mdt_file.write(f"<NAME>{image_name}_INTEGRATION</NAME>\n")
+            mdt_file.write("<TYPE>INTEGRATION</TYPE>\n")
+            mdt_file.write("<VALUE>0.0</VALUE>\n")
+            mdt_file.write("<UNITS>Count</UNITS>\n")
+            mdt_file.write("</MEASUREMENT>\n")
+            mdt_file.write("<MEASUREMENT>\n")
+            mdt_file.write(f"<NAME>{image_name}_E</NAME>\n")
+            mdt_file.write("<TYPE>E</TYPE>\n")
+            mdt_file.write("<VALUE>0.0</VALUE>\n")
+            mdt_file.write("<UNITS>Joule</UNITS>\n")
+            mdt_file.write("</MEASUREMENT>\n")
+            mdt_file.write("<MEASUREMENT>\n")
+            mdt_file.write(f"<NAME>{image_name}_XPOS</NAME>\n")
+            mdt_file.write("<TYPE>XPOS</TYPE>\n")
+            mdt_file.write(f"<VALUE>{centroidX}</VALUE>\n")
+            mdt_file.write("<UNITS>Pixel</UNITS>\n")
+            mdt_file.write("</MEASUREMENT>\n")
+            mdt_file.write("<MEASUREMENT>\n")
+            mdt_file.write(f"<NAME>{image_name}_YPOS</NAME>\n")
+            mdt_file.write("<TYPE>YPOS</TYPE>\n")
+            mdt_file.write(f"<VALUE>{centroidY}</VALUE>\n")
+            mdt_file.write("<UNITS>Pixel</UNITS>\n")
+            mdt_file.write("</MEASUREMENT>\n")
+            mdt_file.write("</CHANNEL>\n")
+            mdt_file.write("</SECTION>\n")
+            mdt_file.write("</SHOT>\n")
+            mdt_file.write("</GEMINI_LASER_SHOT>\n")
+
     def _write_dat_file(
-        self: EcatWriter, dat_filename, image_filename, image_width, image_height
+        self: EcatWriter,
+        dat_filename: str,
+        image_filename: str,
+        image_width: int,
+        image_height: int,
     ) -> None:
         section_name = self._get_section_name(image_filename)
         with open(dat_filename, "w") as dat_file:
