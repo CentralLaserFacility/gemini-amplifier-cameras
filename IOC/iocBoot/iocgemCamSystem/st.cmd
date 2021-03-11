@@ -6,8 +6,8 @@
 < envPaths
 
 epicsEnvSet(PREFIX, "GEM:N_AMP:")
-epicsEnvSet(PUMP_T_CAM, "$(PREFIX)LEG2_GREEN_NF")
-epicsEnvSet(PUMP_R_CAM, "$(PREFIX)LEG2_GREEN_FF")
+epicsEnvSet(PUMP_T_CAM, "$(PREFIX)LEG1_GREEN_NF")
+epicsEnvSet(PUMP_R_CAM, "$(PREFIX)LEG2_GREEN_NF")
 epicsEnvSet(COMP_FF_CAM, "$(PREFIX)COMP_FF")
 epicsEnvSet(AMP_OUT_CAM, "$(PREFIX)UNCOMP_NF")
 epicsEnvSet("CAM1", "UNCOMP_NF")

@@ -193,7 +193,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM1}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -213,7 +217,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM2}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -233,7 +241,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM3}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -253,7 +265,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM8}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -273,7 +289,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM7}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -289,11 +309,11 @@
     <y>401</y>
     <width>16</width>
     <height>16</height>
-    <foreground_color>
-      <color name="Background" red="255" green="255" blue="255">
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
       </color>
-    </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    </background_color>
+    <tooltip>Open ${CAM5}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -313,7 +333,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM6}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
@@ -333,7 +357,11 @@
       <color name="Background" red="255" green="255" blue="255">
       </color>
     </foreground_color>
-    <tooltip>$(actions)</tooltip>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <tooltip>Open ${CAM4}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
 </display>

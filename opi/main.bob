@@ -8,14 +8,14 @@
   <widget type="tabs" version="2.0.0">
     <name>Tabbed Container</name>
     <macros>
-      <CAM1>${P}:cam1</CAM1>
-      <CAM2>${P}:cam2</CAM2>
-      <CAM3>${P}:cam3</CAM3>
-      <CAM4>${P}:cam4</CAM4>
-      <CAM5>$(P):cam5</CAM5>
-      <CAM6>$(P):cam6</CAM6>
-      <CAM7>$(P):cam7</CAM7>
-      <CAM8>$(P):cam8</CAM8>
+      <CAM1>${P}:UNCOMP_NF</CAM1>
+      <CAM2>${P}:INP_NF</CAM2>
+      <CAM3>${P}:COMP_NF</CAM3>
+      <CAM4>${P}:COMP_FF</CAM4>
+      <CAM5>$(P):FLUOR</CAM5>
+      <CAM6>$(P):LEG1_GREEN_NF</CAM6>
+      <CAM7>$(P):LEG2_GREEN_NF</CAM7>
+      <CAM8>$(P):PINHOLE</CAM8>
       <P>GEM:N_AMP</P>
     </macros>
     <tabs>

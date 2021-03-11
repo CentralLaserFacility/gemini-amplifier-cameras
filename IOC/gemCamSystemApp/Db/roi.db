@@ -72,7 +72,8 @@ record(calc, "$(CAM):ROI_WIDTH_CALC") {
   field(INPA, "$(CAM):ROI_CX PP")
   field(INPB, "$(CAM):ROI_W PP")
   field(INPC, "$(CAM):MaxSizeX_RBV")
-  field(CALC, "MIN(MIN(B,2*A),MIN(B,2*(C-A)))")
+#  field(CALC, "MIN( MIN(B,2*A) , MIN(B,2*(C-A)) )")
+  field(CALC, "MIN(MIN(A,C-A),B)")
 }
 
 record(calc, "$(CAM):MIN_X") {
@@ -131,7 +132,8 @@ record(calc, "$(CAM):ROI_HEIGHT_CALC") {
   field(INPA, "$(CAM):ROI_CY")
   field(INPB, "$(CAM):ROI_H")
   field(INPC, "$(CAM):MaxSizeY_RBV")
-  field(CALC, "MIN(MIN(B,2*A),MIN(B,2*(C-A)))")
+  #field(CALC, "MIN(MIN(B,2*A),MIN(B,2*(C-A)))")
+  field(CALC, "MIN(MIN(A,C-A),B)")
 }
 
 record(calc, "$(CAM):MIN_Y") {
