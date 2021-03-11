@@ -43,25 +43,26 @@ class EcatWriter:
         self._shot_number_pv = epics.PV(
             pv_prefix + ":SHOT_NUMBER", callback=self._on_shotnumber_change
         )
-        self._comp_energy_pv = epics.PV(pv_prefix + ":COMP_ENERGY")
+        self._comp_energy_pv = epics.PV(pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received)
         self._comp_throughput_pv = epics.PV(pv_prefix + ":COMP_THROUGHPUT")
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
-        self._stop = False
-        self._new_shot = False
-
-    def run(self: EcatWriter, interval: float = 0.5) -> None:
-        self._stop = False
-        while not self._stop:
-            if self._new_shot:
-                self.write_all_files()
-                self._new_shot = False
-                time.sleep(interval)
+        self._running = False
+        self._real_shot = False
+ 
+    def run(self: EcatWriter) -> None:
+        self._running = True
 
     def stop(self: EcatWriter):
-        self._stop = True
+        self._running = False
 
-    def _on_shotnumber_change(self, **kwargs):
-        self._new_shot = True
+    def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
+        if kwargs["value"][:4] == "BANG":
+            self._real_shot = True
+
+    def _on_new_data_received(self: EcatWriter, **kwargs) -> None:
+        if self._real_shot and self._running:
+            self.write_all_files()
+            self._real_shot = False
 
     def _get_comp_energy_template_contents(
         self: EcatWriter, directory: str = os.getcwd()
@@ -127,7 +128,7 @@ class EcatWriter:
             image_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.png"
             dat_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.dat"
             mdt_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.mdt.xml"
-            self._write_dat_file(dat_filename, image_filename, image)
+            self._write_dat_file(dat_filename, image_name, image, image_filename)
             self._write_mdt_file(mdt_filename, image_name, image)
             image.write_to_file(image_filename)
 
@@ -188,10 +189,11 @@ class EcatWriter:
     def _write_dat_file(
         self: EcatWriter,
         dat_filename: str,
-        image_filename: str,
+        image_name: str,
         image: EpicsImage,
+        image_filename: str,
     ) -> None:
-        section_name = self._get_section_name(image_filename)
+        section_name = self._get_section_name(image_name)
         with open(dat_filename, "w") as dat_file:
             dat_file.write(f"FNAME:{dat_filename.split('/')[1]}\n")
             dat_file.write(f"DATE:{self._shot_date}\n")
