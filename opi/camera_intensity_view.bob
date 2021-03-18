@@ -90,10 +90,14 @@
         <pv_name>loc://color_map&lt;VString&gt;("Jet")</pv_name>
       </script>
     </scripts>
+    <tooltip></tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
     <data_width>0</data_width>
     <data_height>0</data_height>
     <autoscale>false</autoscale>
     <maximum>10.0</maximum>
+    <cursor_info_pv>loc://$(CAM):cursor_info</cursor_info_pv>
+    <x_pv>loc://$(CAM):cursor_x</x_pv>
+    <y_pv>loc://$(CAM):cursor_y</y_pv>
   </widget>
 </display>
