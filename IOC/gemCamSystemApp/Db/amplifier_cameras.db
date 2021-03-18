@@ -3,27 +3,17 @@ record(waveform, "$(P):CAMERA_LIST"){
     field(FTVL, "STRING")
 }
 
-record(longout, "$(P):SHOT_NUMBER") {
-    field(DESC, "Dummy shot number")
-    field(VAL, "123001")
-}
 
 record(ai, "$(P):COMP_THROUGHPUT") {
     field(DESC, "Compressor throughput")
     field(VAL, "0.73")
 }
+
 record(calc, "$(P):COMP_ENERGY") {
     field(INPA, "$(P):COMP_THROUGHPUT PP")
     field(INPB, "$(P):AMP_E")
     field(CALC, "a*b")
     field(EGU, "J")
-}
-record(calcout, "$(P):FIRE_LASER") {
-    field(DESC, "Dummy shot")
-    field(CALC, "a+1")
-    field(INPA, "$(P):SHOT_NUMBER")
-    field(OUT,  "$(P):SHOT_NUMBER PP")
-    field(FLNK, "$(P):UPDATE_VALUES.PROC")
 }
 
 record(seq, "$(P):UPDATE_VALUES") {

@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += amplifier_cameras.db
 DB += display.db
 DB += roi.db
+DB += sim.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

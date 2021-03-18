@@ -47,6 +47,7 @@ class EcatWriter:
         self._comp_throughput_pv = epics.PV(pv_prefix + ":COMP_THROUGHPUT")
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
         self._real_shot = False
+        self._shot_number = 0
 
     def run(self: EcatWriter, interval: float = 0.5) -> None:
         # Just to keep the process alive. Do better later
@@ -72,7 +73,9 @@ class EcatWriter:
 
     def _get_shot_details(self: EcatWriter) -> None:
         self._shot_date = get_today()
-        self._shot_number = self._shot_number_pv.get()
+        shot_string = self._shot_number_pv.get()
+        shot_number = shot_string.split(":")[-1]
+        self._shot_number = 0 if shot_number == "TEST" else int(shot_number)
         self._shot_time, self._shot_time_seconds = format_time(
             self._shot_number_pv.timestamp
         )
@@ -96,8 +99,8 @@ class EcatWriter:
         return contents
 
     def _write_comp_energy_file(self: EcatWriter) -> None:
-        compressor_energy = self._comp_energy_pv.get()
         compressor_throughput = self._comp_throughput_pv.get()
+        compressor_energy = self._comp_energy_pv.get()
 
         file_content = self._build_comp_energy_file_contents(
             compressor_energy, compressor_throughput
@@ -193,7 +196,7 @@ class EcatWriter:
     ) -> None:
         section_name = self._get_section_name(image_name)
         with open(dat_filename, "w") as dat_file:
-            dat_file.write(f"FNAME:{dat_filename.split('/')[1]}\n")
+            dat_file.write(f"FNAME:{dat_filename.split(os.sep)[1]}\n")
             dat_file.write(f"DATE:{self._shot_date}\n")
             dat_file.write(f"SECTION:{section_name}\n")
             dat_file.write(f"TIME:{self._shot_time}\n")
@@ -210,7 +213,7 @@ class EcatWriter:
             dat_file.write("CNAMES:1\n")
             dat_file.write("AXIS_NUM:0\n")
             dat_file.write("UNITS:pixels\n")
-            dat_file.write(f"EXT_FILE:{image_filename.split('/')[1]}\n")
+            dat_file.write(f"EXT_FILE:{image_filename.split(os.sep)[1]}\n")
             dat_file.write("EOH]\n")
 
     def _write_all_files(self: EcatWriter) -> None:

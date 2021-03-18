@@ -28,6 +28,7 @@ gemCamSystem_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=jqg93617")
 dbLoadRecords("db/amplifier_cameras.db","P=GEM:N_AMP, AMP_OUT_CAM=$(AMP_OUT_CAM),PUMP_T_CAM=$(PUMP_T_CAM), PUMP_R_CAM=$(PUMP_R_CAM),COMP_FF_CAM=$(COMP_FF_CAM)")
+dbLoadRecords("db/sim.db","P=GEM:N_AMP")
 
 dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM1)")
 dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM2)")
