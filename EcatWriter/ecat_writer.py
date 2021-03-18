@@ -46,22 +46,20 @@ class EcatWriter:
         self._comp_energy_pv = epics.PV(pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received)
         self._comp_throughput_pv = epics.PV(pv_prefix + ":COMP_THROUGHPUT")
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
-        self._running = False
         self._real_shot = False
- 
-    def run(self: EcatWriter) -> None:
-        self._running = True
 
-    def stop(self: EcatWriter):
-        self._running = False
+    def run(self: EcatWriter, interval: float = 0.5) -> None:
+        # Just to keep the process alive. Do better later
+        while True:
+            time.sleep(interval) 
 
     def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
         if kwargs["value"][:4] == "BANG":
             self._real_shot = True
 
     def _on_new_data_received(self: EcatWriter, **kwargs) -> None:
-        if self._real_shot and self._running:
-            self.write_all_files()
+        if self._real_shot:
+            self._write_all_files()
             self._real_shot = False
 
     def _get_comp_energy_template_contents(
@@ -215,7 +213,7 @@ class EcatWriter:
             dat_file.write(f"EXT_FILE:{image_filename.split('/')[1]}\n")
             dat_file.write("EOH]\n")
 
-    def write_all_files(self: EcatWriter) -> None:
+    def _write_all_files(self: EcatWriter) -> None:
         self._generate_datafile_dir()
         self._get_shot_details()
         self._write_all_images()
