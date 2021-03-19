@@ -45,7 +45,7 @@ record(seq, "$(CAM):SET_C_TO_CENTROID") {
 
 record(ai, "$(CAM):ROI_CX") {
   field(DESC, "X centre of the ROI")
-  field(VAL, "$(CENTX)")
+#  field(VAL, "$(CENTX)")
   field(FLNK, "$(CAM):ROI_X_SET.PROC")
 }
 
@@ -58,7 +58,7 @@ record(calc, "$(CAM):ROI_CX_RBV") {
 
 record(longin, "$(CAM):ROI_W") {
   field(DESC, "Desired width of ROI")
-  field(VAL, "$(SIZEX)")
+#  field(VAL, "$(SIZEX)")
   field(FLNK, "$(CAM):ROI_X_SET.PROC")
 }
 
@@ -106,7 +106,7 @@ record(seq, "$(CAM):ROI_X_SET") {
 
 record(ai, "$(CAM):ROI_CY") {
   field(DESC, "Y centre of the ROI")
-  field(VAL, "$(CENTY)")
+#  field(VAL, "$(CENTY)")
   field(FLNK, "$(CAM):ROI_Y_SET.PROC")
 }
 
@@ -118,7 +118,7 @@ record(calc, "$(CAM):ROI_CY_RBV") {
 
 record(longin, "$(CAM):ROI_H") {
   field(DESC, "Desired heigh of ROI")
-  field(VAL,  "$(SIZEY)")
+#  field(VAL,  "$(SIZEY)")
   field(FLNK, "$(CAM):ROI_Y_SET.PROC")
 }
 
@@ -207,11 +207,11 @@ record(calcout, "$(CAM):OVER_X_CALC") {
 
 record(calcout, "$(CAM):OVER_Y_CALC") {
     field(DESC, "Calc Y overlay position")
-    field(CALC, "a-b")
+    field(CALC, "a-b") 
     field(INPA, "$(CAM):OVER_Y")
-    field(INPB, "$(CAM):ROI1:MinY")
+    field(INPB, "$(CAM):ROI1:MinY") 
     field(OUT,  "$(CAM):Over1:1:CenterY PP")
-}
+   }
 
 record(longin, "$(CAM):OVER_Y") {
     field(DESC, "Y overlay position")
@@ -221,6 +221,23 @@ record(longin, "$(CAM):OVER_Y") {
 record(longin, "$(CAM):OVER_X") {
     field(DESC, "X overlay position")
     field(FLNK, "$(CAM):OVER_X_CALC PP")
+}
+
+
+record(dfanout, "$(CAM):OVER_WIDTH") {
+  field(DESC, "Width of overlay")
+  field(OMSL, "supervisory")
+  field(SELM, "All")
+  field(OUTA, "$(CAM):Over1:1:WidthX PP")
+  field(OUTB, "$(CAM):Over1:1:WidthY PP")
+}
+
+record(dfanout, "$(CAM):OVER_SIZE") {
+  field(DESC, "Size of overlay")
+  field(OMSL, "supervisory")
+  field(SELM, "All")
+  field(OUTA, "$(CAM):Over1:1:SizeX PP")
+  field(OUTB, "$(CAM):Over1:1:SizeY PP")
 }
 
 

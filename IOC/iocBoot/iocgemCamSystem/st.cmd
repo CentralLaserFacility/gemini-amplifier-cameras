@@ -39,6 +39,14 @@ dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM6)")
 dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM7)")
 dbLoadRecords("db/display.db","CAM=$(PREFIX)$(CAM8)")
 
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM1)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM2)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM3)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM4)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM5)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM6)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM7)")
+dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM8)")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

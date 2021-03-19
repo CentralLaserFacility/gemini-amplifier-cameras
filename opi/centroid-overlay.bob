@@ -51,7 +51,7 @@
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Text Input</name>
-      <pv_name>$(CAM):Over1:1:WidthX</pv_name>
+      <pv_name>$(CAM):OVER_WIDTH</pv_name>
       <x>280</x>
       <y>1</y>
       <width>30</width>
@@ -73,7 +73,7 @@
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Text Input_1</name>
-      <pv_name>$(CAM):Over1:1:SizeX</pv_name>
+      <pv_name>$(CAM):OVER_SIZE</pv_name>
       <x>346</x>
       <y>1</y>
       <width>30</width>
