@@ -48,8 +48,23 @@ dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM6)")
 dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM7)")
 dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM8)")
 
+set_requestfile_path("$(TOP)/autoSaveRestore")
+set_savefile_path("$(TOP)/autoSaveRestore")
+
+set_pass1_restoreFile("display_settings.sav")
+
+
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
+
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM1)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM2)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM3)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM4)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM5)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM6)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM7)")
+create_monitor_set("display_settings.req", 5, "CAM = $(CAM8)")
 
 ## Start any sequence programs
 #seq sncxxx,"user=jqg93617"
