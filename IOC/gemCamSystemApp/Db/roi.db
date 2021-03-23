@@ -1,31 +1,25 @@
 record(seq, "$(CAM):SET_FULL_CHIP") {
   field(DESC, "Set FOV to full chip")
   field(DOL1, "0")
-  field(LNK1, "$(CAM):ROI1:MinX PP")
-  field(DOL2, "$(CAM):MaxSizeX_RBV")
-  field(LNK2, "$(CAM):ROI1:SizeX PP")
-  field(DOL3, "0")
-  field(LNK3, "$(CAM):ROI1:MinY PP")
-  field(DOL4, "$(CAM):MaxSizeY_RBV PP")
-  field(LNK4, "$(CAM):ROI1:SizeY PP")
-  field(DOL5, "1")
-  field(LNK5, "$(CAM):ROI_CX_RBV.PROC")
+  field(LNK1, "$(CAM):LINK_ROI_SIZE")
+  field(DOL2, "0")
+  field(LNK2, "$(CAM):ROI1:MinX PP")
+  field(DOL3, "$(CAM):MaxSizeX_RBV")
+  field(LNK3, "$(CAM):ROI1:SizeX PP")
+  field(DOL4, "0")
+  field(LNK4, "$(CAM):ROI1:MinY PP")
+  field(DOL5, "$(CAM):MaxSizeY_RBV PP")
+  field(LNK5, "$(CAM):ROI1:SizeY PP")
   field(DOL6, "1")
-  field(LNK6, "$(CAM):ROI_W_RBV.PROC")
+  field(LNK6, "$(CAM):OVER_X_CALC.PROC")
   field(DOL7, "1")
-  field(LNK7, "$(CAM):ROI_CY_RBV.PROC")
-  field(DOL8, "1")
-  field(LNK8, "$(CAM):ROI_H_RBV.PROC")
-  field(DOL9, "1")
-  field(LNK9, "$(CAM):OVER_X_CALC.PROC")
-  field(DOLA, "1")
-  field(LNKA, "$(CAM):OVER_Y_CALC.PROC")  
+  field(LNK7, "$(CAM):OVER_Y_CALC.PROC")  
 }
 
 record(fanout, "$(CAM):SET_ROI_VIEW") {
   field(DESC, "Set ROI to desired value")
-  field(LNK1, "$(CAM):ROI_X_SET PP")
-  field(LNK2, "$(CAM):ROI_Y_SET PP")
+  field(LNK1, "$(CAM):ROI_X_SET.PROC")
+  field(LNK2, "$(CAM):ROI_Y_SET.PROC")
 }
 
 
@@ -43,37 +37,61 @@ record(seq, "$(CAM):SET_C_TO_CENTROID") {
 # Records for setting width and horizontal centre
 ###############################################################
 
-record(ai, "$(CAM):ROI_CX") {
+record(longout, "$(CAM):ROI_CX") {
   field(DESC, "X centre of the ROI")
-#  field(VAL, "$(CENTX)")
+  field(FLNK, "$(CAM):ROI_CX_WRITE.PROC")
+}
+
+record(longout, "$(CAM):ROI_CX_WRITE") {
   field(FLNK, "$(CAM):ROI_X_SET.PROC")
+  field(SDIS, "$(CAM):ROI_CX_SYNC.PACT")
+  field(DISV, "1")
 }
 
 record(calc, "$(CAM):ROI_CX_RBV") {
-  field(INPA, "$(CAM):ROI1:MinX_RBV")
-  field(INPB, "$(CAM):ROI1:SizeX_RBV")
+  field(INPA, "$(CAM):ROI1:MinX_RBV CP")
+  field(INPB, "$(CAM):ROI1:SizeX_RBV CP")
   field(CALC, "FLOOR(A+0.5*B)")
+  field(FLNK, "$(CAM):ROI_CX_SYNC.PROC")
 }
 
+record(longout, "$(CAM):ROI_CX_SYNC") {
+  field(DESC, "Keep ROI_CX in sync with real val")
+  field(OUT, "$(CAM):ROI_CX PP")
+  field(DOL, "$(CAM):ROI_CX_RBV NPP")
+  field(OMSL, "closed_loop")
+}
 
-record(longin, "$(CAM):ROI_W") {
+record(longout, "$(CAM):ROI_W") {
   field(DESC, "Desired width of ROI")
-#  field(VAL, "$(SIZEX)")
-  field(FLNK, "$(CAM):ROI_X_SET.PROC")
+  field(FLNK, "$(CAM):ROI_W_WRITE.PROC")
 }
 
-record(calc, "$(CAM):ROI_W_RBV") {
-  field(INPA, "$(CAM):ROI1:SizeX_RBV")
-  field(CALC, "A")
+record(longout, "$(CAM):ROI_W_WRITE") {
+  field(FLNK, "$(CAM):ROI_X_SET.PROC")
+  field(SDIS, "$(CAM):ROI_W_SYNC.PACT")
+  field(DISV, "1")
 }
+
+record(longin, "$(CAM):ROI_W_RBV") {
+  field(INP, "$(CAM):ROI1:SizeX_RBV CP")
+  field(FLNK, "$(CAM):ROI_W_SYNC.PROC")
+}
+
+record(longout, "$(CAM):ROI_W_SYNC") {
+  field(DESC, "Keep ROI_W in sync with real val")
+  field(OUT, "$(CAM):ROI_W PP")
+  field(DOL, "$(CAM):ROI_W_RBV NPP")
+  field(OMSL, "closed_loop")
+}
+
 
 record(calc, "$(CAM):ROI_WIDTH_CALC") {
   field(DESC, "Given cx and w, calculate width")
-  field(INPA, "$(CAM):ROI_CX PP")
-  field(INPB, "$(CAM):ROI_W PP")
+  field(INPA, "$(CAM):ROI_CX")
+  field(INPB, "$(CAM):ROI_W")
   field(INPC, "$(CAM):MaxSizeX_RBV")
-#  field(CALC, "MIN( MIN(B,2*A) , MIN(B,2*(C-A)) )")
-  field(CALC, "MIN(MIN(A,C-A),B)")
+  field(CALC, "MIN(MIN(A,C-A)*2,B)")
 }
 
 record(calc, "$(CAM):MIN_X") {
@@ -89,14 +107,10 @@ record(seq, "$(CAM):ROI_X_SET") {
   field(LNK1, "$(CAM):LINK_ROI_SIZE.PROC")
   field(DOL2, "$(CAM):MIN_X PP")
   field(LNK2, "$(CAM):ROI1:MinX PP")
-  field(DOL3, "$(CAM):ROI_WIDTH_CALC")
-  field(LNK3, "$(CAM):ROI1:SizeX PP")
+  field(DOL3, "$(CAM):ROI_WIDTH_CALC NPP")
+  field(LNK3, "$(CAM):ROI1:SizeX")
   field(DOL4, "1")
-  field(LNK4, "$(CAM):ROI_CX_RBV.PROC")
-  field(DOL5, "1")
-  field(LNK5, "$(CAM):ROI_W_RBV.PROC")
-  field(DOL6, "1")
-  field(LNK6, "$(CAM):OVER_X_CALC.PROC")
+  field(LNK4, "$(CAM):OVER_X_CALC.PROC")
 }
 
 
@@ -106,25 +120,50 @@ record(seq, "$(CAM):ROI_X_SET") {
 
 record(ai, "$(CAM):ROI_CY") {
   field(DESC, "Y centre of the ROI")
-#  field(VAL, "$(CENTY)")
+  field(FLNK, "$(CAM):ROI_CY_WRITE.PROC")
+}
+
+record(longout, "$(CAM):ROI_CY_WRITE") {
   field(FLNK, "$(CAM):ROI_Y_SET.PROC")
+  field(SDIS, "$(CAM):ROI_CY_SYNC.PACT")
+  field(DISV, "1")
 }
 
 record(calc, "$(CAM):ROI_CY_RBV") {
-  field(INPA, "$(CAM):ROI1:MinY_RBV")
-  field(INPB, "$(CAM):ROI1:SizeY_RBV")
+  field(INPA, "$(CAM):ROI1:MinY_RBV CP")
+  field(INPB, "$(CAM):ROI1:SizeY_RBV CP")
   field(CALC, "FLOOR(A+0.5*B)")
+  field(FLNK, "$(CAM):ROI_CY_SYNC.PROC")
+}
+
+record(longout, "$(CAM):ROI_CY_SYNC") {
+  field(DESC, "Keep ROI_CY in sync with real val")
+  field(OUT, "$(CAM):ROI_CY PP")
+  field(DOL, "$(CAM):ROI_CY_RBV NPP")
+  field(OMSL, "closed_loop")
 }
 
 record(longin, "$(CAM):ROI_H") {
   field(DESC, "Desired heigh of ROI")
-#  field(VAL,  "$(SIZEY)")
-  field(FLNK, "$(CAM):ROI_Y_SET.PROC")
+  field(FLNK, "$(CAM):ROI_H_WRITE.PROC")
 }
 
-record(calc, "$(CAM):ROI_H_RBV") {
-  field(INPA, "$(CAM):ROI1:SizeY_RBV")
-  field(CALC, "A")
+record(longout, "$(CAM):ROI_H_WRITE") {
+  field(FLNK, "$(CAM):ROI_Y_SET.PROC")
+  field(SDIS, "$(CAM):ROI_H_SYNC.PACT")
+  field(DISV, "1")
+}
+
+record(longin, "$(CAM):ROI_H_RBV") {
+  field(INP, "$(CAM):ROI1:SizeY_RBV CP")
+  field(FLNK, "$(CAM):ROI_H_SYNC.PROC")
+}
+
+record(longout, "$(CAM):ROI_H_SYNC") {
+  field(DESC, "Keep ROI_H in sync with real val")
+  field(OUT, "$(CAM):ROI_H PP")
+  field(DOL, "$(CAM):ROI_H_RBV NPP")
+  field(OMSL, "closed_loop")
 }
 
 record(calc, "$(CAM):ROI_HEIGHT_CALC") {
@@ -132,8 +171,7 @@ record(calc, "$(CAM):ROI_HEIGHT_CALC") {
   field(INPA, "$(CAM):ROI_CY")
   field(INPB, "$(CAM):ROI_H")
   field(INPC, "$(CAM):MaxSizeY_RBV")
-  #field(CALC, "MIN(MIN(B,2*A),MIN(B,2*(C-A)))")
-  field(CALC, "MIN(MIN(A,C-A),B)")
+  field(CALC, "MIN(MIN(A,C-A)*2,B)")
 }
 
 record(calc, "$(CAM):MIN_Y") {
@@ -146,16 +184,13 @@ record(calc, "$(CAM):MIN_Y") {
 record(seq, "$(CAM):ROI_Y_SET") {
   field(DESC, "Set MinY and SizeY for ROI")
   field(DOL1, "1")
+  field(LNK1, "$(CAM):LINK_ROI_SIZE.PROC")
   field(DOL2, "$(CAM):MIN_Y PP")
   field(LNK2, "$(CAM):ROI1:MinY PP")
-  field(DOL3, "$(CAM):ROI_HEIGHT_CALC")
-  field(LNK3, "$(CAM):ROI1:SizeY PP")
+  field(DOL3, "$(CAM):ROI_HEIGHT_CALC NPP")
+  field(LNK3, "$(CAM):ROI1:SizeY")
   field(DOL4, "1")
-  field(LNK4, "$(CAM):ROI_CY_RBV.PROC")
-  field(DOL5, "1")
-  field(LNK5, "$(CAM):ROI_H_RBV.PROC")
-  field(DOL6, "1")
-  field(LNK6, "$(CAM):OVER_Y_CALC.PROC")
+  field(LNK4, "$(CAM):OVER_Y_CALC.PROC")
 }
 
 
@@ -215,17 +250,18 @@ record(calcout, "$(CAM):OVER_Y_CALC") {
 
 record(longin, "$(CAM):OVER_Y") {
     field(DESC, "Y overlay position")
-    field(FLNK, "$(CAM):OVER_Y_CALC PP")
+    field(FLNK, "$(CAM):OVER_Y_CALC.PROC")
 }
 
 record(longin, "$(CAM):OVER_X") {
     field(DESC, "X overlay position")
-    field(FLNK, "$(CAM):OVER_X_CALC PP")
+    field(FLNK, "$(CAM):OVER_X_CALC.PROC")
 }
 
 
 record(dfanout, "$(CAM):OVER_WIDTH") {
   field(DESC, "Width of overlay")
+  field(VAL, "2")
   field(OMSL, "supervisory")
   field(SELM, "All")
   field(OUTA, "$(CAM):Over1:1:WidthX PP")
@@ -234,6 +270,7 @@ record(dfanout, "$(CAM):OVER_WIDTH") {
 
 record(dfanout, "$(CAM):OVER_SIZE") {
   field(DESC, "Size of overlay")
+  field(VAL, "10")
   field(OMSL, "supervisory")
   field(SELM, "All")
   field(OUTA, "$(CAM):Over1:1:SizeX PP")

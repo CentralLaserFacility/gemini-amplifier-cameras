@@ -51,20 +51,14 @@ dbLoadRecords("db/roi.db","CAM=$(PREFIX)$(CAM8)")
 set_requestfile_path("$(TOP)/autoSaveRestore")
 set_savefile_path("$(TOP)/autoSaveRestore")
 
-set_pass1_restoreFile("display_settings.sav")
+#set_pass0_restoreFile("display_settings.sav")
+#set_pass1_restoreFile("display_settings.sav")
 
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM1)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM2)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM3)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM4)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM5)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM6)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM7)")
-create_monitor_set("display_settings.req", 5, "CAM = $(CAM8)")
+#create_monitor_set("display_settings.req", 5, "CAM1=$(PREFIX)$(CAM1),CAM2=$(PREFIX)$(CAM2),CAM3=$(PREFIX)$(CAM3),CAM4=$(PREFIX)$(CAM4),CAM5=$(PREFIX)$(CAM5),CAM6=$(PREFIX)$(CAM6),CAM7=$(PREFIX)$(CAM7),CAM8=$(PREFIX)$(CAM8)")
 
 ## Start any sequence programs
 #seq sncxxx,"user=jqg93617"

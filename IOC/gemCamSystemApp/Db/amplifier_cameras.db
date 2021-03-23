@@ -1,8 +1,17 @@
+
+record(aSub, "$(P):LIST_READ")
+{
+    field(SNAM, "readlist")
+    field(PINI, "YES")
+    field(OUTA, "$(P):CAMERA_LIST")
+    field(FTVA, "STRING")
+    field(NOVA, "16")
+}
+
 record(waveform, "$(P):CAMERA_LIST"){
     field(NELM, "16")
     field(FTVL, "STRING")
 }
-
 
 record(ai, "$(P):COMP_THROUGHPUT") {
     field(DESC, "Compressor throughput")
@@ -107,13 +116,4 @@ record(calc, "$(P):COMP_POINTING_ERROR") {
     field(INPB, "$(P):COMP_POINTING_X")
     field(INPC, "$(COMP_FF_CAM):ROI1:SizeY_RBV PP")
     field(INPD, "$(P):COMP_POINTING_Y")
-}
-
-record(aSub, "$(P):LIST_READ")
-{
-    field(SNAM, "readlist")
-    field(PINI, "YES")
-    field(OUTA, "$(P):CAMERA_LIST")
-    field(FTVA, "STRING")
-    field(NOVA, "16")
 }
