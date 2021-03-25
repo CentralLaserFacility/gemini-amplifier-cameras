@@ -236,7 +236,7 @@ record(calcout, "$(CAM):OVER_X_CALC") {
     field(DESC, "Calc X overlay position")
     field(CALC, "a-b")
     field(INPA, "$(CAM):OVER_X")
-    field(INPB, "$(CAM):ROI1:MinX")
+    field(INPB, "$(CAM):ROI1:MinX PP")
     field(OUT,  "$(CAM):Over1:1:CenterX PP")
 }
 
@@ -244,7 +244,7 @@ record(calcout, "$(CAM):OVER_Y_CALC") {
     field(DESC, "Calc Y overlay position")
     field(CALC, "a-b") 
     field(INPA, "$(CAM):OVER_Y")
-    field(INPB, "$(CAM):ROI1:MinY") 
+    field(INPB, "$(CAM):ROI1:MinY PP") 
     field(OUT,  "$(CAM):Over1:1:CenterY PP")
    }
 
