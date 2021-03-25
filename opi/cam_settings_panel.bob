@@ -7,7 +7,7 @@
   </actions>
   <widget type="group" version="2.0.0">
     <name>Camera settings</name>
-    <width>360</width>
+    <width>365</width>
     <height>160</height>
     <font>
       <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
@@ -21,7 +21,7 @@
     </actions>
     <widget type="group" version="2.0.0">
       <name>ROI</name>
-      <width>211</width>
+      <width>225</width>
       <height>127</height>
       <foreground_color>
         <color name="Black" red="0" green="0" blue="0">
@@ -31,8 +31,8 @@
       </actions>
       <widget type="textentry" version="3.0.0">
         <name>Text Input</name>
-        <pv_name>$(CAM):ROI_CX</pv_name>
-        <x>36</x>
+        <pv_name>$(CAM):ROI_X</pv_name>
+        <x>9</x>
         <width>49</width>
         <height>26</height>
         <background_color>
@@ -50,8 +50,8 @@
       </widget>
       <widget type="textentry" version="3.0.0">
         <name>Y Pos</name>
-        <pv_name>$(CAM):ROI_CY</pv_name>
-        <x>36</x>
+        <pv_name>$(CAM):ROI_Y</pv_name>
+        <x>9</x>
         <y>36</y>
         <width>49</width>
         <height>26</height>
@@ -70,8 +70,8 @@
       </widget>
       <widget type="label" version="2.0.0">
         <name>Label</name>
-        <text>X pos</text>
-        <width>37</width>
+        <text>X</text>
+        <width>14</width>
         <height>26</height>
         <font>
           <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
@@ -87,9 +87,9 @@
       </widget>
       <widget type="label" version="2.0.0">
         <name>Label</name>
-        <text>Y pos</text>
+        <text>Y</text>
         <y>36</y>
-        <width>37</width>
+        <width>14</width>
         <height>26</height>
         <font>
           <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
@@ -102,46 +102,13 @@
           <color red="0" green="128" blue="255">
           </color>
         </border_color>
-      </widget>
-      <widget type="action_button" version="3.0.0">
-        <name>Action Button</name>
-        <actions execute_as_one="true">
-          <action type="write_pv">
-            <pv_name>$(pv_name).PROC</pv_name>
-            <value>1</value>
-          </action>
-        </actions>
-        <pv_name>$(CAM):SET_C_TO_CENTROID</pv_name>
-        <text>Centroid</text>
-        <y>69</y>
-        <width>55</width>
-        <height>26</height>
-        <font>
-          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
-          </font>
-        </font>
-        <border_alarm_sensitive>false</border_alarm_sensitive>
-      </widget>
-      <widget type="checkbox" version="2.0.0">
-        <name>Link</name>
-        <pv_name>$(CAM):ROI_LINK</pv_name>
-        <label>Link</label>
-        <x>132</x>
-        <y>72</y>
-        <width>49</width>
-        <font>
-          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
-          </font>
-        </font>
-        <actions>
-        </actions>
       </widget>
       <widget type="label" version="2.0.0">
         <name>Label_1</name>
-        <text>Y size</text>
-        <x>90</x>
+        <text>H</text>
+        <x>98</x>
         <y>36</y>
-        <width>43</width>
+        <width>11</width>
         <height>26</height>
         <font>
           <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
@@ -157,9 +124,9 @@
       </widget>
       <widget type="label" version="2.0.0">
         <name>Label</name>
-        <text>X size</text>
-        <x>90</x>
-        <width>43</width>
+        <text>W</text>
+        <x>98</x>
+        <width>12</width>
         <height>26</height>
         <font>
           <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
@@ -176,7 +143,7 @@
       <widget type="textentry" version="3.0.0">
         <name>X Size</name>
         <pv_name>$(CAM):ROI_W</pv_name>
-        <x>132</x>
+        <x>110</x>
         <width>49</width>
         <height>26</height>
         <background_color>
@@ -195,7 +162,7 @@
       <widget type="textentry" version="3.0.0">
         <name>Y Size</name>
         <pv_name>$(CAM):ROI_H</pv_name>
-        <x>132</x>
+        <x>110</x>
         <y>36</y>
         <width>49</width>
         <height>26</height>
@@ -235,31 +202,65 @@
           </color>
         </border_color>
       </widget>
-      <widget type="action_button" version="3.0.0">
-        <name>Action Button</name>
-        <actions execute_as_one="true">
-          <action type="write_pv">
-            <pv_name>$(pv_name).PROC</pv_name>
-            <value>1</value>
-          </action>
-        </actions>
-        <pv_name>$(CAM):SET_FULL_CHIP</pv_name>
-        <text>Full chip</text>
-        <x>60</x>
-        <y>69</y>
-        <width>55</width>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update_3</name>
+        <pv_name>$(CAM):ROI1:MinX_RBV</pv_name>
+        <x>59</x>
+        <width>35</width>
         <height>26</height>
         <font>
-          <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+          <font family="Liberation Sans" style="REGULAR" size="12.0">
           </font>
         </font>
-        <border_alarm_sensitive>false</border_alarm_sensitive>
+        <vertical_alignment>1</vertical_alignment>
+      </widget>
+      <widget type="textupdate" version="2.0.0">
+        <name>Text Update_4</name>
+        <pv_name>$(CAM):ROI1:MinY_RBV</pv_name>
+        <x>58</x>
+        <y>37</y>
+        <width>35</width>
+        <height>26</height>
+        <font>
+          <font family="Liberation Sans" style="REGULAR" size="12.0">
+          </font>
+        </font>
+        <vertical_alignment>1</vertical_alignment>
+      </widget>
+      <widget type="action_button" version="3.0.0">
+        <name>full-chip-button</name>
+        <actions>
+          <action type="write_pv">
+            <pv_name>$(CAM):SET_FULL_CHIP.PROC</pv_name>
+            <value>1</value>
+            <description>Write PV</description>
+          </action>
+        </actions>
+        <text>Full chip</text>
+        <x>9</x>
+        <y>68</y>
+        <height>28</height>
+        <font>
+          <font family="Segoe UI" style="BOLD" size="10.891089108910892">
+          </font>
+        </font>
+        <background_color>
+          <color red="240" green="240" blue="240">
+          </color>
+        </background_color>
+        <scripts>
+          <script file="scripts/fine_coarse_switch.py">
+            <pv_name trigger="false">$(P):CAMERA_LIST</pv_name>
+            <pv_name>loc://align-view</pv_name>
+          </script>
+        </scripts>
+        <tooltip>Show full chip</tooltip>
       </widget>
     </widget>
     <widget type="group" version="2.0.0">
       <name>Exposure</name>
-      <x>204</x>
-      <width>118</width>
+      <x>222</x>
+      <width>111</width>
       <height>127</height>
       <foreground_color>
         <color name="Black" red="0" green="0" blue="0">
@@ -306,9 +307,9 @@
       <widget type="textentry" version="3.0.0">
         <name>Shut</name>
         <pv_name>$(CAM):AcquireTime</pv_name>
-        <x>36</x>
+        <x>23</x>
         <y>36</y>
-        <width>38</width>
+        <width>51</width>
         <height>26</height>
         <background_color>
           <color name="WritePV_Background" red="128" green="255" blue="255">
@@ -326,9 +327,9 @@
       <widget type="textentry" version="3.0.0">
         <name>Gain</name>
         <pv_name>$(CAM):Gain</pv_name>
-        <x>36</x>
+        <x>23</x>
         <y>6</y>
-        <width>38</width>
+        <width>51</width>
         <height>26</height>
         <background_color>
           <color name="WritePV_Background" red="128" green="255" blue="255">
@@ -364,9 +365,9 @@
       <widget type="textentry" version="3.0.0">
         <name>Shut</name>
         <pv_name>$(CAM):DISP_MAX</pv_name>
-        <x>36</x>
+        <x>23</x>
         <y>66</y>
-        <width>38</width>
+        <width>51</width>
         <height>26</height>
         <background_color>
           <color name="WritePV_Background" red="128" green="255" blue="255">
@@ -381,6 +382,32 @@
           </color>
         </border_color>
       </widget>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_5</name>
+      <pv_name>$(CAM):ROI1:SizeX_RBV</pv_name>
+      <x>178</x>
+      <y>19</y>
+      <width>35</width>
+      <height>26</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
+    </widget>
+    <widget type="textupdate" version="2.0.0">
+      <name>Text Update_6</name>
+      <pv_name>$(CAM):ROI1:SizeY_RBV</pv_name>
+      <x>178</x>
+      <y>54</y>
+      <width>35</width>
+      <height>26</height>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="12.0">
+        </font>
+      </font>
+      <vertical_alignment>1</vertical_alignment>
     </widget>
   </widget>
   <widget type="group" version="2.0.0">
@@ -485,7 +512,7 @@
       <y>95</y>
       <height>27</height>
       <font>
-        <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
+        <font family="Segoe UI Semibold" style="REGULAR" size="12.0">
         </font>
       </font>
       <background_color>

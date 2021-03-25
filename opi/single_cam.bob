@@ -5,7 +5,7 @@
   <height>565</height>
   <widget type="combo" version="2.0.0">
     <name>single-cam-combo</name>
-    <pv_name>loc://cam-choice&lt;VString&gt;</pv_name>
+    <pv_name>loc://cam-choice&lt;VString&gt;("$(CAM1)")</pv_name>
     <x>10</x>
     <y>10</y>
     <width>317</width>
