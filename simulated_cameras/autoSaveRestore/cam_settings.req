@@ -1,0 +1,15 @@
+file "simDetector_settings.req",    P=$(P),  R=$(R):,
+file "ADBase_settings.req",         P=$(P),  R=$(R):,
+file "NDFile_settings.req",         P=$(P),  R=$(R):,
+file "vimba_settings.req",          P=$(P),  R=$(R):,
+file "ADGenICam_settings.req",      P=$(P),  R=$(R):,
+file "NDStdArrays_settings.req",    P=$(P),  R=$(R):image1:,
+file "NDROI_settings.req",          P=$(P),  R=$(R):ROI1:,
+file "NDStats_settings.req",        P=$(P),  R=$(R):Stats1:,
+file "NDTransform_settings.req",    P=$(P),  R=$(R):Trans1:,
+file "NDOverlay_settings.req",      P=$(P),  R=$(R):Over1:,
+file "NDOverlayN_settings.req",     P=$(P),  R=$(R):Over1:1:,
+
+#$(P)$(R):Over1:1:CenterX
+#$(P)$(R):Over1:1:CenterY
+

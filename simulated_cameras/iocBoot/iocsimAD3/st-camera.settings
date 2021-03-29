@@ -1,0 +1,18 @@
+
+#dbpf $(PREFIX)$(CAM):AcquireTime 0.2
+dbpf $(PREFIX)$(CAM):Acquire 1
+dbpf $(PREFIX)$(CAM):ArrayCallbacks 1
+dbpf $(PREFIX)$(CAM):image1:EnableCallbacks 1
+dbpf $(PREFIX)$(CAM):ROI1:EnableCallbacks 1
+dbpf $(PREFIX)$(CAM):Trans1:EnableCallbacks 1
+dbpf $(PREFIX)$(CAM):Stats1:EnableCallbacks 1
+dbpf $(PREFIX)$(CAM):Over1:EnableCallbacks 1
+#dbpf $(PREFIX)$(CAM):Over1:1:Use 1
+dbpf $(PREFIX)$(CAM):Stats1:ComputeCentroid 1
+dbpf $(PREFIX)$(CAM):Stats1:CentroidThreshold 20
+#dbpf $(PREFIX)$(CAM):Over1:1:WidthX 2
+dbpf $(PREFIX)$(CAM):Over1:1:DrawMode 1
+dbpf $(PREFIX)$(CAM):Over1:1:Red 200
+dbpf $(PREFIX)$(CAM):Over1:1:Green 200
+dbpf $(PREFIX)$(CAM):Over1:1:Blue 200
+#dbpf $(PREFIX)$(CAM):Over1:1:SizeX 10
