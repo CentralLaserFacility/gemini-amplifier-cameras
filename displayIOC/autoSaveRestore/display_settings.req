@@ -1,6 +1,7 @@
 $(P)$(CAM1):DISP_MAX
 $(P)$(CAM1):OVER_X
 $(P)$(CAM1):OVER_Y
+$(P)$(CAM1):OVER_SIZE
 $(P)$(CAM1):ROI_X
 $(P)$(CAM1):ROI_W
 $(P)$(CAM1):ROI_Y
@@ -9,6 +10,7 @@ $(P)$(CAM1):ROI_H
 $(P)$(CAM2):DISP_MAX
 $(P)$(CAM2):OVER_X
 $(P)$(CAM2):OVER_Y
+$(P)$(CAM2):OVER_SIZE
 $(P)$(CAM2):ROI_X
 $(P)$(CAM2):ROI_W
 $(P)$(CAM2):ROI_Y
@@ -17,6 +19,7 @@ $(P)$(CAM2):ROI_H
 $(P)$(CAM3):DISP_MAX
 $(P)$(CAM3):OVER_X
 $(P)$(CAM3):OVER_Y
+$(P)$(CAM3):OVER_SIZE
 $(P)$(CAM3):ROI_X
 $(P)$(CAM3):ROI_W
 $(P)$(CAM3):ROI_Y
@@ -25,6 +28,7 @@ $(P)$(CAM3):ROI_H
 $(P)$(CAM4):DISP_MAX
 $(P)$(CAM4):OVER_X
 $(P)$(CAM4):OVER_Y
+$(P)$(CAM4):OVER_SIZE
 $(P)$(CAM4):ROI_X
 $(P)$(CAM4):ROI_W
 $(P)$(CAM4):ROI_Y
@@ -33,6 +37,7 @@ $(P)$(CAM4):ROI_H
 $(P)$(CAM5):DISP_MAX
 $(P)$(CAM5):OVER_X
 $(P)$(CAM5):OVER_Y
+$(P)$(CAM5):OVER_SIZE
 $(P)$(CAM5):ROI_X
 $(P)$(CAM5):ROI_W
 $(P)$(CAM5):ROI_Y
@@ -41,6 +46,7 @@ $(P)$(CAM5):ROI_H
 $(P)$(CAM6):DISP_MAX
 $(P)$(CAM6):OVER_X
 $(P)$(CAM6):OVER_Y
+$(P)$(CAM6):OVER_SIZE
 $(P)$(CAM6):ROI_X
 $(P)$(CAM6):ROI_W
 $(P)$(CAM6):ROI_Y
@@ -49,6 +55,7 @@ $(P)$(CAM6):ROI_H
 $(P)$(CAM7):DISP_MAX
 $(P)$(CAM7):OVER_X
 $(P)$(CAM7):OVER_Y
+$(P)$(CAM7):OVER_SIZE
 $(P)$(CAM7):ROI_X
 $(P)$(CAM7):ROI_W
 $(P)$(CAM7):ROI_Y
@@ -57,6 +64,7 @@ $(P)$(CAM7):ROI_H
 $(P)$(CAM8):DISP_MAX
 $(P)$(CAM8):OVER_X
 $(P)$(CAM8):OVER_Y
+$(P)$(CAM8):OVER_SIZE
 $(P)$(CAM8):ROI_X
 $(P)$(CAM8):ROI_W
 $(P)$(CAM8):ROI_Y
