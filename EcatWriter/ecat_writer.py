@@ -42,7 +42,7 @@ class EcatWriter:
             EpicsImage(pv_prefix + ":" + ch[2:]) for ch in self._image_channels
         ]
         self._shot_number_pv = epics.PV(
-            pv_prefix + ":SHOT_NUMBER", callback=self._on_shotnumber_change
+            "GEM:LA3:SHOTNUM", callback=self._on_shotnumber_change
         )
         self._comp_energy_pv = epics.PV(pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received)
         self._comp_throughput_pv = epics.PV(pv_prefix + ":COMP_THROUGHPUT")
