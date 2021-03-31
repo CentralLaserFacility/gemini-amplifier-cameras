@@ -2,7 +2,7 @@
 epicsEnvSet("PREFIX", "GEM:N_AMP:")
 epicsEnvSet("GENICAM_GENTL64_PATH", "$(ADVIMBA)/bin/$(ARCH)")
 # The port name for the detector
-epicsEnvSet("PORT",   "$(PREFIX)$(CAM)")
+epicsEnvSet("PORT", "$(PREFIX)$(CAM)")
 # The queue size for all plugins
 epicsEnvSet("QSIZE",  "200")
 # The maximim image width; used for row profiles in the NDPluginStats plugin
@@ -30,11 +30,11 @@ ampCams_registerRecordDeviceDriver pdbbase
 
 #   ADVimba driver
 #########################
-ADVimbaConfig("$(PORT)", $(CAMID), 0, 0,0)
+ADVimbaConfig("$(PORT)", "$(CAMID)", 0, 0,0)
 dbLoadRecords("$(ADVIMBA)/db/vimba.template", "P=$(PREFIX),R=$(CAM):,PORT=$(PORT)")
 dbLoadRecords("$(GENICAM_DB_FILE)", "P=$(PREFIX),R=$(CAM):,PORT=$(PORT)")
-dbLoadRecords("ADBase.template","P=$(PREFIX),R=$(CAM):,PORT=$(PREFIX)CAM,ADDR=0,TIMEOUT=1")
-dbLoadRecords("NDFile.template","P=$(PREFIX),R=$(CAM):,PORT=$(PREFIX)CAM,ADDR=0,TIMEOUT=1")
+dbLoadRecords("ADBase.template","P=$(PREFIX),R=$(CAM):,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("NDFile.template","P=$(PREFIX),R=$(CAM):,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 # Create ROI plugins
 ###################################
@@ -78,4 +78,3 @@ set_requestfile_path("$(TOP)/autoSaveRestore")
 set_savefile_path("$(TOP)/autoSaveRestore/")
 set_pass0_restoreFile("$(CAM).sav")
 set_pass1_restoreFile("$(CAM).sav")
-
