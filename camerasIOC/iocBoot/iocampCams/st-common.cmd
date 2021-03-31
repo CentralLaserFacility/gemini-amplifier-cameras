@@ -14,7 +14,7 @@ epicsEnvSet("NCHANS", "2048")
 # The maximum number of frames buffered in the NDPluginCircularBuff plugin
 epicsEnvSet("CBUFFS", "500")
 # The maximum array size of a frame
-epicsEnvSet("ARRAYSIZE",  "322752")
+epicsEnvSet("NELM",  "322752")
 # The search path for database files
 epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(ADCORE)/db:$(ADGENICAM)/db:$(ADVIMBA)/db")
 # Template file specific to camera model
@@ -30,7 +30,7 @@ ampCams_registerRecordDeviceDriver pdbbase
 
 #   ADVimba driver
 #########################
-ADVimbaConfig("$(PORT)", "$(CAMID)", 0, 0,0)
+ADVimbaConfig("$(PORT)", "$(CAMID)", 0, 0, 0)
 dbLoadRecords("$(ADVIMBA)/db/vimba.template", "P=$(PREFIX),R=$(CAM):,PORT=$(PORT)")
 dbLoadRecords("$(GENICAM_DB_FILE)", "P=$(PREFIX),R=$(CAM):,PORT=$(PORT)")
 dbLoadRecords("ADBase.template","P=$(PREFIX),R=$(CAM):,PORT=$(PORT),ADDR=0,TIMEOUT=1")

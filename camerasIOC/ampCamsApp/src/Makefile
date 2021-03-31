@@ -36,6 +36,8 @@ PROD_LIBS += sscan
 PROD_LIBS += seq
 PROD_LIBS += asyn
 PROD_LIBS += autosave 
+PROD_LIBS += pv
+PROD_LIBS += PvAPI 
 
 # ampCams_registerRecordDeviceDriver.cpp derives from ampCams.dbd
 ampCams_SRCS += ampCams_registerRecordDeviceDriver.cpp
@@ -51,7 +53,7 @@ ampCams_SRCS_vxWorks += -nil-
 ampCams_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
-
+include $(ADCORE)/ADApp/commonDriverMakefile
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE

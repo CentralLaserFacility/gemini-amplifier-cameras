@@ -1,4 +1,4 @@
-
+dbpf $(PREFIX)$(CAM):GC_GevSCPSPacketSize 1500
 #dbpf $(PREFIX)$(CAM):AcquireTime 0.2
 dbpf $(PREFIX)$(CAM):Acquire 1
 dbpf $(PREFIX)$(CAM):ArrayCallbacks 1
