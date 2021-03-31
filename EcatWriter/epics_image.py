@@ -2,7 +2,7 @@ from __future__ import annotations
 import epics
 import numpy
 from PIL import Image
-
+import logging
 
 class EpicsImage:
     def __init__(self: EpicsImage, pv_name_root: str, timeout: float = 5) -> None:
@@ -91,7 +91,12 @@ class EpicsImage:
         data = self._data
         width = self._width
         height = self._height
+        logging.info(f"Writing image to {filename}")
         if data is None or width is None or height is None:
+            logging.info("Image has missing data. File not written")
             return
         image_array = numpy.reshape(data, (height, width))
-        Image.fromarray(image_array).save(filename)
+        try:
+            Image.fromarray(image_array).save(filename)
+        except Exception as e:
+            logging.errror(f"Failed to write image to {filename}: {str(e)}")

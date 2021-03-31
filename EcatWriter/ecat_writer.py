@@ -3,6 +3,7 @@ import epics
 import os, datetime, numpy, time
 from epics_image import EpicsImage
 from typing import List
+import logging
 
 
 def format_time(timestamp: float) -> str:
@@ -51,16 +52,23 @@ class EcatWriter:
 
     def run(self: EcatWriter, interval: float = 0.5) -> None:
         # Just to keep the process alive. Do better later
+        logging.info(f"EcatWriter started for {self._amplifier} amplifier")
         while True:
             time.sleep(interval) 
 
     def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
+        logging.info(f'New shot number: {kwargs["value"]}')
         if kwargs["value"][:4] == "BANG":
+            logging.info("Real shot")
             self._real_shot = True
 
     def _on_new_data_received(self: EcatWriter, **kwargs) -> None:
         if self._real_shot:
-            self._write_all_files()
+            try:
+                logging.info("Writing data files")
+                self._write_all_files()
+            except Exception as e:
+                logging.error(f"Error while writing files: {str(e)}")
             self._real_shot = False
 
     def _get_comp_energy_template_contents(
@@ -83,14 +91,22 @@ class EcatWriter:
     def _generate_datafile_dir(self: EcatWriter) -> None:
         directory = get_today() + os.sep
         if not os.path.exists(directory):
-            os.makedirs(directory)
+            try:
+                os.makedirs(directory)
+            except Exception as e:
+                logging.error(f"Failed to create data directory ({directory}): {str(e)}")
         self._datafile_dir = directory
 
     def _build_comp_energy_file_contents(
         self: EcatWriter, energy: float, throughput: float
     ) -> str:
-        template = self._get_comp_energy_template_contents()
+        try:
+            template = self._get_comp_energy_template_contents()
+        except Exception as e:
+            logging.error(f"Failed to read energy template file: {str(e)}")
+
         if energy == None or throughput == None:
+            logging.info("No data for energy and/or throughput received")
             return
         contents = template.replace("DATE_SUB", f"{self._shot_date}")
         contents = contents.replace("SHOTNUM_SUB", f"{self._shot_number:08}")
@@ -102,27 +118,38 @@ class EcatWriter:
         compressor_throughput = self._comp_throughput_pv.get()
         compressor_energy = self._comp_energy_pv.get()
 
+        filename = (
+            f"{self._datafile_dir}{self._shot_date}GS{self._shot_number}COMP_E.mdt.xml"
+        )
+
         file_content = self._build_comp_energy_file_contents(
             compressor_energy, compressor_throughput
         )
 
-        filename = (
-            f"{self._datafile_dir}{self._shot_date}GS{self._shot_number}COMP_E.mdt.xml"
-        )
         if file_content is None:
-            return
+           logging.error("Unable to build compressor energy file. File won't be written") 
+           return
+        
+        logging.info(f"Writing comp_e file to {filename}")
         with open(filename, "w") as comp_e_file:
-            comp_e_file.write(file_content)
+            try:
+                comp_e_file.write(file_content)
+            except Exception as e:
+                logging.error(f"Failed to write comp_e file: {str(e)}")
 
     def _write_datafile_names(self: EcatWriter) -> None:
         filename = f"{self._datafile_dir}{self._listfile_name}"
         with open(filename, "a+") as data_file:
-            data_file.writelines(
-                [
-                    f"{self._shot_date}GS{self._shot_number:08}{ch}\n"
-                    for ch in self._datafile_names
-                ]
-            )
+            try:
+                data_file.writelines(
+                    [
+                        f"{self._shot_date}GS{self._shot_number:08}{ch}\n"
+                        for ch in self._datafile_names
+                    ]
+                )
+            except Exception as e:
+                logging.error(f"Failed to update file list: {str(e)}")
+            
 
     def _write_all_images(self: EcatWriter) -> None:
         for image, image_name in zip(self._images, self._image_channels):
@@ -148,44 +175,48 @@ class EcatWriter:
         self: EcatWriter, mdt_filename: str, image_name: str, image: EpicsImage
     ) -> None:
         section_name = self._get_section_name(mdt_filename)
-        with open(mdt_filename, "w") as mdt_file:
-            mdt_file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-            mdt_file.write("<GEMINI_LASER_SHOT>\n")
-            mdt_file.write(f"<DATE>{self._shot_date}</DATE>\n")
-            mdt_file.write("<SHOT>\n")
-            mdt_file.write(f"<SHOTNUM>{self._shot_number:08}</SHOTNUM>\n")
-            mdt_file.write("<SECTION>\n")
-            mdt_file.write(f"<SECTIONNAME>{section_name}</SECTIONNAME>\n")
-            mdt_file.write("<CHANNEL>\n")
-            mdt_file.write(f"<CHANNELNAME>{image_name}</CHANNELNAME>\n")
-            mdt_file.write("<MEASUREMENT>\n")
-            mdt_file.write(f"<NAME>{image_name}_INTEGRATION</NAME>\n")
-            mdt_file.write("<TYPE>INTEGRATION</TYPE>\n")
-            mdt_file.write(f"<VALUE>{image.integration}</VALUE>\n")
-            mdt_file.write("<UNITS>Count</UNITS>\n")
-            mdt_file.write("</MEASUREMENT>\n")
-            mdt_file.write("<MEASUREMENT>\n")
-            mdt_file.write(f"<NAME>{image_name}_E</NAME>\n")
-            mdt_file.write("<TYPE>E</TYPE>\n")
-            mdt_file.write("<VALUE>0.0</VALUE>\n")
-            mdt_file.write("<UNITS>Joule</UNITS>\n")
-            mdt_file.write("</MEASUREMENT>\n")
-            mdt_file.write("<MEASUREMENT>\n")
-            mdt_file.write(f"<NAME>{image_name}_XPOS</NAME>\n")
-            mdt_file.write("<TYPE>XPOS</TYPE>\n")
-            mdt_file.write(f"<VALUE>{image.centroidX}</VALUE>\n")
-            mdt_file.write("<UNITS>Pixel</UNITS>\n")
-            mdt_file.write("</MEASUREMENT>\n")
-            mdt_file.write("<MEASUREMENT>\n")
-            mdt_file.write(f"<NAME>{image_name}_YPOS</NAME>\n")
-            mdt_file.write("<TYPE>YPOS</TYPE>\n")
-            mdt_file.write(f"<VALUE>{image.centroidY}</VALUE>\n")
-            mdt_file.write("<UNITS>Pixel</UNITS>\n")
-            mdt_file.write("</MEASUREMENT>\n")
-            mdt_file.write("</CHANNEL>\n")
-            mdt_file.write("</SECTION>\n")
-            mdt_file.write("</SHOT>\n")
-            mdt_file.write("</GEMINI_LASER_SHOT>\n")
+        logging.info(f"Writing file {mdt_filename}")
+        try:
+            with open(mdt_filename, "w") as mdt_file:
+                mdt_file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+                mdt_file.write("<GEMINI_LASER_SHOT>\n")
+                mdt_file.write(f"<DATE>{self._shot_date}</DATE>\n")
+                mdt_file.write("<SHOT>\n")
+                mdt_file.write(f"<SHOTNUM>{self._shot_number:08}</SHOTNUM>\n")
+                mdt_file.write("<SECTION>\n")
+                mdt_file.write(f"<SECTIONNAME>{section_name}</SECTIONNAME>\n")
+                mdt_file.write("<CHANNEL>\n")
+                mdt_file.write(f"<CHANNELNAME>{image_name}</CHANNELNAME>\n")
+                mdt_file.write("<MEASUREMENT>\n")
+                mdt_file.write(f"<NAME>{image_name}_INTEGRATION</NAME>\n")
+                mdt_file.write("<TYPE>INTEGRATION</TYPE>\n")
+                mdt_file.write(f"<VALUE>{image.integration}</VALUE>\n")
+                mdt_file.write("<UNITS>Count</UNITS>\n")
+                mdt_file.write("</MEASUREMENT>\n")
+                mdt_file.write("<MEASUREMENT>\n")
+                mdt_file.write(f"<NAME>{image_name}_E</NAME>\n")
+                mdt_file.write("<TYPE>E</TYPE>\n")
+                mdt_file.write("<VALUE>0.0</VALUE>\n")
+                mdt_file.write("<UNITS>Joule</UNITS>\n")
+                mdt_file.write("</MEASUREMENT>\n")
+                mdt_file.write("<MEASUREMENT>\n")
+                mdt_file.write(f"<NAME>{image_name}_XPOS</NAME>\n")
+                mdt_file.write("<TYPE>XPOS</TYPE>\n")
+                mdt_file.write(f"<VALUE>{image.centroidX}</VALUE>\n")
+                mdt_file.write("<UNITS>Pixel</UNITS>\n")
+                mdt_file.write("</MEASUREMENT>\n")
+                mdt_file.write("<MEASUREMENT>\n")
+                mdt_file.write(f"<NAME>{image_name}_YPOS</NAME>\n")
+                mdt_file.write("<TYPE>YPOS</TYPE>\n")
+                mdt_file.write(f"<VALUE>{image.centroidY}</VALUE>\n")
+                mdt_file.write("<UNITS>Pixel</UNITS>\n")
+                mdt_file.write("</MEASUREMENT>\n")
+                mdt_file.write("</CHANNEL>\n")
+                mdt_file.write("</SECTION>\n")
+                mdt_file.write("</SHOT>\n")
+                mdt_file.write("</GEMINI_LASER_SHOT>\n")
+        except Exception as e:
+            logging.error(f"Failed to write {mdt_filename}: {str(e)}")
 
     def _write_dat_file(
         self: EcatWriter,
@@ -195,26 +226,30 @@ class EcatWriter:
         image_filename: str,
     ) -> None:
         section_name = self._get_section_name(image_name)
-        with open(dat_filename, "w") as dat_file:
-            dat_file.write(f"FNAME:{dat_filename.split(os.sep)[1]}\n")
-            dat_file.write(f"DATE:{self._shot_date}\n")
-            dat_file.write(f"SECTION:{section_name}\n")
-            dat_file.write(f"TIME:{self._shot_time}\n")
-            dat_file.write(f"TIMES:{self._shot_time_seconds}\n")
-            dat_file.write(f"SHOTNUM:{self._shot_number:08}\n")
-            dat_file.write("DIM:2\n")
-            dat_file.write(f"ARRAY:{image.width},{image.height}\n")
-            dat_file.write("DATASIZE:EXT_FILE\n")
-            dat_file.write("FORMAT:IMAGE\n")
-            dat_file.write("BYTEORDER:\n")
-            dat_file.write("CTSTIME:OFF\n")
-            dat_file.write("PARENT:\n")
-            dat_file.write("CHANS:1\n")
-            dat_file.write("CNAMES:1\n")
-            dat_file.write("AXIS_NUM:0\n")
-            dat_file.write("UNITS:pixels\n")
-            dat_file.write(f"EXT_FILE:{image_filename.split(os.sep)[1]}\n")
-            dat_file.write("EOH]\n")
+        logging.info(f"Writing file {dat_filename}")
+        try:
+            with open(dat_filename, "w") as dat_file:
+                dat_file.write(f"FNAME:{dat_filename.split(os.sep)[1]}\n")
+                dat_file.write(f"DATE:{self._shot_date}\n")
+                dat_file.write(f"SECTION:{section_name}\n")
+                dat_file.write(f"TIME:{self._shot_time}\n")
+                dat_file.write(f"TIMES:{self._shot_time_seconds}\n")
+                dat_file.write(f"SHOTNUM:{self._shot_number:08}\n")
+                dat_file.write("DIM:2\n")
+                dat_file.write(f"ARRAY:{image.width},{image.height}\n")
+                dat_file.write("DATASIZE:EXT_FILE\n")
+                dat_file.write("FORMAT:IMAGE\n")
+                dat_file.write("BYTEORDER:\n")
+                dat_file.write("CTSTIME:OFF\n")
+                dat_file.write("PARENT:\n")
+                dat_file.write("CHANS:1\n")
+                dat_file.write("CNAMES:1\n")
+                dat_file.write("AXIS_NUM:0\n")
+                dat_file.write("UNITS:pixels\n")
+                dat_file.write(f"EXT_FILE:{image_filename.split(os.sep)[1]}\n")
+                dat_file.write("EOH]\n")
+        except Exception as e:
+            logging.error(f"Failed to write {dat_filename}: {str(e)}")
 
     def _write_all_files(self: EcatWriter) -> None:
         self._generate_datafile_dir()
