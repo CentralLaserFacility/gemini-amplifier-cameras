@@ -260,5 +260,6 @@ class EcatWriter:
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
     writer = EcatWriter("GEM:N_AMP", "north")
     writer.run()
