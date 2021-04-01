@@ -1,0 +1,15 @@
+[Unit]
+Description=IOC for LA3 North Amp pinhole camera 
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+User=jqg93617
+# Note that PrivateTmp is implied
+WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
+ExecStart=/usr/bin/procServ -n ioc-cams-pinhole-n -i ^D^C -p /tmp/pid.txt -P 20010 ./st-pinhole.cmd
+PIDFile=/tmp/pid.txt
+
+[Install]
+WantedBy=multi-user.target
