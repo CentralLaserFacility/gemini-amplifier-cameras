@@ -67,7 +67,7 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image1:
 
 # Autosave section
 ###############################
-dbLoadRecords("db/autosave.db", "P=$(PREFIX), R=$(CAM)")
+dbLoadRecords("db/autosave_config.db", "P=$(PREFIX), R=$(CAM)")
 
 set_requestfile_path("$(AREA_DETECTOR)/ADCore/ADApp/Db")
 set_requestfile_path("$(AREA_DETECTOR)/$(ADGENICAM)/GenICamApp/Db")
