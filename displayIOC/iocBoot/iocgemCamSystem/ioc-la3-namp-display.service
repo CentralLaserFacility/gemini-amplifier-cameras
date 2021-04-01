@@ -5,11 +5,11 @@ After=network-online.target
 
 [Service]
 Type=forking
-DynamicUser=true
+User=jqg93617
 # Note that PrivateTmp is implied
 WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/displayIOC/iocBoot/iocgemCamSystem
 ExecStart=/usr/bin/procServ -n ioc-amp-cams-n -i ^D^C -p /tmp/pid.txt -P 20018 ./st.cmd
-;PIDFile=/tmp/pid.txt
+PIDFile=/tmp/pid.txt
 
 [Install]
 WantedBy=multi-user.target

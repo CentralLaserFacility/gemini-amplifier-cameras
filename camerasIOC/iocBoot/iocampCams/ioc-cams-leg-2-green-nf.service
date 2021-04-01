@@ -5,11 +5,11 @@ After=network-online.target
 
 [Service]
 Type=forking
-DynamicUser=true
+User=jqg93617
 # Note that PrivateTmp is implied
 WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
 ExecStart=/usr/bin/procServ -n ioc-cams-pump-leg-2-n -i ^D^C -p /tmp/pid.txt -P 20016 ./st-leg2-green-nf.cmd
-;PIDFile=/tmp/pid.txt
+PIDFile=/tmp/pid.txt
 
 [Install]
 WantedBy=multi-user.target
