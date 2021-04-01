@@ -1,0 +1,15 @@
+[Unit]
+Description=IOC for LA3 North Amp input NF camera 
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+DynamicUser=true
+# Note that PrivateTmp is implied
+WorkingDirectory= /opt/gemini/la3/north_amp/camerasIOC/iocBoot/iocampCams
+ExecStart=/usr/bin/procServ -n ioc-cams-inp-nf-n -i ^D^C -p /tmp/pid.txt -P 20017 ./st-inp-nf.cmd
+;PIDFile=/tmp/pid.txt
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=IOC for LA3 North Amp fluorescence camera 
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+DynamicUser=true
+# Note that PrivateTmp is implied
+WorkingDirectory= /opt/gemini/la3/north_amp/camerasIOC/iocBoot/iocampCams
+ExecStart=/usr/bin/procServ -n ioc-cams-fluor-n -i ^D^C -p /tmp/pid.txt -P 20014 ./st-fluor.cmd
+;PIDFile=/tmp/pid.txt
+
+[Install]
+WantedBy=multi-user.target
