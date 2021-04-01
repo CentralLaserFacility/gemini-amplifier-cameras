@@ -7,7 +7,7 @@ After=network-online.target
 Type=forking
 DynamicUser=true
 # Note that PrivateTmp is implied
-WorkingDirectory= /opt/gemini/la3/north_amp/camerasIOC/iocBoot/iocampCams
+WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
 ExecStart=/usr/bin/procServ -n ioc-cams-comp-ff-n -i ^D^C -p /tmp/pid.txt -P 20013 ./st-comp-ff.cmd
 ;PIDFile=/tmp/pid.txt
 
