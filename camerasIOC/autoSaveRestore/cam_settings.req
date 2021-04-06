@@ -12,5 +12,6 @@ file "NDOverlayN_settings.req",     P=$(P),  R=$(R):Over1:1:,
 
 $(P)$(R):Over1:1:CenterX
 $(P)$(R):Over1:1:CenterY
+$(P)$(R):GC_TriggerDelayAbs
 
 
