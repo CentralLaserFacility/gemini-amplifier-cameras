@@ -70,8 +70,8 @@ dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image1:
 dbLoadRecords("db/autosave_config.db", "P=$(PREFIX), R=$(CAM)")
 
 set_requestfile_path("$(AREA_DETECTOR)/ADCore/ADApp/Db")
-set_requestfile_path("$(AREA_DETECTOR)/$(ADGENICAM)/GenICamApp/Db")
-set_requestfile_path("$(AREA_DETECTOR)/$(ADVIMBA)/vimbaApp/Db")
+set_requestfile_path("$(ADGENICAM)/GenICamApp/Db")
+set_requestfile_path("$(ADVIMBA)/vimbaApp/Db")
 set_requestfile_path("$(CALC)/calcApp/Db")
 set_requestfile_path("$(SSCAN)/sscanApp/Db")
 set_requestfile_path("$(TOP)/autoSaveRestore")
