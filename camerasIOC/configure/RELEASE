@@ -23,13 +23,13 @@
 
 # Variables and paths to dependent modules:
 SUPPORT=/usr/local/epics7/support
-ASYN=$(SUPPORT)/asyn/support
-AUTOSAVE=$(SUPPORT)/autosave/support
-BUSY=$(SUPPORT)/busy/support
-CALC=$(SUPPORT)/calc/support
+ASYN=$(SUPPORT)/asyn/current
+AUTOSAVE=$(SUPPORT)/autosave/current
+BUSY=$(SUPPORT)/busy/current
+CALC=$(SUPPORT)/calc/current
 SEQ=$(SUPPORT)/seq/current
-SSCAN=$(SUPPORT)/sscan/support
-AREA_DETECTOR=$(SUPPORT)/areaDetector/support
+SSCAN=$(SUPPORT)/sscan/current
+AREA_DETECTOR=$(SUPPORT)/areaDetector/current
 ADCORE=$(AREA_DETECTOR)/ADCore
 #ADSIMDETECTOR=$(AREA_DETECTOR)/ADSimDetector
 ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
