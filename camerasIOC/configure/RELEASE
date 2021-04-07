@@ -22,14 +22,14 @@
 # the CONFIG_SITE file.
 
 # Variables and paths to dependent modules:
-SUPPORT=/usr/local/epics/support
-ASYN=$(SUPPORT)/asyn
-AUTOSAVE=$(SUPPORT)/autosave
-BUSY=$(SUPPORT)/busy
-CALC=$(SUPPORT)/calc
+SUPPORT=/usr/local/epics7/support
+ASYN=$(SUPPORT)/asyn/support
+AUTOSAVE=$(SUPPORT)/autosave/support
+BUSY=$(SUPPORT)/busy/support
+CALC=$(SUPPORT)/calc/support
 SEQ=$(SUPPORT)/seq/current
-SSCAN=$(SUPPORT)/sscan
-AREA_DETECTOR=$(SUPPORT)/areaDetector
+SSCAN=$(SUPPORT)/sscan/support
+AREA_DETECTOR=$(SUPPORT)/areaDetector/support
 ADCORE=$(AREA_DETECTOR)/ADCore
 #ADSIMDETECTOR=$(AREA_DETECTOR)/ADSimDetector
 ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
@@ -39,7 +39,7 @@ ADGENICAM=$(AREA_DETECTOR)/ADGenICam
 
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
-EPICS_BASE = /usr/local/epics/base
+EPICS_BASE = /usr/local/epics7/base
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
