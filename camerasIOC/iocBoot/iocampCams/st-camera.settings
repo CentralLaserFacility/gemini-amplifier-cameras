@@ -1,6 +1,9 @@
 # Limit the packet size
 dbpf $(PREFIX)$(CAM):GC_GevSCPSPacketSize 1500
 
+# Limit camera bandwidth
+dbpf $(PREFIX)$(CAM):GC_StrBytesPerSecond 100000000
+
 # Setup to use external trigger
 dbpf $(PREFIX)$(CAM):GC_TriggerSource 1
 
