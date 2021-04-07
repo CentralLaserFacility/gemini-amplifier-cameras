@@ -1,4 +1,22 @@
-record(dfanout, "$(P)TriggerMode"){
+record(bo, "$(P):TriggerMode"){
+    field(DESC, "Set cam trigs off or on")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(FLNK, "$(P):TrigChangeSequence.PROC")
+}
+
+record(seq, "$(P):TrigChangeSequence"){
+    field(DOL0, "1")
+    field(LNK0, "$(P):StopCamsAcquistion.PROC")
+    field(DLY1, "1")
+    field(DOL1, "$(P):TriggerMode NPP")
+    field(LNK1, "$(P):SetTriggerMode")
+    field(DLY2, "1")
+    field(DOL2, "1")
+    field(LNK2, "$(P):StartCamsAcquistion.PROC")
+}
+
+record(dfanout, "$(P)SetTriggerMode"){
     field(DESC, "Set cams to int or ext trigger")
     field(OMSL, "supervisory")
     field(SELM, "All")
@@ -24,4 +42,34 @@ record(dfanout, "$(P)TriggerDelayAbs"){
     field(OUTF, "$(P)$(CAM6):GC_TriggerDelayAbs")
     field(OUTG, "$(P)$(CAM7):GC_TriggerDelayAbs")
     field(OUTH, "$(P)$(CAM8):GC_TriggerDelayAbs")
+}
+
+record(dfanout, "$(P):StopCamsAcquistion"){
+    field(DESC, "Stop cameras acquiring")
+    field(OMSL, "closed_loop")
+    field(DOL, "0")
+    field(SELM, "All")
+    field(OUTA, "$(P)$(CAM1):Acquire")
+    field(OUTB, "$(P)$(CAM2):Acquire")
+    field(OUTC, "$(P)$(CAM3):Acquire")
+    field(OUTD, "$(P)$(CAM4):Acquire")
+    field(OUTE, "$(P)$(CAM5):Acquire")
+    field(OUTF, "$(P)$(CAM6):Acquire")
+    field(OUTG, "$(P)$(CAM7):Acquire")
+    field(OUTH, "$(P)$(CAM8):Acquire")
+}
+
+record(dfanout, "$(P):StartCamsAcquistion"){
+    field(DESC, "Start cameras acquiring")
+    field(OMSL, "closed_loop")
+    field(DOL, "1")
+    field(SELM, "All")
+    field(OUTA, "$(P)$(CAM1):Acquire")
+    field(OUTB, "$(P)$(CAM2):Acquire")
+    field(OUTC, "$(P)$(CAM3):Acquire")
+    field(OUTD, "$(P)$(CAM4):Acquire")
+    field(OUTE, "$(P)$(CAM5):Acquire")
+    field(OUTF, "$(P)$(CAM6):Acquire")
+    field(OUTG, "$(P)$(CAM7):Acquire")
+    field(OUTH, "$(P)$(CAM8):Acquire")
 }
