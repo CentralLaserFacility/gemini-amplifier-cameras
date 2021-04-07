@@ -463,7 +463,7 @@
     </widget>
     <widget type="choice" version="2.0.0">
       <name>Choice Button</name>
-      <pv_name>$(CAM):TriggerMode</pv_name>
+      <pv_name>$(P):TriggerMode</pv_name>
       <x>24</x>
       <y>54</y>
       <width>121</width>
@@ -483,9 +483,10 @@
       <actions>
       </actions>
       <items>
-        <item>Item 1</item>
-        <item>Item 2</item>
+        <item>Int</item>
+        <item>Ext</item>
       </items>
+      <items_from_pv>false</items_from_pv>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label</name>

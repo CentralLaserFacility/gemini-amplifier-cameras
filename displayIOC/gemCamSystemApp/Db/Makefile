@@ -10,10 +10,11 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += amplifier_cameras.db
+DB += shot_data.db
+DB += triggering.db 
 DB += display.db
 DB += roi.db
-DB += sim.db
+#DB += sim.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
