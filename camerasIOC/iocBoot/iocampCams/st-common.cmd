@@ -63,7 +63,7 @@ dbLoadRecords("NDOverlayN.template","P=$(PREFIX)$(CAM):,R=Over1:1:,NAME=fiducial
 # standard arrays plugin
 ###############################
 NDStdArraysConfigure("$(PREFIX)$(CAM):Image", 3, 0, "$(PREFIX)$(CAM):OVER", 0, 0)
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image1:,PORT=$(PREFIX)$(CAM):Image,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PREFIX)$(CAM):OVER,TYPE=Int8,FTVL=UCHAR,NELEMENTS=$(NELM)")
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image1:,PORT=$(PREFIX)$(CAM):Image,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PREFIX)$(CAM):OVER,TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELM)")
 
 # Autosave section
 ###############################

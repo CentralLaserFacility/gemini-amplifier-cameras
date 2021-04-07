@@ -13,3 +13,4 @@ iocInit
 create_monitor_set("cam_settings.req", 5, "P=$(PREFIX), R=$(CAM), SAVENAMEPV=$(PREFIX)$(CAM):SAVENAMEPV")
 
 < st-camera.settings
+< st-camera-12bit.settings
