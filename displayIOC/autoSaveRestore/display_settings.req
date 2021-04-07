@@ -1,3 +1,6 @@
+$(P):TriggerDelayAbs
+$(P):TriggerMode
+
 $(P)$(CAM1):DISP_MAX
 $(P)$(CAM1):OVER_X
 $(P)$(CAM1):OVER_Y
