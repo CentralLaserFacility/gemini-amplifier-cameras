@@ -1,19 +1,21 @@
-record(bo, "$(P):TriggerMode"){
+record(bo, "$(P)TriggerMode"){
     field(DESC, "Set cam trigs off or on")
+    field(DTYP, "Soft Channel")
+    field(OMSL, "supervisory")
     field(ZNAM, "Off")
     field(ONAM, "On")
-    field(FLNK, "$(P):TrigChangeSequence.PROC")
+    field(OUT, "$(P)TrigChangeSequence.PROC")
 }
 
-record(seq, "$(P):TrigChangeSequence"){
+record(seq, "$(P)TrigChangeSequence"){
     field(DOL0, "1")
-    field(LNK0, "$(P):StopCamsAcquistion.PROC")
-    field(DLY1, "1")
-    field(DOL1, "$(P):TriggerMode NPP")
-    field(LNK1, "$(P):SetTriggerMode")
-    field(DLY2, "1")
+    field(LNK0, "$(P)StopCamsAcquistion.PROC")
+    field(DLY1, "2")
+    field(DOL1, "$(P)TriggerMode NPP")
+    field(LNK1, "$(P)SetTriggerMode PP")
+    field(DLY2, "2")
     field(DOL2, "1")
-    field(LNK2, "$(P):StartCamsAcquistion.PROC")
+    field(LNK2, "$(P)StartCamsAcquistion.PROC")
 }
 
 record(dfanout, "$(P)SetTriggerMode"){
@@ -44,7 +46,7 @@ record(dfanout, "$(P)TriggerDelayAbs"){
     field(OUTH, "$(P)$(CAM8):GC_TriggerDelayAbs")
 }
 
-record(dfanout, "$(P):StopCamsAcquistion"){
+record(dfanout, "$(P)StopCamsAcquistion"){
     field(DESC, "Stop cameras acquiring")
     field(OMSL, "closed_loop")
     field(DOL, "0")
@@ -59,7 +61,7 @@ record(dfanout, "$(P):StopCamsAcquistion"){
     field(OUTH, "$(P)$(CAM8):Acquire")
 }
 
-record(dfanout, "$(P):StartCamsAcquistion"){
+record(dfanout, "$(P)StartCamsAcquistion"){
     field(DESC, "Start cameras acquiring")
     field(OMSL, "closed_loop")
     field(DOL, "1")
