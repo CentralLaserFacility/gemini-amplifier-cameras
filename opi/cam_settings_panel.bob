@@ -445,7 +445,7 @@
     </widget>
     <widget type="textentry" version="3.0.0">
       <name>Text Input</name>
-      <pv_name>$(CAM):GC_TriggerDelayAbs</pv_name>
+      <pv_name>$(P):TriggerDelayAbs</pv_name>
       <x>78</x>
       <y>12</y>
       <width>67</width>
