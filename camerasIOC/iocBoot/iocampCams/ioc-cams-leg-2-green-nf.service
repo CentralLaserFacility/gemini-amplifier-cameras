@@ -2,6 +2,8 @@
 Description=IOC for LA3 North Amp pump leg 2 camera 
 Wants=network-online.target
 After=network-online.target
+StartLimitInterval=200
+StartLimitBurst=5
 
 [Service]
 Type=forking
@@ -10,6 +12,8 @@ User=jqg93617
 WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
 ExecStart=/usr/bin/procServ -n ioc-cams-pump-leg-2-n -i ^D^C -p /tmp/pid.txt -P 20016 ./st-leg2-green-nf.cmd
 PIDFile=/tmp/pid.txt
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
