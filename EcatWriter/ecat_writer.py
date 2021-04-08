@@ -106,7 +106,7 @@ class EcatWriter:
             logging.error(f"Failed to read energy template file: {str(e)}")
 
         if energy == None or throughput == None:
-            logging.info("No data for energy and/or throughput received")
+            logging.info(f"Bad data: energy={energy}, throughput={throughput}. File not written")
             return
         contents = template.replace("DATE_SUB", f"{self._shot_date}")
         contents = contents.replace("SHOTNUM_SUB", f"{self._shot_number:08}")

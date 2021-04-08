@@ -10,6 +10,7 @@ class EpicsImage:
             pv_name_root + ":image1:ArrayData",
             connection_timeout=timeout,
             callback=self._on_data_change,
+            auto_monitor=True,
         )
         self._array_width_pv = epics.PV(
             pv_name_root + ":image1:ArraySize0_RBV",
@@ -93,7 +94,7 @@ class EpicsImage:
         height = self._height
         logging.info(f"Writing image to {filename}")
         if data is None or width is None or height is None:
-            logging.info("Image has missing data. File not written")
+            logging.info(f"Bad image data. File not written")
             return
         image_array = numpy.reshape(data, (height, width))
         try:
