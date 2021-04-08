@@ -22,9 +22,10 @@
     <widget type="checkbox" version="2.0.0">
       <name>Check Box</name>
       <pv_name>$(CAM):Over1:1:Use</pv_name>
-      <label>Show</label>
-      <y>4</y>
-      <width>55</width>
+      <label></label>
+      <x>7</x>
+      <y>5</y>
+      <width>42</width>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
@@ -35,8 +36,8 @@
     <widget type="combo" version="2.0.0">
       <name>Combo</name>
       <pv_name>$(CAM):Over1:1:Shape</pv_name>
-      <x>72</x>
-      <width>112</width>
+      <x>55</x>
+      <width>129</width>
       <height>27</height>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">

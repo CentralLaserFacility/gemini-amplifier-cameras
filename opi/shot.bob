@@ -595,7 +595,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_5</name>
-    <pv_name>$(P):SHOT_NUMBER</pv_name>
+    <pv_name>GEM:LA3:SHOTNUM</pv_name>
     <x>621</x>
     <y>296</y>
     <width>172</width>
