@@ -94,10 +94,10 @@ class EpicsImage:
         height = self._height
         logging.info(f"Writing image to {filename}")
         if data is None or width is None or height is None:
-            logging.info(f"Bad image data. File not written")
+            logging.error(f"Bad image data. File not written")
             return
         image_array = numpy.reshape(data, (height, width))
         try:
             Image.fromarray(image_array).save(filename)
         except Exception as e:
-            logging.errror(f"Failed to write image to {filename}: {str(e)}")
+            logging.error(f"Failed to write image to {filename}: {str(e)}")
