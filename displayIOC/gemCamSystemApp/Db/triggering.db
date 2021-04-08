@@ -49,7 +49,7 @@ record(dfanout, "$(P)TriggerDelayAbs"){
 }
 
 
-record(mbbi, "$(P):POWER_MODE"){
+record(mbbi, "$(P)POWER_MODE"){
     field(DESC, "Power mode read from laser CS")
     field(DTYP, "Soft Channel")
     field(INP, "GEM:LA3:ENERGYMODE")
@@ -70,9 +70,9 @@ record(mbbi, "$(P):POWER_MODE"){
     field(FLNK, "$(P):SET_TRIG_FOR_MODE.PROC")
 }
 
-record(calcout, "$(P):SET_TRIG_FOR_MODE") {
+record(calcout, "$(P)SET_TRIG_FOR_MODE") {
     field(DESC, "Set cam trigs on mode change")
-    field(INPA, "$(P):POWER_MODE NPP")
+    field(INPA, "$(P)POWER_MODE NPP")
     field(CALC, "A > 1")
     field(OOPT, "On Change")
     field(OUT, "$(P)TriggerMode PP")
