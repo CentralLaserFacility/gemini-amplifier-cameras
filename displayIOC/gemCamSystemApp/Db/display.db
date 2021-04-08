@@ -1,4 +1,4 @@
-record(longin, "$(CAM):DISP_MAX") {
+record(longin, "$(P)$(CAM):DISP_MAX") {
     field(DESC, "Max display value for image")
     field(PINI, "YES")
     field(VAL, "125")
