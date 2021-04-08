@@ -25,6 +25,16 @@ record(fanout, "$(CAM):SET_ROI_VIEW") {
 }
 
 
+# Automatically switch to ROI view when in shot mode
+record(calcout, "$(CAM):SET_ROI_FOR_SHOT"){
+  field(DESC, "Move to ROI view in shot mode")
+  field(INPA, "$($)POWER_MODE CP")
+  field(CALC, "A=6") # Full power mode
+  field(OOPT, "3") # Only write when calc result is non-zero (i.e. true)
+  field(OUT, "$(CAM):SET_ROI_VIEW.PROC")
+}
+
+
 ###############################################################
 # Records for setting width and horizontal centre
 ###############################################################
