@@ -84,7 +84,7 @@
     </actions>
     <scripts>
       <script file="scripts/fine_coarse_switch.py">
-        <pv_name trigger="false">$(P):CAMERA_LIST</pv_name>
+        <pv_name trigger="false">$(P)CAMERA_LIST</pv_name>
         <pv_name>loc://align-view</pv_name>
       </script>
     </scripts>

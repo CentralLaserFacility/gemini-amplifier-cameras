@@ -8,15 +8,15 @@
   <widget type="tabs" version="2.0.0">
     <name>Tabbed Container</name>
     <macros>
-      <CAM1>${P}:UNCOMP_NF</CAM1>
-      <CAM2>${P}:INP_NF</CAM2>
-      <CAM3>${P}:COMP_NF</CAM3>
-      <CAM4>${P}:COMP_FF</CAM4>
-      <CAM5>$(P):FLUOR</CAM5>
-      <CAM6>$(P):LEG1_GREEN_NF</CAM6>
-      <CAM7>$(P):LEG2_GREEN_NF</CAM7>
-      <CAM8>$(P):PINHOLE</CAM8>
-      <P>GEM:N_AMP</P>
+      <CAM1>${P}UNCOMP_NF</CAM1>
+      <CAM2>${P}INP_NF</CAM2>
+      <CAM3>${P}COMP_NF</CAM3>
+      <CAM4>${P}COMP_FF</CAM4>
+      <CAM5>$(P)FLUOR</CAM5>
+      <CAM6>$(P)LEG1_GREEN_NF</CAM6>
+      <CAM7>$(P)LEG2_GREEN_NF</CAM7>
+      <CAM8>$(P)PINHOLE</CAM8>
+      <P>GEM:N_AMP:</P>
     </macros>
     <tabs>
       <tab>
@@ -79,6 +79,21 @@
           </widget>
         </children>
       </tab>
+      <tab>
+        <name>Advanced</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>shot_link_cont_1</name>
+            <file>advanced.opi</file>
+            <x>10</x>
+            <y>10</y>
+            <width>830</width>
+            <height>565</height>
+            <actions>
+            </actions>
+          </widget>
+        </children>
+      </tab>
     </tabs>
     <x>8</x>
     <y>5</y>
@@ -88,7 +103,7 @@
       <font family="Liberation Sans" style="BOLD" size="14.0">
       </font>
     </font>
-    <active_tab>1</active_tab>
+    <active_tab>4</active_tab>
     <tab_height>10</tab_height>
     <actions>
     </actions>

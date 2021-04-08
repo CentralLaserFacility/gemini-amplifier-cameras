@@ -130,7 +130,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update</name>
-    <pv_name>$(P):PUMP_TRANS_E</pv_name>
+    <pv_name>$(P)PUMP_TRANS_E</pv_name>
     <x>48</x>
     <y>392</y>
     <width>61</width>
@@ -169,7 +169,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_1</name>
-    <pv_name>$(P):PUMP_REF_E</pv_name>
+    <pv_name>$(P)PUMP_REF_E</pv_name>
     <x>246</x>
     <y>392</y>
     <width>61</width>
@@ -209,7 +209,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_2</name>
-    <pv_name>$(P):AMP_E</pv_name>
+    <pv_name>$(P)AMP_E</pv_name>
     <x>456</x>
     <y>392</y>
     <width>61</width>
@@ -265,17 +265,17 @@ $(pv_value)</tooltip>
     <scripts>
       <script file="scripts/convert_to_wfm.py">
         <pv_name trigger="false">loc://max_wfm_length&lt;VLong&gt;(50)</pv_name>
-        <pv_name>$(P):AMP_E</pv_name>
+        <pv_name>$(P)AMP_E</pv_name>
         <pv_name trigger="false">loc://AMP_E&lt;VDoubleArray&gt;(0)</pv_name>
-        <pv_name trigger="false">$(P):TOT_PUMP_E</pv_name>
+        <pv_name trigger="false">$(P)TOT_PUMP_E</pv_name>
         <pv_name trigger="false">loc://TOT_PUMP_E&lt;VDoubleArray&gt;(0)</pv_name>
-        <pv_name trigger="false">$(P):PUMP_TRANS_E</pv_name>
+        <pv_name trigger="false">$(P)PUMP_TRANS_E</pv_name>
         <pv_name trigger="false">loc://PUMP_TRANS_E&lt;VDoubleArray&gt;(0)</pv_name>
-        <pv_name trigger="false">$(P):PUMP_REF_E</pv_name>
+        <pv_name trigger="false">$(P)PUMP_REF_E</pv_name>
         <pv_name trigger="false">loc://PUMP_REF_E&lt;VDoubleArray&gt;(0)</pv_name>
-        <pv_name trigger="false">$(P):COMP_POINTING_X</pv_name>
+        <pv_name trigger="false">$(P)COMP_POINTING_X</pv_name>
         <pv_name trigger="false">loc://COMP_FF_X&lt;VDoubleArray&gt;(0)</pv_name>
-        <pv_name trigger="false">$(P):COMP_POINTING_Y</pv_name>
+        <pv_name trigger="false">$(P)COMP_POINTING_Y</pv_name>
         <pv_name trigger="false">loc://COMP_FF_Y&lt;VDoubleArray&gt;(0)</pv_name>
       </script>
     </scripts>
@@ -553,7 +553,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_3</name>
-    <pv_name>$(P):COMP_ENERGY</pv_name>
+    <pv_name>$(P)COMP_ENERGY</pv_name>
     <x>621</x>
     <y>232</y>
     <width>76</width>
@@ -574,7 +574,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_4</name>
-    <pv_name>$(P):TOT_PUMP_E</pv_name>
+    <pv_name>$(P)TOT_PUMP_E</pv_name>
     <x>717</x>
     <y>232</y>
     <width>76</width>
@@ -619,7 +619,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_6</name>
-    <pv_name>$(P):AMP_E</pv_name>
+    <pv_name>$(P)AMP_E</pv_name>
     <x>621</x>
     <y>372</y>
     <width>172</width>

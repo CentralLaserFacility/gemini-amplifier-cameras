@@ -19,7 +19,7 @@
     <scripts>
       <script file="scripts/read_cam_list.py">
         <pv_name>=1</pv_name>
-        <pv_name trigger="false">$(P):CAMERA_LIST</pv_name>
+        <pv_name trigger="false">$(P)CAMERA_LIST</pv_name>
       </script>
     </scripts>
   </widget>
