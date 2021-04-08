@@ -25,6 +25,13 @@ record(calc, "$(P):COMP_ENERGY") {
     field(EGU, "J")
 }
 
+record(stringin, "$(P):SHOT_NUMBER") {
+    field(DESC, "Watch for shot number change")
+    field(DTYP, "Soft Channel")
+    field(INP, "GEM:LA3:SHOTNUM CP")
+    field(FLNK, "$(P):UPDATE_VALUES.PROC")
+}
+
 record(seq, "$(P):UPDATE_VALUES") {
     field(DESC, "description")
     field(SELM, "All")
