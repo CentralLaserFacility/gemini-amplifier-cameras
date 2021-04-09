@@ -1,5 +1,5 @@
 [Unit]
-Description=IOC for LA3 North Amp input NF camera 
+Description=IOC for LA3 South Amp input NF camera 
 Wants=network-online.target
 After=network-online.target
 StartLimitInterval=200
@@ -9,8 +9,8 @@ StartLimitBurst=5
 Type=forking
 User=jqg93617
 # Note that PrivateTmp is implied
-WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
-ExecStart=/usr/bin/procServ -n ioc-cams-inp-nf-n -i ^D^C -p /tmp/pid.txt -P 20017 ./st-inp-nf.cmd
+WorkingDirectory= /opt/gemini/la3/south_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
+ExecStart=/usr/bin/procServ -n ioc-cams-inp-nf-s -i ^D^C -p /tmp/pid.txt -P 20017 ./st-inp-nf.cmd
 PIDFile=/tmp/pid.txt
 Restart=always
 RestartSec=10

@@ -16,7 +16,7 @@
       <CAM6>$(P)LEG1_GREEN_NF</CAM6>
       <CAM7>$(P)LEG2_GREEN_NF</CAM7>
       <CAM8>$(P)PINHOLE</CAM8>
-      <P>GEM:N_AMP:</P>
+      <P>GEM:S_AMP:</P>
     </macros>
     <tabs>
       <tab>
@@ -89,14 +89,15 @@
             <y>10</y>
             <width>830</width>
             <height>565</height>
+            <resize>1</resize>
             <actions>
             </actions>
           </widget>
         </children>
       </tab>
     </tabs>
-    <x>8</x>
-    <y>5</y>
+    <x>10</x>
+    <y>10</y>
     <width>850</width>
     <height>605</height>
     <font>

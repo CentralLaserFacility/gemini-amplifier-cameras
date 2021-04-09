@@ -250,7 +250,7 @@ $(pv_value)</tooltip>
   <widget type="xyplot" version="2.0.0">
     <name>time-history</name>
     <y>426</y>
-    <width>712</width>
+    <width>680</width>
     <height>133</height>
     <background_color>
       <color red="240" green="240" blue="240">
@@ -441,9 +441,9 @@ $(pv_value)</tooltip>
     <name>Action Button_4</name>
     <pv_name>loc://comp_ff_x_visibility</pv_name>
     <label>Comp FF X</label>
-    <x>715</x>
+    <x>691</x>
     <y>512</y>
-    <width>93</width>
+    <width>129</width>
     <height>22</height>
     <actions execute_as_one="true">
     </actions>
@@ -460,9 +460,9 @@ $(pv_value)</tooltip>
     <name>Action Button_3</name>
     <pv_name>loc://pump_ref_e_visibility</pv_name>
     <label>Pump Ref. E</label>
-    <x>715</x>
+    <x>691</x>
     <y>490</y>
-    <width>93</width>
+    <width>129</width>
     <height>22</height>
     <actions execute_as_one="true">
     </actions>
@@ -479,9 +479,9 @@ $(pv_value)</tooltip>
     <name>Action Button_2</name>
     <pv_name>loc://pump_trans_e_visibility</pv_name>
     <label>Pump Trans. E</label>
-    <x>715</x>
+    <x>691</x>
     <y>468</y>
-    <width>93</width>
+    <width>129</width>
     <height>22</height>
     <actions execute_as_one="true">
     </actions>
@@ -498,9 +498,9 @@ $(pv_value)</tooltip>
     <name>Action Button_1</name>
     <pv_name>loc://tot_pump_e_visibility</pv_name>
     <label>Tot. Pump E</label>
-    <x>715</x>
+    <x>691</x>
     <y>446</y>
-    <width>93</width>
+    <width>129</width>
     <height>22</height>
     <actions execute_as_one="true">
     </actions>
@@ -517,9 +517,9 @@ $(pv_value)</tooltip>
     <name>Amp-e-toggle</name>
     <pv_name>loc://amp_e_trace_visibility</pv_name>
     <label>Amp Energy</label>
-    <x>715</x>
+    <x>691</x>
     <y>424</y>
-    <width>93</width>
+    <width>129</width>
     <height>22</height>
     <actions execute_as_one="true">
     </actions>
@@ -536,9 +536,9 @@ $(pv_value)</tooltip>
     <name>Action Button_5</name>
     <pv_name>loc://comp_ff_y_visibility</pv_name>
     <label>Comp FF Y</label>
-    <x>715</x>
+    <x>691</x>
     <y>534</y>
-    <width>93</width>
+    <width>129</width>
     <height>22</height>
     <actions execute_as_one="true">
     </actions>
