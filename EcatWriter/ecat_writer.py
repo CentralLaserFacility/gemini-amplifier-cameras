@@ -44,7 +44,9 @@ class EcatWriter:
         self._shot_number_pv = epics.PV(
             "GEM:LA3:SHOTNUM", callback=self._on_shotnumber_change
         )
-        self._comp_energy_pv = epics.PV(pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received)
+        self._comp_energy_pv = epics.PV(
+            pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received
+        )
         self._comp_throughput_pv = epics.PV(pv_prefix + ":COMP_THROUGHPUT")
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
         self._real_shot = False
@@ -54,7 +56,7 @@ class EcatWriter:
         # Just to keep the process alive. Do better later
         logging.info(f"EcatWriter started for {self._amplifier} amplifier")
         while True:
-            time.sleep(interval) 
+            time.sleep(interval)
 
     def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
         logging.info(f'New shot number: {kwargs["value"]}')
@@ -94,7 +96,9 @@ class EcatWriter:
             try:
                 os.makedirs(directory)
             except Exception as e:
-                logging.error(f"Failed to create data directory ({directory}): {str(e)}")
+                logging.error(
+                    f"Failed to create data directory ({directory}): {str(e)}"
+                )
         self._datafile_dir = directory
 
     def _build_comp_energy_file_contents(
@@ -106,9 +110,12 @@ class EcatWriter:
             logging.error(f"Failed to read energy template file: {str(e)}")
 
         if energy == None or throughput == None:
-            logging.info(f"Bad data: energy={energy}, throughput={throughput}. File not written")
+            logging.info(
+                f"Bad data: energy={energy}, throughput={throughput}. File not written"
+            )
             return
-        contents = template.replace("DATE_SUB", f"{self._shot_date}")
+        contents = template.replace("AMP_SUB", f"{self._amplifier}")
+        contents = contents.replace("DATE_SUB", f"{self._shot_date}")
         contents = contents.replace("SHOTNUM_SUB", f"{self._shot_number:08}")
         contents = contents.replace("ENERGY_SUB", f"{energy:.2f}")
         contents = contents.replace("THROUGHPUT_SUB", f"{throughput:.2f}")
@@ -118,18 +125,18 @@ class EcatWriter:
         compressor_throughput = self._comp_throughput_pv.get()
         compressor_energy = self._comp_energy_pv.get()
 
-        filename = (
-            f"{self._datafile_dir}{self._shot_date}GS{self._shot_number}COMP_E.mdt.xml"
-        )
+        filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number}{self._amplifier}_COMP_E.mdt.xml"
 
         file_content = self._build_comp_energy_file_contents(
             compressor_energy, compressor_throughput
         )
 
         if file_content is None:
-           logging.error("Unable to build compressor energy file. File won't be written") 
-           return
-        
+            logging.error(
+                "Unable to build compressor energy file. File won't be written"
+            )
+            return
+
         logging.info(f"Writing comp_e file to {filename}")
         with open(filename, "w") as comp_e_file:
             try:
@@ -149,7 +156,6 @@ class EcatWriter:
                 )
             except Exception as e:
                 logging.error(f"Failed to update file list: {str(e)}")
-            
 
     def _write_all_images(self: EcatWriter) -> None:
         for image, image_name in zip(self._images, self._image_channels):
@@ -260,6 +266,8 @@ class EcatWriter:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)-8s: %(message)s')
+    logging.basicConfig(
+        level=logging.DEBUG, format="%(asctime)s %(levelname)-8s: %(message)s"
+    )
     writer = EcatWriter("GEM:S_AMP", "south")
     writer.run()
