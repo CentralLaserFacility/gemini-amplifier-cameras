@@ -125,7 +125,7 @@ class EcatWriter:
         compressor_throughput = self._comp_throughput_pv.get()
         compressor_energy = self._comp_energy_pv.get()
 
-        filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number}{self._amplifier}_COMP_E.mdt.xml"
+        filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{self._amplifier}_COMP_E.mdt.xml"
 
         file_content = self._build_comp_energy_file_contents(
             compressor_energy, compressor_throughput
