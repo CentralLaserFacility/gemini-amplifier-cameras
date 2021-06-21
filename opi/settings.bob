@@ -10,7 +10,7 @@
     <macros>
       <CAM>${CAM1}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>560</x>
     <width>128</width>
     <height>128</height>
@@ -24,7 +24,7 @@
     <macros>
       <CAM>${CAM4}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>698</x>
     <y>144</y>
     <width>128</width>
@@ -39,7 +39,7 @@
     <macros>
       <CAM>${CAM2}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>698</x>
     <width>128</width>
     <height>128</height>
@@ -53,7 +53,7 @@
     <macros>
       <CAM>${CAM3}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>560</x>
     <y>144</y>
     <width>128</width>
@@ -68,7 +68,7 @@
     <macros>
       <CAM>${CAM5}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>560</x>
     <y>288</y>
     <width>128</width>
@@ -83,7 +83,7 @@
     <macros>
       <CAM>${CAM6}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>698</x>
     <y>288</y>
     <width>128</width>
@@ -98,7 +98,7 @@
     <macros>
       <CAM>${CAM7}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>560</x>
     <y>432</y>
     <width>128</width>
@@ -113,7 +113,7 @@
     <macros>
       <CAM>${CAM8}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>698</x>
     <y>432</y>
     <width>128</width>

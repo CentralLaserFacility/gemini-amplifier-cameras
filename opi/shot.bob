@@ -28,7 +28,7 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM1}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>1</x>
     <y>1</y>
     <width>188</width>
@@ -43,10 +43,10 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM4}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>613</x>
     <y>1</y>
-    <width>178</width>
+    <width>188</width>
     <height>188</height>
     <resize>1</resize>
     <actions>
@@ -58,7 +58,7 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM2}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>205</x>
     <y>1</y>
     <width>188</width>
@@ -73,7 +73,7 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM3}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>409</x>
     <y>1</y>
     <width>188</width>
@@ -88,7 +88,7 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM5}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>1</x>
     <y>199</y>
     <width>188</width>
@@ -103,7 +103,7 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM6}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>205</x>
     <y>199</y>
     <width>188</width>
@@ -118,7 +118,7 @@ $(pv_value)</tooltip>
     <macros>
       <CAM>${CAM7}</CAM>
     </macros>
-    <file>camera_intensity_view.opi</file>
+    <file>camera_intensity_view.bob</file>
     <x>409</x>
     <y>199</y>
     <width>188</width>

@@ -4,7 +4,7 @@ sizex = PVUtil.getLong(pvs[1])
 sizey = PVUtil.getLong(pvs[2])
 
 max_widget_height = 337
-max_widget_width = 500
+max_widget_width = 450
 
 aspect_ratio = 1.0*sizex/sizey
 
