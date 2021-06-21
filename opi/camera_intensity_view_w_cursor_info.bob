@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
-  <width>510</width>
-  <height>385</height>
+  <width>450</width>
+  <height>337</height>
   <background_color>
     <color red="240" green="240" blue="240">
     </color>
@@ -13,8 +13,8 @@
     <pv_name>$(CAM):image1:ArrayData</pv_name>
     <x>6</x>
     <y>6</y>
-    <width>500</width>
-    <height>373</height>
+    <width>450</width>
+    <height>337</height>
     <background_color>
       <color name="Transparent" red="255" green="255" blue="255" alpha="0">
       </color>
@@ -61,16 +61,6 @@
     <actions>
     </actions>
     <rules>
-      <rule name="dimension" prop_id="width" out_exp="true">
-        <exp bool_exp="pv0&gt;pv1">
-          <expression>500</expression>
-        </exp>
-        <exp bool_exp="pv0&lt;pv1">
-          <expression>278</expression>
-        </exp>
-        <pv_name>$(CAM):image1:ArraySize0_RBV</pv_name>
-        <pv_name>$(CAM):image1:ArraySize1_RBV</pv_name>
-      </rule>
       <rule name="set max" prop_id="maximum" out_exp="true">
         <exp bool_exp="1==1">
           <expression>pv0</expression>
@@ -89,6 +79,11 @@
       <script file="scripts/select_colormap.py">
         <pv_name>loc://color_map&lt;VString&gt;("Jet")</pv_name>
       </script>
+      <script file="scripts/set_image_ratio.py">
+        <pv_name>=1</pv_name>
+        <pv_name>$(CAM):image1:ArraySize0_RBV</pv_name>
+        <pv_name>$(CAM):image1:ArraySize1_RBV</pv_name>
+      </script>
     </scripts>
     <tooltip></tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
@@ -103,8 +98,8 @@
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <text></text>
-    <x>320</x>
-    <y>360</y>
+    <x>270</x>
+    <y>310</y>
     <width>180</width>
     <font>
       <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">

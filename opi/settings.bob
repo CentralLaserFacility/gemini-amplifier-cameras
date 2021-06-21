@@ -126,8 +126,8 @@
   <widget type="embedded" version="2.0.0">
     <name>single_link_cont</name>
     <file>camera_intensity_view_w_cursor_info.bob</file>
-    <x>2</x>
-    <width>538</width>
+    <x>60</x>
+    <width>450</width>
     <height>337</height>
     <resize>1</resize>
     <actions>
