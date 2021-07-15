@@ -13,13 +13,8 @@ record(waveform, "$(P):CAMERA_LIST"){
     field(FTVL, "STRING")
 }
 
-record(ai, "$(P):COMP_THROUGHPUT") {
-    field(DESC, "Compressor throughput")
-    field(VAL, "0.73")
-}
-
 record(calc, "$(P):COMP_ENERGY") {
-    field(INPA, "$(P):COMP_THROUGHPUT PP")
+    field(INPA, "$(THROUGHPUT_PV)")
     field(INPB, "$(P):AMP_E")
     field(CALC, "a*b")
     field(EGU, "J")
