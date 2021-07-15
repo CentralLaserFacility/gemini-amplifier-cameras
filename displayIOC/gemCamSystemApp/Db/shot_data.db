@@ -16,7 +16,7 @@ record(waveform, "$(P):CAMERA_LIST"){
 record(calc, "$(P):COMP_ENERGY") {
     field(INPA, "$(THROUGHPUT_PV)")
     field(INPB, "$(P):AMP_E")
-    field(CALC, "a*b")
+    field(CALC, "0.01*a*b")
     field(EGU, "J")
 }
 
