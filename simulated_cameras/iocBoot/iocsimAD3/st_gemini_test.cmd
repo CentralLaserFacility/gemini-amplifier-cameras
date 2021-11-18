@@ -5,7 +5,7 @@
 
 < envPaths
 
-epicsEnvSet("PREFIX", "GEM:N_AMP:")
+epicsEnvSet("PREFIX", "GEM:S_AMP:")
 epicsEnvSet("CAM1", "UNCOMP_NF")
 epicsEnvSet("CAM2", "INP_NF")
 epicsEnvSet("CAM3", "COMP_NF")

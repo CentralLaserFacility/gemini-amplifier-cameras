@@ -1,6 +1,6 @@
 from __future__ import annotations
 import epics
-import os, datetime, numpy, time
+import os, datetime, time, sys
 from epics_image import EpicsImage
 from typing import List
 import logging
@@ -53,10 +53,15 @@ class EcatWriter:
         self._shot_number = 0
 
     def run(self: EcatWriter, interval: float = 0.5) -> None:
-        # Just to keep the process alive. Do better later
         logging.info(f"EcatWriter started for {self._amplifier} amplifier")
         while True:
-            time.sleep(interval)
+            try:
+                time.sleep(interval)
+            except KeyboardInterrupt:
+                check_answer = input("Definitely quit? [y/N]")
+                if check_answer.upper() == "Y":
+                    logging.info("EcatWriter stopped")
+                    sys.exit()
 
     def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
         logging.info(f'New shot number: {kwargs["value"]}')
