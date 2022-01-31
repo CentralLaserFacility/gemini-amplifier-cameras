@@ -1,5 +1,5 @@
 [Unit]
-Description=IOC for LA3 South Amp camera display 
+Description=IOC for LA3 South Amp camera display
 Wants=network-online.target
 After=network-online.target
 StartLimitInterval=200
@@ -10,7 +10,7 @@ Type=forking
 User=jqg93617
 # Note that PrivateTmp is implied
 WorkingDirectory= /opt/gemini/la3/south_amp/gemini-amplifier-cameras/displayIOC/iocBoot/iocgemCamSystem
-ExecStart=/usr/bin/procServ -n ioc-amp-cams-n -i ^D^C -P 20018 ./st.cmd
+ExecStart=/usr/bin/procServ -n ioc-amp-cams-s -i ^D^C -P 20018 ./st.cmd
 #PIDFile=/tmp/pid.txt
 Restart=always
 RestartSec=30
