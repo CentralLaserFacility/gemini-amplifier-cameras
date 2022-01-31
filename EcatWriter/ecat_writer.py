@@ -5,6 +5,7 @@ from epics_image import EpicsImage
 from typing import List
 import logging
 
+logger = logging.getLogger(__name__)
 
 def format_time(timestamp: float) -> str:
     timestamp, frac = divmod(timestamp, 1)
@@ -51,31 +52,37 @@ class EcatWriter:
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
         self._real_shot = False
         self._shot_number = 0
+        self._shot_requested=False
+        self._pv_prefix=pv_prefix
 
     def run(self: EcatWriter, interval: float = 0.5) -> None:
-        logging.info(f"EcatWriter started for {self._amplifier} amplifier")
-        while True:
+        logger.info(f"EcatWriter started for {self._amplifier} amplifier. PV prefix: {self._pv_prefix}")
+        while not self._stop_requested:
             try:
                 time.sleep(interval)
+                logger.info(f"Another loop {self._shot_number_pv.get()}")
             except KeyboardInterrupt:
                 check_answer = input("Definitely quit? [y/N]")
                 if check_answer.upper() == "Y":
-                    logging.info("EcatWriter stopped")
+                    logger.info("EcatWriter stopped")
                     sys.exit()
 
+    def stop(self: EcatWriter):
+        self._stop_requested = True
+
     def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
-        logging.info(f'New shot number: {kwargs["value"]}')
+        logger.info(f'New shot number: {kwargs["value"]}')
         if kwargs["value"][:4] == "BANG":
-            logging.info("Real shot")
+            logger.info("Real shot")
             self._real_shot = True
 
     def _on_new_data_received(self: EcatWriter, **kwargs) -> None:
         if self._real_shot:
             try:
-                logging.info("Writing data files")
+                logger.info("Writing data files")
                 self._write_all_files()
             except Exception as e:
-                logging.error(f"Error while writing files: {str(e)}")
+                logger.error(f"Error while writing files: {str(e)}")
             self._real_shot = False
 
     def _get_comp_energy_template_contents(
@@ -101,7 +108,7 @@ class EcatWriter:
             try:
                 os.makedirs(directory)
             except Exception as e:
-                logging.error(
+                logger.error(
                     f"Failed to create data directory ({directory}): {str(e)}"
                 )
         self._datafile_dir = directory
@@ -112,10 +119,10 @@ class EcatWriter:
         try:
             template = self._get_comp_energy_template_contents()
         except Exception as e:
-            logging.error(f"Failed to read energy template file: {str(e)}")
+            logger.error(f"Failed to read energy template file: {str(e)}")
 
         if energy == None or throughput == None:
-            logging.info(
+            logger.info(
                 f"Bad data: energy={energy}, throughput={throughput}. File not written"
             )
             return
@@ -137,17 +144,17 @@ class EcatWriter:
         )
 
         if file_content is None:
-            logging.error(
+            logger.error(
                 "Unable to build compressor energy file. File won't be written"
             )
             return
 
-        logging.info(f"Writing comp_e file to {filename}")
+        logger.info(f"Writing comp_e file to {filename}")
         with open(filename, "w") as comp_e_file:
             try:
                 comp_e_file.write(file_content)
             except Exception as e:
-                logging.error(f"Failed to write comp_e file: {str(e)}")
+                logger.error(f"Failed to write comp_e file: {str(e)}")
 
     def _write_datafile_names(self: EcatWriter) -> None:
         filename = f"{self._datafile_dir}{self._listfile_name}"
@@ -160,7 +167,7 @@ class EcatWriter:
                     ]
                 )
             except Exception as e:
-                logging.error(f"Failed to update file list: {str(e)}")
+                logger.error(f"Failed to update file list: {str(e)}")
 
     def _write_all_images(self: EcatWriter) -> None:
         for image, image_name in zip(self._images, self._image_channels):
@@ -186,7 +193,7 @@ class EcatWriter:
         self: EcatWriter, mdt_filename: str, image_name: str, image: EpicsImage
     ) -> None:
         section_name = self._get_section_name(mdt_filename)
-        logging.info(f"Writing file {mdt_filename}")
+        logger.info(f"Writing file {mdt_filename}")
         try:
             with open(mdt_filename, "w") as mdt_file:
                 mdt_file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -227,7 +234,7 @@ class EcatWriter:
                 mdt_file.write("</SHOT>\n")
                 mdt_file.write("</GEMINI_LASER_SHOT>\n")
         except Exception as e:
-            logging.error(f"Failed to write {mdt_filename}: {str(e)}")
+            logger.error(f"Failed to write {mdt_filename}: {str(e)}")
 
     def _write_dat_file(
         self: EcatWriter,
@@ -237,7 +244,7 @@ class EcatWriter:
         image_filename: str,
     ) -> None:
         section_name = self._get_section_name(image_name)
-        logging.info(f"Writing file {dat_filename}")
+        logger.info(f"Writing file {dat_filename}")
         try:
             with open(dat_filename, "w") as dat_file:
                 dat_file.write(f"FNAME:{dat_filename.split(os.sep)[1]}\n")
@@ -260,7 +267,7 @@ class EcatWriter:
                 dat_file.write(f"EXT_FILE:{image_filename.split(os.sep)[1]}\n")
                 dat_file.write("EOH]\n")
         except Exception as e:
-            logging.error(f"Failed to write {dat_filename}: {str(e)}")
+            logger.error(f"Failed to write {dat_filename}: {str(e)}")
 
     def _write_all_files(self: EcatWriter) -> None:
         self._generate_datafile_dir()
