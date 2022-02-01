@@ -1,11 +1,10 @@
-# pinched from here https://plumberjack.blogspot.com/2019/11/a-qt-gui-for-logging.html
+# Based on example from here https://plumberjack.blogspot.com/2019/11/a-qt-gui-for-logging.html
 
 import logging
 import sys
-import time
 
-from ecat_writer import EcatWriter
-from ecat_writer import logger as ecat_logger
+import ecat_writer
+import epics_image
 
 # Deal with minor differences between PySide2 and PyQt5
 try:
@@ -18,8 +17,8 @@ except ImportError:
     Slot = QtCore.pyqtSlot
 
 
-logger = logging.getLogger("__name__")
-
+logger = logging.getLogger(__name__)
+all_loggers = [logger, ecat_writer.logger, epics_image.logger]
 
 class Signaller(QtCore.QObject):
     signal = Signal(str, logging.LogRecord)
@@ -38,8 +37,7 @@ class QtHandler(logging.Handler):
 class EcatWriterWorker(QtCore.QObject):
     def __init__(self, pv_prefix, amp):
         super().__init__()
-        self.writer=EcatWriter(pv_prefix, amp)
-        self.logger = ecat_logger 
+        self.writer= ecat_writer.EcatWriter(pv_prefix, amp)
     @Slot()
     def start(self):
         self.writer.run()
@@ -49,7 +47,7 @@ class EcatWriterWorker(QtCore.QObject):
 
 class Window(QtWidgets.QWidget):
 
-    COLORS = {
+    COLOURS = {
         logging.DEBUG: 'black',
         logging.INFO: 'blue',
         logging.WARNING: 'orange',
@@ -66,11 +64,7 @@ class Window(QtWidgets.QWidget):
         #f.setStyleHint(f.Monospace)
         #te.setFont(f)
         te.setReadOnly(True)
-        self.handler = h = QtHandler(self.update_status)
-        logger.addHandler(h)
-        fs = "%(asctime)s %(levelname)-8s %(message)s"
-        formatter = logging.Formatter(fs)
-        h.setFormatter(formatter)
+        self.add_logger_handling()
         # Set up to terminate the QThread when we exit
         app.aboutToQuit.connect(self.force_quit)
 
@@ -84,17 +78,23 @@ class Window(QtWidgets.QWidget):
         layout.addWidget(self.go)
         self.setFixedSize(900, 400)
 
+    def add_logger_handling(self):
+        handler = QtHandler(self.update_status)
+        fs = "%(asctime)s %(levelname)-8s %(message)s"
+        handler.setFormatter(logging.Formatter(fs))
+        for l in all_loggers:
+            l.addHandler(handler)
 
+        
     def kill_thread(self):
-        # Just tell the worker to stop, then tell it to quit and wait for that
-        # to happen
+        # Stop the EcatWriter from looping, then stop the QThread.
         self.worker.stop()
         self.worker_thread.requestInterruption()
         if self.worker_thread.isRunning():
             self.worker_thread.quit()
             self.worker_thread.wait()
         else:
-            print('worker has already exited.')
+            logger.debug("Worker has already exited")
 
     def force_quit(self):
         # For use when the window is closed
@@ -103,20 +103,18 @@ class Window(QtWidgets.QWidget):
 
     def start_thread(self):
         self.worker = EcatWriterWorker(pv_prefix="GEM:S_AMP", amp="s")
-        self.worker.logger.addHandler(self.handler)
         self.worker_thread = QtCore.QThread()
         self.worker.moveToThread(self.worker_thread)
         self.worker_thread.start()
 
     @Slot(str, logging.LogRecord)
     def update_status(self, status, record):
-        color = self.COLORS.get(record.levelno, 'black')
+        color = self.COLOURS.get(record.levelno, 'black')
         s = '<pre><font color="%s">%s</font></pre>' % (color, status)
         self.textedit.appendHtml(s)
 
 
 def main():
-    QtCore.QThread.currentThread().setObjectName('MainThread')
     logging.getLogger().setLevel(logging.DEBUG)
     app = QtWidgets.QApplication(sys.argv)
     example = Window(app)
