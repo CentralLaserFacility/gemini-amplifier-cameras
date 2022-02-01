@@ -122,7 +122,7 @@ class EcatWriter:
             logger.error(f"Failed to read energy template file: {str(e)}")
 
         if energy == None or throughput == None:
-            logger.info(
+            logger.error(
                 f"Bad data: energy={energy}, throughput={throughput}. File not written"
             )
             return
