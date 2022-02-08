@@ -1,6 +1,6 @@
 from __future__ import annotations
 import epics
-import os, datetime, time, sys
+import os, datetime, time, sys, threading
 from epics_image import EpicsImage
 from typing import List
 import logging
@@ -20,7 +20,7 @@ def get_today() -> str:
 
 
 class EcatWriter:
-    def __init__(self: EcatWriter, pv_prefix: str, amp: str) -> None:
+    def __init__(self, pv_prefix: str, amp: str) -> None:
         if amp.upper() not in ["N", "NORTH", "SOUTH", "S"]:
             raise ValueError
         self._amplifier = "N" if amp.upper()[0] == "N" else "S"
@@ -52,31 +52,43 @@ class EcatWriter:
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
         self._real_shot = False
         self._shot_number = 0
-        self._shot_requested=False
-        self._pv_prefix=pv_prefix
+        self._pv_prefix = pv_prefix
+        self._loop_thread = None
+        self._stop_requested = False
 
-    def run(self: EcatWriter, interval: float = 0.5) -> None:
+    def run(self, interval: float = 0.5) -> None:
+        if self._loop_thread:
+            logger.warning("Already running")
+            return
+        self._loop_thread = threading.Thread(target=self._run, args=(interval,))
+        self._loop_thread.start()
+
+    def _run(self, interval: float = 0.5):
         logger.info(f"EcatWriter started for {self._amplifier} amplifier. PV prefix: {self._pv_prefix}")
+        self._stop_requested = False
         while not self._stop_requested:
             try:
                 time.sleep(interval)
-                logger.info(f"Another loop {self._shot_number_pv.get()}")
+                logger.info(f"Another loop")
             except KeyboardInterrupt:
                 check_answer = input("Definitely quit? [y/N]")
                 if check_answer.upper() == "Y":
                     logger.info("EcatWriter stopped")
                     sys.exit()
+        else:
+            logger.info(f"EcatWriter stopped for {self._amplifier} amplifier")
 
-    def stop(self: EcatWriter):
+    def stop(self):
         self._stop_requested = True
+        self._loop_thread = None
 
-    def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
+    def _on_shotnumber_change(self, **kwargs) -> None:
         logger.info(f'New shot number: {kwargs["value"]}')
         if kwargs["value"][:4] == "BANG":
             logger.info("Real shot")
             self._real_shot = True
 
-    def _on_new_data_received(self: EcatWriter, **kwargs) -> None:
+    def _on_new_data_received(self, **kwargs) -> None:
         if self._real_shot:
             try:
                 logger.info("Writing data files")
@@ -86,7 +98,7 @@ class EcatWriter:
             self._real_shot = False
 
     def _get_comp_energy_template_contents(
-        self: EcatWriter, directory: str = os.getcwd()
+        self, directory: str = os.getcwd()
     ) -> str:
         filename = directory + os.sep + "eCatEnergyTemplate.xml"
         with open(filename, "r") as f:
@@ -114,7 +126,7 @@ class EcatWriter:
         self._datafile_dir = directory
 
     def _build_comp_energy_file_contents(
-        self: EcatWriter, energy: float, throughput: float
+        self, energy: float, throughput: float
     ) -> str:
         try:
             template = self._get_comp_energy_template_contents()
@@ -178,7 +190,7 @@ class EcatWriter:
             self._write_mdt_file(mdt_filename, image_name, image)
             image.write_to_file(image_filename)
 
-    def _get_section_name(self: EcatWriter, filename: str) -> str:
+    def _get_section_name(self, filename: str) -> str:
         if "_COMP" in filename:
             section = "COMP"
         elif "_LEG" in filename:
@@ -190,7 +202,7 @@ class EcatWriter:
         return f"LA3/{self._amplifier}_{section}/IMAGE"
 
     def _write_mdt_file(
-        self: EcatWriter, mdt_filename: str, image_name: str, image: EpicsImage
+        self, mdt_filename: str, image_name: str, image: EpicsImage
     ) -> None:
         section_name = self._get_section_name(mdt_filename)
         logger.info(f"Writing file {mdt_filename}")
@@ -237,7 +249,7 @@ class EcatWriter:
             logger.error(f"Failed to write {mdt_filename}: {str(e)}")
 
     def _write_dat_file(
-        self: EcatWriter,
+        self,
         dat_filename: str,
         image_name: str,
         image: EpicsImage,

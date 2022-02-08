@@ -38,10 +38,15 @@ class EcatWriterWorker(QtCore.QObject):
     def __init__(self, pv_prefix, amp):
         super().__init__()
         self.writer= ecat_writer.EcatWriter(pv_prefix, amp)
+
+    startup = Signal()
+    shutdown = Signal() 
+    
     @Slot()
     def start(self):
         self.writer.run()
 
+    @Slot()
     def stop(self):
         self.writer.stop()
 
@@ -56,27 +61,33 @@ class Window(QtWidgets.QWidget):
     }
 
     def __init__(self, app):
-        super(Window, self).__init__()
+        super().__init__()
         self.app = app
         self.textedit = te = QtWidgets.QPlainTextEdit(self)
-        # Set whatever the default monospace font is for the platform
-        #f = QtGui.QFont('nosuchfont')
-        #f.setStyleHint(f.Monospace)
-        #te.setFont(f)
+        f = QtGui.QFont('arial')
+        f.setPixelSize(16)
+        f.setBold(True)
+        te.setFont(f)
         te.setReadOnly(True)
         self.add_logger_handling()
-        # Set up to terminate the QThread when we exit
+        
         app.aboutToQuit.connect(self.force_quit)
 
-        self.start_thread()
-
         self.go = QtWidgets.QPushButton("Go", self)
-        self.go.clicked.connect(self.worker.start)
-        # Lay out all the widgets
+        self.stop= QtWidgets.QPushButton("Stop", self)
+
+        worker = EcatWriterWorker(pv_prefix="GEM:S_AMP", amp="s")
+        self.go.clicked.connect(worker.start)
+        self.stop.clicked.connect(worker.stop)
+
+        self.worker_thread = self.start_thread(worker)
+
         layout = QtWidgets.QVBoxLayout(self)
         layout.addWidget(te)
         layout.addWidget(self.go)
-        self.setFixedSize(900, 400)
+        layout.addWidget(self.stop)
+        self.resize(1000, 400)
+    
 
     def add_logger_handling(self):
         handler = QtHandler(self.update_status)
@@ -84,11 +95,9 @@ class Window(QtWidgets.QWidget):
         handler.setFormatter(logging.Formatter(fs))
         for l in all_loggers:
             l.addHandler(handler)
-
         
     def kill_thread(self):
         # Stop the EcatWriter from looping, then stop the QThread.
-        self.worker.stop()
         self.worker_thread.requestInterruption()
         if self.worker_thread.isRunning():
             self.worker_thread.quit()
@@ -97,15 +106,15 @@ class Window(QtWidgets.QWidget):
             logger.debug("Worker has already exited")
 
     def force_quit(self):
-        # For use when the window is closed
         if self.worker_thread.isRunning():
             self.kill_thread()
 
-    def start_thread(self):
-        self.worker = EcatWriterWorker(pv_prefix="GEM:S_AMP", amp="s")
-        self.worker_thread = QtCore.QThread()
-        self.worker.moveToThread(self.worker_thread)
-        self.worker_thread.start()
+    def start_thread(self, worker):
+        worker_thread = QtCore.QThread()
+        worker_thread.start()
+        worker.moveToThread(worker_thread)
+        worker_thread.worker=worker
+        return worker_thread
 
     @Slot(str, logging.LogRecord)
     def update_status(self, status, record):
