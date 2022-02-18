@@ -19,7 +19,7 @@ def get_today() -> str:
 
 
 class EcatWriter:
-    def __init__(self: EcatWriter, pv_prefix: str, amp: str) -> None:
+    def __init__(self, pv_prefix: str, amp: str) -> None:
         if amp.upper() not in ["N", "NORTH", "SOUTH", "S"]:
             raise ValueError
         self._amplifier = "N" if amp.upper()[0] == "N" else "S"
@@ -52,7 +52,7 @@ class EcatWriter:
         self._real_shot = False
         self._shot_number = 0
 
-    def run(self: EcatWriter, interval: float = 0.5) -> None:
+    def run(self, interval: float = 0.5) -> None:
         logging.info(f"EcatWriter started for {self._amplifier} amplifier")
         while True:
             try:
@@ -63,13 +63,13 @@ class EcatWriter:
                     logging.info("EcatWriter stopped")
                     sys.exit()
 
-    def _on_shotnumber_change(self: EcatWriter, **kwargs) -> None:
+    def _on_shotnumber_change(self, **kwargs) -> None:
         logging.info(f'New shot number: {kwargs["value"]}')
         if kwargs["value"][:4] == "BANG":
             logging.info("Real shot")
             self._real_shot = True
 
-    def _on_new_data_received(self: EcatWriter, **kwargs) -> None:
+    def _on_new_data_received(self, **kwargs) -> None:
         if self._real_shot:
             try:
                 logging.info("Writing data files")
@@ -79,14 +79,14 @@ class EcatWriter:
             self._real_shot = False
 
     def _get_comp_energy_template_contents(
-        self: EcatWriter, directory: str = os.getcwd()
+        self, directory: str = os.getcwd()
     ) -> str:
         filename = directory + os.sep + "eCatEnergyTemplate.xml"
         with open(filename, "r") as f:
             data = f.read()
         return data
 
-    def _get_shot_details(self: EcatWriter) -> None:
+    def _get_shot_details(self) -> None:
         self._shot_date = get_today()
         shot_string = self._shot_number_pv.get()
         shot_number = shot_string.split(":")[-1]
@@ -95,7 +95,7 @@ class EcatWriter:
             self._shot_number_pv.timestamp
         )
 
-    def _generate_datafile_dir(self: EcatWriter) -> None:
+    def _generate_datafile_dir(self) -> None:
         directory = get_today() + os.sep
         if not os.path.exists(directory):
             try:
@@ -107,7 +107,7 @@ class EcatWriter:
         self._datafile_dir = directory
 
     def _build_comp_energy_file_contents(
-        self: EcatWriter, energy: float, throughput: float
+        self, energy: float, throughput: float
     ) -> str:
         try:
             template = self._get_comp_energy_template_contents()
@@ -126,7 +126,7 @@ class EcatWriter:
         contents = contents.replace("THROUGHPUT_SUB", f"{throughput:.2f}")
         return contents
 
-    def _write_comp_energy_file(self: EcatWriter) -> None:
+    def _write_comp_energy_file(self) -> None:
         compressor_throughput = self._comp_throughput_pv.get()
         compressor_energy = self._comp_energy_pv.get()
 
@@ -149,7 +149,7 @@ class EcatWriter:
             except Exception as e:
                 logging.error(f"Failed to write comp_e file: {str(e)}")
 
-    def _write_datafile_names(self: EcatWriter) -> None:
+    def _write_datafile_names(self) -> None:
         filename = f"{self._datafile_dir}{self._listfile_name}"
         with open(filename, "a+") as data_file:
             try:
@@ -162,7 +162,7 @@ class EcatWriter:
             except Exception as e:
                 logging.error(f"Failed to update file list: {str(e)}")
 
-    def _write_all_images(self: EcatWriter) -> None:
+    def _write_all_images(self) -> None:
         for image, image_name in zip(self._images, self._image_channels):
             image_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.png"
             dat_filename = f"{self._datafile_dir}{self._shot_date}GS{self._shot_number:08}{image_name}.dat"
@@ -171,7 +171,7 @@ class EcatWriter:
             self._write_mdt_file(mdt_filename, image_name, image)
             image.write_to_file(image_filename)
 
-    def _get_section_name(self: EcatWriter, filename: str) -> str:
+    def _get_section_name(self, filename: str) -> str:
         if "_COMP" in filename:
             section = "COMP"
         elif "_LEG" in filename:
@@ -183,7 +183,7 @@ class EcatWriter:
         return f"LA3/{self._amplifier}_{section}/IMAGE"
 
     def _write_mdt_file(
-        self: EcatWriter, mdt_filename: str, image_name: str, image: EpicsImage
+        self, mdt_filename: str, image_name: str, image: EpicsImage
     ) -> None:
         section_name = self._get_section_name(mdt_filename)
         logging.info(f"Writing file {mdt_filename}")
@@ -230,7 +230,7 @@ class EcatWriter:
             logging.error(f"Failed to write {mdt_filename}: {str(e)}")
 
     def _write_dat_file(
-        self: EcatWriter,
+        self,
         dat_filename: str,
         image_name: str,
         image: EpicsImage,
@@ -262,7 +262,7 @@ class EcatWriter:
         except Exception as e:
             logging.error(f"Failed to write {dat_filename}: {str(e)}")
 
-    def _write_all_files(self: EcatWriter) -> None:
+    def _write_all_files(self) -> None:
         self._generate_datafile_dir()
         self._get_shot_details()
         self._write_all_images()

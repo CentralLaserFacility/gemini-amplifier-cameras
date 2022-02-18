@@ -5,7 +5,7 @@ from PIL import Image
 import logging
 
 class EpicsImage:
-    def __init__(self: EpicsImage, pv_name_root: str, timeout: float = 5) -> None:
+    def __init__(self, pv_name_root: str, timeout: float = 5) -> None:
         self._array_data_pv = epics.PV(
             pv_name_root + ":image1:ArrayData",
             connection_timeout=timeout,
@@ -61,34 +61,34 @@ class EpicsImage:
         self._integration = kwargs["value"]
 
     @property
-    def size(self: EpicsImage) -> int:
+    def size(self) -> int:
         return self._data.size
 
     @property
-    def data(self: EpicsImage) -> numpy.ndarray:
+    def data(self) -> numpy.ndarray:
         return self._data
 
     @property
-    def centroidX(self: EpicsImage) -> float:
+    def centroidX(self) -> float:
         return self._centroid_x
 
     @property
-    def centroidY(self: EpicsImage) -> float:
+    def centroidY(self) -> float:
         return self._centroid_y
 
     @property
-    def width(self: EpicsImage) -> int:
+    def width(self) -> int:
         return self._width
 
     @property
-    def height(self: EpicsImage) -> int:
+    def height(self) -> int:
         return self._height
 
     @property
-    def integration(self: EpicsImage) -> float:
+    def integration(self) -> float:
         return self._integration
 
-    def write_to_file(self: EpicsImage, filename: str) -> None:
+    def write_to_file(self, filename: str) -> None:
         data = self._data
         width = self._width
         height = self._height
