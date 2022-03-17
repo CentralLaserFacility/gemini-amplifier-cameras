@@ -4,6 +4,7 @@ import numpy
 from PIL import Image
 import logging
 
+
 class EpicsImage:
     def __init__(self, pv_name_root: str, timeout: float = 5) -> None:
         self._array_data_pv = epics.PV(
@@ -88,7 +89,7 @@ class EpicsImage:
     def integration(self) -> float:
         return self._integration
 
-    def write_to_file(self, filename: str) -> None:
+    def write_to_file(self, filename: str, bit_shift: int = 8) -> None:
         data = self._data
         width = self._width
         height = self._height
@@ -96,7 +97,9 @@ class EpicsImage:
         if data is None or width is None or height is None:
             logging.error(f"Bad image data. File not written")
             return
-        image_array = numpy.reshape(data, (height, width))
+        # Reshape and bit shift to be compatible with existing eCat data
+        # format, which expects data in the MSB.
+        image_array = numpy.reshape(data << bit_shift, (height, width))
         try:
             Image.fromarray(image_array).save(filename)
         except Exception as e:

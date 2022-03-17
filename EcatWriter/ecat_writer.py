@@ -47,7 +47,9 @@ class EcatWriter:
         self._comp_energy_pv = epics.PV(
             pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received
         )
-        self._comp_throughput_pv = epics.PV(f"GEM:LA3:CAL:COMPTHRUPUT:{self._amplifier}")
+        self._comp_throughput_pv = epics.PV(
+            f"GEM:LA3:CAL:COMPTHRUPUT:{self._amplifier}"
+        )
         self._amp_energy_pv = epics.PV(pv_prefix + ":AMP_E")
         self._real_shot = False
         self._shot_number = 0
@@ -78,9 +80,7 @@ class EcatWriter:
                 logging.error(f"Error while writing files: {str(e)}")
             self._real_shot = False
 
-    def _get_comp_energy_template_contents(
-        self, directory: str = os.getcwd()
-    ) -> str:
+    def _get_comp_energy_template_contents(self, directory: str = os.getcwd()) -> str:
         filename = directory + os.sep + "eCatEnergyTemplate.xml"
         with open(filename, "r") as f:
             data = f.read()
@@ -106,9 +106,7 @@ class EcatWriter:
                 )
         self._datafile_dir = directory
 
-    def _build_comp_energy_file_contents(
-        self, energy: float, throughput: float
-    ) -> str:
+    def _build_comp_energy_file_contents(self, energy: float, throughput: float) -> str:
         try:
             template = self._get_comp_energy_template_contents()
         except Exception as e:
