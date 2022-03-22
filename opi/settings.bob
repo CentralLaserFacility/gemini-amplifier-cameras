@@ -19,6 +19,30 @@
     </actions>
     <border_width>1</border_width>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_8</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM1}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>560</x>
+    <width>128</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM1}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
   <widget type="embedded" version="2.0.0">
     <name>cam4-link-shot</name>
     <macros>
@@ -177,29 +201,6 @@
     </border_color>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>Action Button</name>
-    <actions execute_as_one="true">
-      <action type="write_pv">
-        <pv_name>loc://cam-choice</pv_name>
-        <value>${CAM1}</value>
-      </action>
-    </actions>
-    <text></text>
-    <x>659</x>
-    <y>98</y>
-    <width>30</width>
-    <foreground_color>
-      <color name="Background" red="255" green="255" blue="255">
-      </color>
-    </foreground_color>
-    <background_color>
-      <color name="Attention" red="255" green="160" blue="0">
-      </color>
-    </background_color>
-    <tooltip>Open ${CAM1}</tooltip>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-  </widget>
-  <widget type="action_button" version="3.0.0">
     <name>Action Button_1</name>
     <actions execute_as_one="true">
       <action type="write_pv">
@@ -208,9 +209,9 @@
       </action>
     </actions>
     <text></text>
-    <x>796</x>
-    <y>98</y>
-    <width>30</width>
+    <x>698</x>
+    <width>128</width>
+    <height>128</height>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -219,6 +220,7 @@
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM2}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -231,9 +233,10 @@
       </action>
     </actions>
     <text></text>
-    <x>659</x>
-    <y>242</y>
-    <width>30</width>
+    <x>560</x>
+    <y>144</y>
+    <width>129</width>
+    <height>128</height>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -242,6 +245,7 @@
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM3}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -254,9 +258,10 @@
       </action>
     </actions>
     <text></text>
-    <x>796</x>
-    <y>530</y>
-    <width>30</width>
+    <x>698</x>
+    <y>432</y>
+    <width>128</width>
+    <height>128</height>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -265,6 +270,7 @@
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM8}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -277,9 +283,10 @@
       </action>
     </actions>
     <text></text>
-    <x>659</x>
-    <y>530</y>
-    <width>30</width>
+    <x>560</x>
+    <y>432</y>
+    <width>129</width>
+    <height>128</height>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -288,6 +295,7 @@
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM7}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -300,13 +308,15 @@
       </action>
     </actions>
     <text></text>
-    <x>659</x>
-    <y>386</y>
-    <width>30</width>
+    <x>560</x>
+    <y>288</y>
+    <width>129</width>
+    <height>128</height>
     <background_color>
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM5}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -319,9 +329,10 @@
       </action>
     </actions>
     <text></text>
-    <x>796</x>
-    <y>386</y>
-    <width>30</width>
+    <x>698</x>
+    <y>288</y>
+    <width>128</width>
+    <height>128</height>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -330,6 +341,7 @@
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM6}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -342,9 +354,10 @@
       </action>
     </actions>
     <text></text>
-    <x>796</x>
-    <y>242</y>
-    <width>30</width>
+    <x>698</x>
+    <y>144</y>
+    <width>128</width>
+    <height>128</height>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -353,6 +366,7 @@
       <color name="Attention" red="255" green="160" blue="0">
       </color>
     </background_color>
+    <transparent>true</transparent>
     <tooltip>Open ${CAM4}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
