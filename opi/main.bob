@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>Display</name>
-  <width>860</width>
-  <height>620</height>
+  <width>870</width>
+  <height>640</height>
   <actions>
   </actions>
   <widget type="tabs" version="2.0.0">
@@ -108,5 +108,27 @@
     <tab_height>10</tab_height>
     <actions>
     </actions>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Status Ticker</name>
+    <pv_name>GEM:CONTROL:NOWTIME</pv_name>
+    <x>750</x>
+    <y>620</y>
+    <width>110</width>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>Rectangle</name>
+    <width>870</width>
+    <height>640</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color name="Header_Background" red="77" green="77" blue="77">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Transparent" red="255" green="255" blue="255" alpha="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
   </widget>
 </display>
