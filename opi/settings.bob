@@ -185,10 +185,9 @@
       </action>
     </actions>
     <text></text>
-    <x>673</x>
-    <y>113</y>
-    <width>16</width>
-    <height>16</height>
+    <x>659</x>
+    <y>98</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -209,10 +208,9 @@
       </action>
     </actions>
     <text></text>
-    <x>811</x>
-    <y>113</y>
-    <width>16</width>
-    <height>16</height>
+    <x>796</x>
+    <y>98</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -233,10 +231,9 @@
       </action>
     </actions>
     <text></text>
-    <x>673</x>
-    <y>257</y>
-    <width>16</width>
-    <height>16</height>
+    <x>659</x>
+    <y>242</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -257,10 +254,9 @@
       </action>
     </actions>
     <text></text>
-    <x>811</x>
-    <y>545</y>
-    <width>16</width>
-    <height>16</height>
+    <x>796</x>
+    <y>530</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -281,10 +277,9 @@
       </action>
     </actions>
     <text></text>
-    <x>673</x>
-    <y>545</y>
-    <width>16</width>
-    <height>16</height>
+    <x>659</x>
+    <y>530</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -305,10 +300,9 @@
       </action>
     </actions>
     <text></text>
-    <x>673</x>
-    <y>401</y>
-    <width>16</width>
-    <height>16</height>
+    <x>659</x>
+    <y>386</y>
+    <width>30</width>
     <background_color>
       <color name="Attention" red="255" green="160" blue="0">
       </color>
@@ -325,10 +319,9 @@
       </action>
     </actions>
     <text></text>
-    <x>811</x>
-    <y>401</y>
-    <width>16</width>
-    <height>16</height>
+    <x>796</x>
+    <y>386</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -349,10 +342,9 @@
       </action>
     </actions>
     <text></text>
-    <x>811</x>
-    <y>257</y>
-    <width>16</width>
-    <height>16</height>
+    <x>796</x>
+    <y>242</y>
+    <width>30</width>
     <foreground_color>
       <color name="Background" red="255" green="255" blue="255">
       </color>
@@ -363,5 +355,93 @@
     </background_color>
     <tooltip>Open ${CAM4}</tooltip>
     <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button</name>
+    <pv_name>${CAM7}:Acquire</pv_name>
+    <x>560</x>
+    <y>530</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_2</name>
+    <pv_name>${CAM5}:Acquire</pv_name>
+    <x>560</x>
+    <y>387</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_3</name>
+    <pv_name>${CAM2}:Acquire</pv_name>
+    <x>698</x>
+    <y>98</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_4</name>
+    <pv_name>${CAM8}:Acquire</pv_name>
+    <x>698</x>
+    <y>530</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_5</name>
+    <pv_name>${CAM6}:Acquire</pv_name>
+    <x>698</x>
+    <y>387</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_6</name>
+    <pv_name>${CAM4}:Acquire</pv_name>
+    <x>698</x>
+    <y>243</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_7</name>
+    <pv_name>${CAM3}:Acquire</pv_name>
+    <x>560</x>
+    <y>243</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_8</name>
+    <pv_name>${CAM1}:Acquire</pv_name>
+    <x>560</x>
+    <y>98</y>
+    <width>60</width>
+    <off_color>
+      <color name="MAJOR" red="255" green="0" blue="0">
+      </color>
+    </off_color>
   </widget>
 </display>
