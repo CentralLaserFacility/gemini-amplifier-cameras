@@ -97,14 +97,16 @@
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label</name>
-    <text>$(CAM_NAME)</text>
+    <text>$(CAM)</text>
     <x>6</x>
     <y>6</y>
-    <width>434</width>
-    <height>30</height>
+    <width>140</width>
+    <height>26</height>
     <font>
-      <font family="Liberation Sans" style="BOLD" size="20.0">
+      <font family="Liberation Sans" style="BOLD" size="24.0">
       </font>
     </font>
+    <transparent>false</transparent>
+    <auto_size>true</auto_size>
   </widget>
 </display>
