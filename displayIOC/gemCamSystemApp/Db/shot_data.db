@@ -112,7 +112,7 @@ record(ai, "$(P):COMP_POINTING_Y") {
 }
 
 record(calc, "$(P):COMP_POINTING_ERROR") {
-    field(DESC, "Error is comp ff position")
+    field(DESC, "Error in comp ff position")
     field(CALC, "SQR( (0.5*A-B)*(0.5*A-B) + (0.5*C-D)*(0.5*C-D) )")
     field(INPA, "$(COMP_FF_CAM):ROI1:SizeX_RBV PP")
     field(INPB, "$(P):COMP_POINTING_X")

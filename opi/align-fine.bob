@@ -36,7 +36,7 @@
   <widget type="embedded" version="2.0.0">
     <name>cam2-link-fine</name>
     <macros>
-      <CAM>${CAM2}</CAM>
+      <CAM>${CAM7}</CAM>
     </macros>
     <file>camera_intensity_view.opi</file>
     <x>408</x>
@@ -50,7 +50,7 @@
   <widget type="embedded" version="2.0.0">
     <name>cam4-link-fine</name>
     <macros>
-      <CAM>${CAM4}</CAM>
+      <CAM>${CAM2}</CAM>
     </macros>
     <file>camera_intensity_view.opi</file>
     <x>408</x>

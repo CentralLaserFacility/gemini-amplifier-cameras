@@ -52,7 +52,7 @@ record(dfanout, "$(P)TriggerDelayAbs"){
 record(mbbi, "$(P)POWER_MODE"){
     field(DESC, "Power mode read from laser CS")
     field(DTYP, "Soft Channel")
-    field(INP, "GEM:LA3:ENERGYMODE")
+    field(INP, "GEM:LA3:ENERGYMODE CP")
     field(ZRST, "0UD")
     field(ZRVL, "0")
     field(ONST, "1CW")
@@ -67,7 +67,7 @@ record(mbbi, "$(P)POWER_MODE"){
     field(FVVL, "5")
     field(SXST, "6FP")
     field(SXVL, "6")
-    field(FLNK, "$(P):SET_TRIG_FOR_MODE.PROC")
+    field(FLNK, "$(P)SET_TRIG_FOR_MODE.PROC")
 }
 
 record(calcout, "$(P)SET_TRIG_FOR_MODE") {
