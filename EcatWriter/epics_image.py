@@ -98,7 +98,7 @@ class EpicsImage:
         if data is None or width is None or height is None:
             logger.error(f"Bad image data. File not written")
             return
-        image_array = numpy.reshape(data, (height, width))
+        image_array = numpy.reshape(data.astype(numpy.uint8), (height, width))
         try:
             Image.fromarray(image_array, mode="L").save(filename)
         except Exception as e:
