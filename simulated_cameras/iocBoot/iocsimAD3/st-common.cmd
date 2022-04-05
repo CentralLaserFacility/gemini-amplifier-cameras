@@ -1,5 +1,5 @@
 
-epicsEnvSet("PREFIX", "GEM:N_AMP:")
+epicsEnvSet("PREFIX", "GEM:S_AMP:")
 epicsEnvSet("QSIZE",  "20")
 epicsEnvSet("NCHANS", "2048")
 epicsEnvSet("CBUFFS", "500")

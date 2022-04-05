@@ -4,6 +4,7 @@ import numpy
 from PIL import Image
 import logging
 
+logger = logging.getLogger(__name__)
 
 class EpicsImage:
     def __init__(self, pv_name_root: str, timeout: float = 5) -> None:
@@ -93,9 +94,9 @@ class EpicsImage:
         data = self._data
         width = self._width
         height = self._height
-        logging.info(f"Writing image to {filename}")
+        logger.info(f"Writing image to {filename}")
         if data is None or width is None or height is None:
-            logging.error(f"Bad image data. File not written")
+            logger.error(f"Bad image data. File not written")
             return
         # Reshape and bit shift to be compatible with existing eCat data
         # format, which expects data in the MSB.
@@ -103,4 +104,4 @@ class EpicsImage:
         try:
             Image.fromarray(image_array).save(filename)
         except Exception as e:
-            logging.error(f"Failed to write image to {filename}: {str(e)}")
+            logger.error(f"Failed to write image to {filename}: {str(e)}")
