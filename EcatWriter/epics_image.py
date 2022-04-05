@@ -90,7 +90,7 @@ class EpicsImage:
     def integration(self) -> float:
         return self._integration
 
-    def write_to_file(self, filename: str, bit_shift: int = 8) -> None:
+    def write_to_file(self, filename: str) -> None:
         data = self._data
         width = self._width
         height = self._height
@@ -98,10 +98,8 @@ class EpicsImage:
         if data is None or width is None or height is None:
             logger.error(f"Bad image data. File not written")
             return
-        # Reshape and bit shift to be compatible with existing eCat data
-        # format, which expects data in the MSB.
-        image_array = numpy.reshape(data << bit_shift, (height, width))
+        image_array = numpy.reshape(data, (height, width))
         try:
-            Image.fromarray(image_array).save(filename)
+            Image.fromarray(image_array, mode="L").save(filename)
         except Exception as e:
             logger.error(f"Failed to write image to {filename}: {str(e)}")
