@@ -87,8 +87,9 @@ class EcatWriter:
         self._loop_thread = None
 
     def _on_shotnumber_change(self, **kwargs) -> None:
-        logger.info(f'New shot number: {kwargs["value"]}')
-        if kwargs["value"][:4] == "BANG":
+        shot_number = kwargs["value"]
+        logger.info(f'New shot number: {shot_number}')
+        if "BANG" in shot_number:
             logger.info("Real shot")
             self._real_shot = True
 
