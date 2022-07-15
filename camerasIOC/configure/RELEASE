@@ -36,7 +36,7 @@ ADPROSILICA=$(AREA_DETECTOR)/ADProsilica
 ADSUPPORT=$(AREA_DETECTOR)/ADSupport
 ADVIMBA=$(AREA_DETECTOR)/ADVimba
 ADGENICAM=$(AREA_DETECTOR)/ADGenICam
-
+DEVIOCSTATS=$(SUPPORT)/iocStats
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
 EPICS_BASE = /usr/local/epics7/base

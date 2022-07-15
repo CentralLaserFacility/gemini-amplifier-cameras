@@ -19,10 +19,10 @@ ampCams_DBD += base.dbd
 # Include dbd files from all support applications:
 #ampCams_DBD += xxx.dbd
 $(PROD_NAME)_DBD += drvAsynIPPort.dbd
-$(PROD_NAME)_DBD += ADSupport.dbd 
-$(PROD_NAME)_DBD += NDPluginSupport.dbd 
-#$(PROD_NAME)_DBD += asSupport.dbd 
-$(PROD_NAME)_DBD += ADVimbaSupport.dbd 
+$(PROD_NAME)_DBD += ADSupport.dbd
+$(PROD_NAME)_DBD += NDPluginSupport.dbd
+$(PROD_NAME)_DBD += devIocStats.dbd
+$(PROD_NAME)_DBD += ADVimbaSupport.dbd
 
 # Add all the support libraries needed by this IOC
 #ampCams_LIBS += xxx
@@ -30,14 +30,14 @@ PROD_LIBS += ADVimba
 PROD_LIBS += NDPlugin
 PROD_LIBS += ADGenICam
 PROD_LIBS += ADBase
-PROD_LIBS += calc 
+PROD_LIBS += calc
 PROD_LIBS += busy
-PROD_LIBS += sscan 
+PROD_LIBS += sscan
 PROD_LIBS += seq
 PROD_LIBS += asyn
-PROD_LIBS += autosave 
+PROD_LIBS += autosave
 PROD_LIBS += pv
-PROD_LIBS += PvAPI 
+PROD_LIBS += PvAPI
 
 # ampCams_registerRecordDeviceDriver.cpp derives from ampCams.dbd
 ampCams_SRCS += ampCams_registerRecordDeviceDriver.cpp
@@ -57,4 +57,3 @@ include $(ADCORE)/ADApp/commonDriverMakefile
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-
