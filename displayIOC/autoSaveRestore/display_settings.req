@@ -80,3 +80,7 @@ $(P)$(CAM8):ROI_X
 $(P)$(CAM8):ROI_W
 $(P)$(CAM8):ROI_Y
 $(P)$(CAM8):ROI_H
+
+$(P)NF_E_CAL
+$(P)PMP_T_E_CAL
+$(P)PMP_R_E_CAL

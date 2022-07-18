@@ -27,6 +27,10 @@ cd "${TOP}"
 dbLoadDatabase "dbd/ampCams.dbd"
 ampCams_registerRecordDeviceDriver pdbbase
 
+# iocStats
+########################
+dbLoadRecords("db/stats.db", "PREFIX=$(PREFIX)$(CAM)")
+
 
 #   ADVimba driver
 #########################
