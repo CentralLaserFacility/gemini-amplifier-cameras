@@ -19,5 +19,5 @@ dbpf $(PREFIX)$(CAM):Stats1:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):Over1:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):Stats1:ComputeCentroid 1
 dbpf $(PREFIX)$(CAM):Stats1:CentroidThreshold 20
-dbpf $(PREFIX)$(CAM):Over1:1:DrawMode 0
+dbpf $(PREFIX)$(CAM):Over1:1:DrawMode 1
 dbpf $(PREFIX)$(CAM):Over1:1:Green 125

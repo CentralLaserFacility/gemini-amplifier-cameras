@@ -64,10 +64,15 @@ NDOverlayConfigure("$(PREFIX)$(CAM):OVER", $(QSIZE), 0, "$(PREFIX)$(CAM):TRANS",
 dbLoadRecords("NDOverlay.template", "P=$(PREFIX)$(CAM):,R=Over1:, PORT=$(PREFIX)$(CAM):OVER,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PREFIX)$(CAM):TRANS")
 dbLoadRecords("NDOverlayN.template","P=$(PREFIX)$(CAM):,R=Over1:1:,NAME=fiducial,SHAPE=0,O=Over1:,XSIZE=30,YSIZE=30,PORT=$(PREFIX)$(CAM):OVER,ADDR=0,TIMEOUT=1")
 
-# standard arrays plugin
+# standard arrays plugin with overlay
 ###############################
-NDStdArraysConfigure("$(PREFIX)$(CAM):Image", 3, 0, "$(PREFIX)$(CAM):OVER", 0, 0)
-dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image1:,PORT=$(PREFIX)$(CAM):Image,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PREFIX)$(CAM):OVER,TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELM)")
+NDStdArraysConfigure("$(PREFIX)$(CAM):ImageO", 3, 0, "$(PREFIX)$(CAM):OVER", 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image2:,PORT=$(PREFIX)$(CAM):ImageO,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PREFIX)$(CAM):OVER,TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELM)")
+
+# standard arrays plugin without overlay
+###############################
+NDStdArraysConfigure("$(PREFIX)$(CAM):Image", 3, 0, "$(PREFIX)$(CAM):TRANS", 0, 0)
+dbLoadRecords("$(ADCORE)/db/NDStdArrays.template", "P=$(PREFIX)$(CAM):,R=image1:,PORT=$(PREFIX)$(CAM):Image,ADDR=0,TIMEOUT=1,NDARRAY_PORT=$(PREFIX)$(CAM):TRANS,TYPE=Int16,FTVL=SHORT,NELEMENTS=$(NELM)")
 
 # Autosave section
 ###############################
