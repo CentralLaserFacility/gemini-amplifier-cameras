@@ -29,7 +29,7 @@ gemCamSystem_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=jqg93617")
 dbLoadRecords("db/shot_data.db","P=GEM:S_AMP, AMP_OUT_CAM=$(AMP_OUT_CAM),PUMP_T_CAM=$(PUMP_T_CAM), PUMP_R_CAM=$(PUMP_R_CAM),COMP_FF_CAM=$(COMP_FF_CAM), THROUGHPUT_PV=$(THROUGHPUT_PV)")
-dbLoadRecords("db/sim.db","P=GEM:S_AMP, AMP_OUT_CAM=$(AMP_OUT_CAM),PUMP_T_CAM=$(PUMP_T_CAM), PUMP_R_CAM=$(PUMP_R_CAM),COMP_FF_CAM=$(COMP_FF_CAM), THROUGHPUT_PV=$(THROUGHPUT_PV)")
+#dbLoadRecords("db/sim.db","P=GEM:S_AMP, AMP_OUT_CAM=$(AMP_OUT_CAM),PUMP_T_CAM=$(PUMP_T_CAM), PUMP_R_CAM=$(PUMP_R_CAM),COMP_FF_CAM=$(COMP_FF_CAM), THROUGHPUT_PV=$(THROUGHPUT_PV)")
 dbLoadRecords("db/triggering.db","P=$(PREFIX), CAM1=$(CAM1),CAM2=$(CAM2),CAM3=$(CAM3),CAM4=$(CAM4),CAM5=$(CAM5),CAM6=$(CAM6),CAM7=$(CAM7),CAM8=$(CAM8)")
 
 dbLoadRecords("db/display.db","P=$(PREFIX),CAM=$(CAM1)")
