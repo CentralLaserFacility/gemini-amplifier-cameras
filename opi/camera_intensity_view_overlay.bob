@@ -11,6 +11,8 @@
   <widget type="image" version="2.0.0">
     <name>IntensityGraph</name>
     <pv_name>$(CAM):image2:ArrayData</pv_name>
+    <x>6</x>
+    <y>6</y>
     <width>450</width>
     <height>337</height>
     <background_color>
@@ -95,24 +97,16 @@
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label</name>
-    <text></text>
-    <x>270</x>
-    <y>310</y>
-    <width>180</width>
+    <text>$(CAM)</text>
+    <x>6</x>
+    <y>6</y>
+    <width>84</width>
+    <height>27</height>
     <font>
-      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      <font family="Liberation Sans" style="BOLD" size="24.0">
       </font>
     </font>
-    <background_color>
-      <color name="Read_Background" red="240" green="240" blue="240">
-      </color>
-    </background_color>
     <transparent>false</transparent>
-    <horizontal_alignment>1</horizontal_alignment>
-    <scripts>
-      <script file="scripts/cursor_info.py">
-        <pv_name>loc://$(CAM):cursor_info</pv_name>
-      </script>
-    </scripts>
+    <auto_size>true</auto_size>
   </widget>
 </display>

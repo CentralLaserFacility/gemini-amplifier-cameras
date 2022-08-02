@@ -2,7 +2,7 @@
 dbpf $(PREFIX)$(CAM):GC_GevSCPSPacketSize 1500
 
 # Limit camera bandwidth
-dbpf $(PREFIX)$(CAM):GC_StrBytesPerSecond 80000000
+dbpf $(PREFIX)$(CAM):GC_StrBytesPerSecond 800000000
 
 # Setup to use external trigger
 dbpf $(PREFIX)$(CAM):GC_TriggerSource 1
@@ -13,11 +13,12 @@ dbpf $(PREFIX)$(CAM):AcquirePeriod 0.050
 dbpf $(PREFIX)$(CAM):Acquire 1
 dbpf $(PREFIX)$(CAM):ArrayCallbacks 1
 dbpf $(PREFIX)$(CAM):image1:EnableCallbacks 1
+dbpf $(PREFIX)$(CAM):image2:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):ROI1:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):Trans1:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):Stats1:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):Over1:EnableCallbacks 1
 dbpf $(PREFIX)$(CAM):Stats1:ComputeCentroid 1
 dbpf $(PREFIX)$(CAM):Stats1:CentroidThreshold 20
-dbpf $(PREFIX)$(CAM):Over1:1:DrawMode 0
+dbpf $(PREFIX)$(CAM):Over1:1:DrawMode 1
 dbpf $(PREFIX)$(CAM):Over1:1:Green 125
