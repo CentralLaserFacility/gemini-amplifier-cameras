@@ -98,7 +98,9 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update</name>
     <pv_name>$(CAM):NICKNAME</pv_name>
-    <width>250</width>
+    <x>6</x>
+    <y>6</y>
+    <width>174</width>
     <height>30</height>
     <font>
       <font family="Liberation Sans" style="REGULAR" size="24.0">
