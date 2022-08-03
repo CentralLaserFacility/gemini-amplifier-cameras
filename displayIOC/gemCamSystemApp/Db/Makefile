@@ -14,7 +14,6 @@ DB += shot_data.db
 DB += triggering.db 
 DB += display.db
 DB += roi.db
-DB += sim.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

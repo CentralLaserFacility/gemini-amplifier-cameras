@@ -95,18 +95,19 @@
     <x_pv>loc://$(CAM):cursor_x</x_pv>
     <y_pv>loc://$(CAM):cursor_y</y_pv>
   </widget>
-  <widget type="label" version="2.0.0">
-    <name>Label</name>
-    <text>$(CAM)</text>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(CAM):NICKNAME</pv_name>
     <x>6</x>
     <y>6</y>
-    <width>84</width>
-    <height>27</height>
+    <width>174</width>
+    <height>30</height>
     <font>
-      <font family="Liberation Sans" style="BOLD" size="24.0">
+      <font family="Liberation Sans" style="REGULAR" size="24.0">
       </font>
     </font>
-    <transparent>false</transparent>
-    <auto_size>true</auto_size>
+    <format>6</format>
+    <show_units>false</show_units>
+    <vertical_alignment>1</vertical_alignment>
   </widget>
 </display>

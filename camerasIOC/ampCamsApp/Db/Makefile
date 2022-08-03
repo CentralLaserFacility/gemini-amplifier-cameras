@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += autosave_config.db
 DB += stats.db
+DB += camera_details.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
