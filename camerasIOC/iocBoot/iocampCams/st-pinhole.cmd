@@ -3,9 +3,13 @@
 < envPaths
 
 epicsEnvSet("CAM", "PINHOLE")
+epicsEnvSet("NICKNAME", "Pinhole")
 epicsEnvSet("CAMID", "172.16.71.10")
 
 < st-common.cmd
+
+cd "${TOP}"
+dbLoadRecords("db/camera_details.db", "PREFIX=$(PREFIX)$(CAM), CAMERA_NICKNAME=$(NICKNAME)")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
