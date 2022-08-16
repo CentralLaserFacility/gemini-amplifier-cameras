@@ -207,6 +207,8 @@ class EcatWriter:
             return self._leg1_green_energy_pv.get() 
         elif "LEG_2" in filename:
             return self._leg2_green_energy_pv.get()
+        elif "UNCOMP_NF" in filename:
+            return self._amp_energy_pv.get()
         else:
             return 0.0
 
@@ -234,7 +236,7 @@ class EcatWriter:
                 mdt_file.write("<UNITS>Count</UNITS>\n")
                 mdt_file.write("</MEASUREMENT>\n")
                 mdt_file.write("<MEASUREMENT>\n")
-                mdt_file.write(f"<NAME>{image_name}_E</NAME>\n")
+                mdt_file.write(f"<NAME>{image_name}_E_VALUE</NAME>\n")
                 mdt_file.write("<TYPE>E</TYPE>\n")
                 mdt_file.write(f"<VALUE>{energy}</VALUE>\n")
                 mdt_file.write("<UNITS>Joule</UNITS>\n")
