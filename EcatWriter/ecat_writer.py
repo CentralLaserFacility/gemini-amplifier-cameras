@@ -203,9 +203,9 @@ class EcatWriter:
         return f"LA3/{self._amplifier}_{section}/IMAGE"
 
     def _get_energy_value(self, filename: str) -> float:
-        if "LEG_1" in filename:
+        if "LEG1" in filename:
             return self._leg1_green_energy_pv.get() 
-        elif "LEG_2" in filename:
+        elif "LEG2" in filename:
             return self._leg2_green_energy_pv.get()
         elif "UNCOMP_NF" in filename:
             return self._amp_energy_pv.get()
