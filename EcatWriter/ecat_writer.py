@@ -49,6 +49,8 @@ class EcatWriter:
         self._comp_energy_pv = epics.PV(
             pv_prefix + ":COMP_ENERGY", callback=self._on_new_data_received
         )
+        self._leg1_green_energy_pv = epics.PV(pv_prefix + ":PUMP_TRANS_E")
+        self._leg2_green_energy_pv = epics.PV(pv_prefix + ":PUMP_REF_E")
         self._comp_throughput_pv = epics.PV(
             f"GEM:LA3:CAL:COMPTHRUPUT:{self._amplifier}"
         )
@@ -200,10 +202,21 @@ class EcatWriter:
             section = "UNKNOWN"
         return f"LA3/{self._amplifier}_{section}/IMAGE"
 
+    def _get_energy_value(self, filename: str) -> float:
+        if "LEG1" in filename:
+            return self._leg1_green_energy_pv.get() 
+        elif "LEG2" in filename:
+            return self._leg2_green_energy_pv.get()
+        elif "UNCOMP_NF" in filename:
+            return self._amp_energy_pv.get()
+        else:
+            return 0.0
+
     def _write_mdt_file(
         self, mdt_filename: str, image_name: str, image: EpicsImage
     ) -> None:
         section_name = self._get_section_name(mdt_filename)
+        energy = self._get_energy_value(mdt_filename)
         logger.info(f"Writing file {mdt_filename}")
         try:
             with open(mdt_filename, "w") as mdt_file:
@@ -223,9 +236,9 @@ class EcatWriter:
                 mdt_file.write("<UNITS>Count</UNITS>\n")
                 mdt_file.write("</MEASUREMENT>\n")
                 mdt_file.write("<MEASUREMENT>\n")
-                mdt_file.write(f"<NAME>{image_name}_E</NAME>\n")
+                mdt_file.write(f"<NAME>{image_name}_E_VALUE</NAME>\n")
                 mdt_file.write("<TYPE>E</TYPE>\n")
-                mdt_file.write("<VALUE>0.0</VALUE>\n")
+                mdt_file.write(f"<VALUE>{energy}</VALUE>\n")
                 mdt_file.write("<UNITS>Joule</UNITS>\n")
                 mdt_file.write("</MEASUREMENT>\n")
                 mdt_file.write("<MEASUREMENT>\n")

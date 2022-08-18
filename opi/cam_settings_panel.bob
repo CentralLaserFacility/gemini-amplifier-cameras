@@ -485,7 +485,7 @@
     <widget type="label" version="2.0.0">
       <name>Label</name>
       <text>Trig delay</text>
-      <y>12</y>
+      <y>16</y>
       <width>79</width>
       <height>26</height>
       <font>
@@ -503,9 +503,9 @@
     <widget type="textentry" version="3.0.0">
       <name>Text Input</name>
       <pv_name>$(P)TriggerDelayAbs</pv_name>
-      <x>78</x>
-      <y>12</y>
-      <width>67</width>
+      <x>52</x>
+      <y>16</y>
+      <width>93</width>
       <height>26</height>
       <background_color>
         <color name="WritePV_Background" red="128" green="255" blue="255">
@@ -521,10 +521,10 @@
     <widget type="choice" version="2.0.0">
       <name>Choice Button</name>
       <pv_name>$(P)TriggerMode</pv_name>
-      <x>24</x>
+      <x>52</x>
       <y>54</y>
-      <width>121</width>
-      <height>26</height>
+      <width>93</width>
+      <height>71</height>
       <font>
         <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
         </font>
@@ -537,64 +537,20 @@
         <color name="Minor" red="255" green="128" blue="0">
         </color>
       </selected_color>
+      <horizontal>false</horizontal>
       <actions>
       </actions>
       <items>
-        <item>Int</item>
-        <item>Ext</item>
+        <item>Internal</item>
+        <item>External</item>
       </items>
       <items_from_pv>false</items_from_pv>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label</name>
-      <text>Trig</text>
-      <y>54</y>
+      <text>Trigger</text>
+      <y>74</y>
       <width>31</width>
-      <height>26</height>
-      <font>
-        <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">
-        </font>
-      </font>
-      <vertical_alignment>1</vertical_alignment>
-      <actions>
-      </actions>
-      <border_color>
-        <color red="0" green="128" blue="255">
-        </color>
-      </border_color>
-    </widget>
-    <widget type="combo" version="2.0.0">
-      <name>Combo</name>
-      <pv_name>loc://color_map&lt;VString&gt;("Jet")</pv_name>
-      <x>45</x>
-      <y>95</y>
-      <height>27</height>
-      <font>
-        <font family="Segoe UI Semibold" style="REGULAR" size="12.0">
-        </font>
-      </font>
-      <background_color>
-        <color red="255" green="255" blue="255">
-        </color>
-      </background_color>
-      <actions>
-      </actions>
-      <items>
-        <item>Jet</item>
-        <item>Gray</item>
-        <item>Hot</item>
-        <item>Cool</item>
-        <item>Viridis</item>
-        <item>Shaded</item>
-        <item>Magma</item>
-      </items>
-      <items_from_pv>false</items_from_pv>
-    </widget>
-    <widget type="label" version="2.0.0">
-      <name>Label</name>
-      <text>LUT</text>
-      <y>96</y>
-      <width>61</width>
       <height>26</height>
       <font>
         <font family="Segoe UI Semibold" style="REGULAR" size="8.910891089108912">

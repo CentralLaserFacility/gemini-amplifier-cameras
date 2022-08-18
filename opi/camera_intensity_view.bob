@@ -20,7 +20,22 @@
       </color>
     </background_color>
     <color_map>
-      <name>JET</name>
+      <section value="0" red="0" green="0" blue="0"/>
+      <section value="16" red="153" green="0" blue="0"/>
+      <section value="32" red="179" green="26" blue="26"/>
+      <section value="64" red="255" green="0" blue="0"/>
+      <section value="80" red="255" green="179" blue="102"/>
+      <section value="96" red="255" green="255" blue="0"/>
+      <section value="112" red="128" green="179" blue="128"/>
+      <section value="128" red="0" green="255" blue="0"/>
+      <section value="144" red="0" green="255" blue="255"/>
+      <section value="160" red="128" green="153" blue="255"/>
+      <section value="176" red="51" green="77" blue="179"/>
+      <section value="192" red="0" green="26" blue="128"/>
+      <section value="208" red="128" green="102" blue="204"/>
+      <section value="224" red="102" green="77" blue="179"/>
+      <section value="240" red="26" green="0" blue="104"/>
+      <section value="255" red="255" green="255" blue="255"/>
     </color_map>
     <color_bar>
       <visible>false</visible>
@@ -75,9 +90,6 @@
         <pv_name>$(CAM):image1:ArraySize1_RBV</pv_name>
         <pv_name>$(CAM):ROI1:MinX_RBV</pv_name>
         <pv_name>$(CAM):ROI1:MinY_RBV</pv_name>
-      </script>
-      <script file="scripts/select_colormap.py">
-        <pv_name>loc://color_map&lt;VString&gt;("Jet")</pv_name>
       </script>
       <script file="scripts/set_image_ratio.py">
         <pv_name>=1</pv_name>
