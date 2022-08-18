@@ -1,0 +1,15 @@
+
+record(stringout, "GEM:LA3:SHOTNUM") {
+    field(DESC, "Dummy shot number")
+    field(VAL, "GSN:TEST")
+    field(FLNK, "$(P):UPDATE_VALUES.PROC")
+}
+
+
+record(calcout, "$(P):FIRE_LASER") {
+    field(DESC, "Dummy shot")
+    field(CALC, "a+1")
+    field(INPA, "GEM:LA3:SHOTNUM")
+    field(OUT,  "GEM:LA3:SHOTNUM PP")
+    field(FLNK, "$(P):UPDATE_VALUES.PROC")
+}

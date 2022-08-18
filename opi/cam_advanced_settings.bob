@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>200</width>
+  <height>250</height>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>$(P)$(R)</text>
+    <x>10</x>
+    <y>10</y>
+    <width>180</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="16.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="open_display">
+        <file>areaDetector/ADBase.bob</file>
+        <target>window</target>
+        <description>Open Display</description>
+      </action>
+    </actions>
+    <text>ADBase</text>
+    <x>40</x>
+    <y>60</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_3</name>
+    <actions>
+      <action type="open_display">
+        <file>areaDetector/ADGenICam.bob</file>
+        <target>window</target>
+        <description>Open Display</description>
+      </action>
+    </actions>
+    <text>ADGenICam</text>
+    <x>40</x>
+    <y>180</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_4</name>
+    <actions>
+      <action type="open_display">
+        <file>areaDetector/ADVimba.bob</file>
+        <target>window</target>
+        <description>Open Display</description>
+      </action>
+    </actions>
+    <text>ADVimba</text>
+    <x>40</x>
+    <y>120</y>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+</display>

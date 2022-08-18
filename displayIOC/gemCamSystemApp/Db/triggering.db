@@ -1,0 +1,79 @@
+record(bo, "$(P)TriggerMode"){
+    field(DESC, "Set cam trigs off or on")
+    field(DTYP, "Soft Channel")
+    field(OMSL, "supervisory")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(OUT, "$(P)SetTriggerMode.PROC")
+}
+
+record(seq, "$(P)SetTriggerMode"){
+    field(DESC, "Set cams to int or ext trigger")
+    field(DOL0, "$(P)TriggerMode NPP")
+    field(LNK0, "$(P)$(CAM1):TriggerMode")
+    field(DLY1, "0.2")
+    field(DOL1, "$(P)TriggerMode NPP")
+    field(LNK1, "$(P)$(CAM2):TriggerMode")
+    field(DLY2, "0.2")
+    field(DOL2, "$(P)TriggerMode NPP")
+    field(LNK2, "$(P)$(CAM3):TriggerMode")
+    field(DLY3, "0.2")
+    field(DOL3, "$(P)TriggerMode NPP")
+    field(LNK3, "$(P)$(CAM4):TriggerMode")
+    field(DLY4, "0.2")
+    field(DOL4, "$(P)TriggerMode NPP")
+    field(LNK4, "$(P)$(CAM5):TriggerMode")
+    field(DLY5, "0.2")
+    field(DOL5, "$(P)TriggerMode NPP")
+    field(LNK5, "$(P)$(CAM6):TriggerMode")
+    field(DLY6, "0.2")
+    field(DOL6, "$(P)TriggerMode NPP")
+    field(LNK6, "$(P)$(CAM7):TriggerMode")
+    field(DLY7, "0.2")
+    field(DOL7, "$(P)TriggerMode NPP")
+    field(LNK7, "$(P)$(CAM8):TriggerMode")
+}
+
+record(dfanout, "$(P)TriggerDelayAbs"){
+    field(DESC, "Set trigger delay for all cams")
+    field(OMSL, "supervisory")
+    field(SELM, "All")
+    field(OUTA, "$(P)$(CAM1):GC_TriggerDelayAbs")
+    field(OUTB, "$(P)$(CAM2):GC_TriggerDelayAbs")
+    field(OUTC, "$(P)$(CAM3):GC_TriggerDelayAbs")
+    field(OUTD, "$(P)$(CAM4):GC_TriggerDelayAbs")
+    field(OUTE, "$(P)$(CAM5):GC_TriggerDelayAbs")
+    field(OUTF, "$(P)$(CAM6):GC_TriggerDelayAbs")
+    field(OUTG, "$(P)$(CAM7):GC_TriggerDelayAbs")
+    field(OUTH, "$(P)$(CAM8):GC_TriggerDelayAbs")
+}
+
+
+record(mbbi, "$(P)POWER_MODE"){
+    field(DESC, "Power mode read from laser CS")
+    field(DTYP, "Soft Channel")
+    field(INP, "GEM:LA3:ENERGYMODE CP")
+    field(ZRST, "0UD")
+    field(ZRVL, "0")
+    field(ONST, "1CW")
+    field(ONVL, "1")
+    field(TWST, "2LP")
+    field(TWVL, "2")
+    field(THST, "3MP")
+    field(THVL, "3")
+    field(FRST, "4HP")
+    field(FRVL, "4")
+    field(FVST, "5UNA")
+    field(FVVL, "5")
+    field(SXST, "6FP")
+    field(SXVL, "6")
+    field(FLNK, "$(P)SET_TRIG_FOR_MODE.PROC")
+}
+
+record(calcout, "$(P)SET_TRIG_FOR_MODE") {
+    field(DESC, "Set cam trigs on mode change")
+    field(INPA, "$(P)POWER_MODE NPP")
+    field(CALC, "A > 1")
+    field(OOPT, "On Change")
+    field(OUT, "$(P)TriggerMode PP")
+}

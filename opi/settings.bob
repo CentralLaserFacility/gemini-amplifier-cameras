@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>830</width>
+  <height>560</height>
+  <actions>
+  </actions>
+  <widget type="embedded" version="2.0.0">
+    <name>cam1-link-shot</name>
+    <macros>
+      <CAM>${CAM1}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>560</x>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions execute_as_one="true">
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_8</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM1}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>560</x>
+    <width>128</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM1}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam4-link-shot</name>
+    <macros>
+      <CAM>${CAM4}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>698</x>
+    <y>144</y>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam2-link-shot</name>
+    <macros>
+      <CAM>${CAM2}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>698</x>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions execute_as_one="true">
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam3-link-shot</name>
+    <macros>
+      <CAM>${CAM3}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>560</x>
+    <y>144</y>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam5-link-shot</name>
+    <macros>
+      <CAM>${CAM5}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>560</x>
+    <y>288</y>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam6-link-shot</name>
+    <macros>
+      <CAM>${CAM6}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>698</x>
+    <y>288</y>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam7-link-shot</name>
+    <macros>
+      <CAM>${CAM7}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>560</x>
+    <y>432</y>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam8-link-shot</name>
+    <macros>
+      <CAM>${CAM8}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>698</x>
+    <y>432</y>
+    <width>128</width>
+    <height>128</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>single_link_cont</name>
+    <file>camera_intensity_view_w_cursor_info.bob</file>
+    <x>60</x>
+    <width>450</width>
+    <height>337</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <scripts>
+      <script file="scripts/dynamic_macro.py">
+        <pv_name>loc://cam-choice</pv_name>
+      </script>
+    </scripts>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Linking Container_1</name>
+    <file>centroid-overlay.opi</file>
+    <x>6</x>
+    <y>336</y>
+    <width>550</width>
+    <height>67</height>
+    <actions>
+    </actions>
+    <scripts>
+      <script file="scripts/dynamic_macro.py">
+        <pv_name>loc://cam-choice</pv_name>
+      </script>
+    </scripts>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Linking Container</name>
+    <file>cam_settings_panel.opi</file>
+    <x>6</x>
+    <y>402</y>
+    <width>550</width>
+    <height>160</height>
+    <actions>
+    </actions>
+    <scripts>
+      <script file="scripts/dynamic_macro.py">
+        <pv_name>loc://cam-choice</pv_name>
+      </script>
+    </scripts>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM2}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>698</x>
+    <width>128</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM2}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_2</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM3}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>560</x>
+    <y>144</y>
+    <width>129</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM3}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_3</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM8}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>698</x>
+    <y>432</y>
+    <width>128</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM8}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_4</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM7}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>560</x>
+    <y>432</y>
+    <width>129</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM7}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_5</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM5}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>560</x>
+    <y>288</y>
+    <width>129</width>
+    <height>128</height>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM5}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_6</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM6}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>698</x>
+    <y>288</y>
+    <width>128</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM6}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_7</name>
+    <actions execute_as_one="true">
+      <action type="write_pv">
+        <pv_name>loc://cam-choice</pv_name>
+        <value>${CAM4}</value>
+      </action>
+    </actions>
+    <text></text>
+    <x>698</x>
+    <y>144</y>
+    <width>128</width>
+    <height>128</height>
+    <foreground_color>
+      <color name="Background" red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <background_color>
+      <color name="Attention" red="255" green="160" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+    <tooltip>Open ${CAM4}</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <x>920</x>
+    <y>330</y>
+    <width>0</width>
+    <height>0</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_9</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM1):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>560</x>
+    <y>110</y>
+    <width>50</width>
+    <height>18</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_10</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM2):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>698</x>
+    <y>110</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_11</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM3):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>560</x>
+    <y>254</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_12</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM4):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>698</x>
+    <y>254</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_13</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM5):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>560</x>
+    <y>399</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_14</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM6):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>698</x>
+    <y>399</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_15</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM7):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>560</x>
+    <y>542</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_16</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(CAM8):reboot.L</pv_name>
+        <value>1</value>
+        <description>Send reboot command</description>
+      </action>
+    </actions>
+    <text>Reset</text>
+    <x>698</x>
+    <y>542</y>
+    <width>50</width>
+    <height>18</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+</display>

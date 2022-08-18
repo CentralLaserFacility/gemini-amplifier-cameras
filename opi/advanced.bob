@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>830</width>
+  <height>560</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display</name>
+    <macros>
+      <R>UNCOMP_NF:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <y>10</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_8</name>
+    <macros>
+      <R>COMP_NF:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <x>210</x>
+    <y>10</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_9</name>
+    <macros>
+      <R>COMP_FF:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <x>420</x>
+    <y>10</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_10</name>
+    <macros>
+      <R>INP_NF:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <x>630</x>
+    <y>10</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_11</name>
+    <macros>
+      <R>FLUOR:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <y>300</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_12</name>
+    <macros>
+      <R>PINHOLE:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <x>210</x>
+    <y>300</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_13</name>
+    <macros>
+      <R>LEG1_GREEN_NF:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <x>420</x>
+    <y>300</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_14</name>
+    <macros>
+      <R>LEG2_GREEN_NF:</R>
+    </macros>
+    <file>cam_advanced_settings.bob</file>
+    <x>630</x>
+    <y>300</y>
+    <width>200</width>
+    <height>250</height>
+    <border_width>2</border_width>
+  </widget>
+</display>

@@ -1,0 +1,121 @@
+
+record(aSub, "$(P):LIST_READ")
+{
+    field(SNAM, "readlist")
+    field(PINI, "YES")
+    field(OUTA, "$(P):CAMERA_LIST")
+    field(FTVA, "STRING")
+    field(NOVA, "16")
+}
+
+record(waveform, "$(P):CAMERA_LIST"){
+    field(NELM, "16")
+    field(FTVL, "STRING")
+}
+
+record(calc, "$(P):COMP_ENERGY") {
+    field(INPA, "$(THROUGHPUT_PV)")
+    field(INPB, "$(P):AMP_E")
+    field(CALC, "0.01*a*b")
+    field(EGU, "J")
+}
+
+record(stringin, "$(P):SHOT_NUMBER") {
+    field(DESC, "Watch for shot number change")
+    field(DTYP, "Soft Channel")
+    field(INP, "GEM:LA3:SHOTNUM CP")
+    field(FLNK, "$(P):UPDATE_VALUES.PROC")
+}
+
+record(seq, "$(P):UPDATE_VALUES") {
+    field(DESC, "description")
+    field(SELM, "All")
+    field(LNK1, "$(P):AMP_E.PROC")
+    field(LNK2, "$(P):TOT_PUMP_E.PROC")
+    field(DOL3, "$(COMP_FF_CAM):Stats1:CentroidX_RBV PP")
+    field(LNK3, "$(P):COMP_POINTING_X PP")
+    field(DOL4, "$(COMP_FF_CAM):Stats1:CentroidY_RBV PP")
+    field(LNK4, "$(P):COMP_POINTING_Y PP")
+    field(LNK5, "$(P):COMP_ENERGY.PROC")
+    field(LNK6, "$(P):COMP_POINTING_ERROR.PROC")
+}
+
+record(calc, "$(P):AMP_E") {
+    field(CALC, "A*B")
+    field(INPA, "$(P):NF_E_CAL")
+    field(INPB, "$(AMP_OUT_CAM):Stats1:Net_RBV PP")
+    field(EGU, "J")
+}
+
+record(dfanout, "$(P):NF_E_BKG_W") {
+    field(PINI, "1")
+    field(DESC, "Width to calc NF E bkg")
+    field(OUTA, "$(AMP_OUT_CAM):Stats1:BgdWidth PP")
+    field(DOL,  "5")
+    field(OMSL, "supervisory")
+}
+
+record(ai, "$(P):NF_E_CAL") {
+    field(VAL, "1e-4")
+}
+
+record(ai, "$(P):PMP_T_E_CAL") {
+    field(VAL, "1e-4")
+}
+
+record(ai, "$(P):PMP_R_E_CAL") {
+    field(VAL, "1e-4")
+}
+
+record(dfanout, "$(P):PMP_T_E_BKG_W") {
+    field(PINI, "1")
+    field(DESC, "Width to calc t pump bkg")
+    field(OUTA, "$(PUMP_T_CAM):Stats1:BgdWidth PP")
+    field(DOL,  "5")
+    field(OMSL, "supervisory")
+}
+
+record(dfanout, "$(P):PMP_R_E_BKG_W") {
+    field(PINI, "1")
+    field(DESC, "Width to calc r pump bkg")
+    field(OUTA, "$(PUMP_R_CAM):Stats1:BgdWidth PP")
+    field(DOL,  "5")
+    field(OMSL, "supervisory")
+}
+
+record(calc, "$(P):PUMP_TRANS_E") {
+    field(CALC, "A*B")
+    field(INPA, "$(P):PMP_T_E_CAL")
+    field(INPB, "$(PUMP_T_CAM):Stats1:Net_RBV PP")
+    field(EGU, "J")
+}
+
+record(calc, "$(P):PUMP_REF_E") {
+    field(CALC, "A*B")
+    field(INPA, "$(P):PMP_R_E_CAL")
+    field(INPB, "$(PUMP_R_CAM):Stats1:Net_RBV PP")
+    field(EGU, "J")
+}
+
+record(calc, "$(P):TOT_PUMP_E") {
+    field(CALC, "a+b")
+    field(INPA, "$(P):PUMP_TRANS_E PP")
+    field(INPB, "$(P):PUMP_REF_E PP")
+    field(EGU, "J")
+}
+
+
+record(ai, "$(P):COMP_POINTING_X") {
+}
+
+record(ai, "$(P):COMP_POINTING_Y") {
+}
+
+record(calc, "$(P):COMP_POINTING_ERROR") {
+    field(DESC, "Error in comp ff position")
+    field(CALC, "SQR( (0.5*A-B)*(0.5*A-B) + (0.5*C-D)*(0.5*C-D) )")
+    field(INPA, "$(COMP_FF_CAM):ROI1:SizeX_RBV PP")
+    field(INPB, "$(P):COMP_POINTING_X")
+    field(INPC, "$(COMP_FF_CAM):ROI1:SizeY_RBV PP")
+    field(INPD, "$(P):COMP_POINTING_Y")
+}

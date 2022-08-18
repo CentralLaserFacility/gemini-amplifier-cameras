@@ -1,0 +1,5 @@
+## Settings for 12 bit data from camera
+dbpf $(PREFIX)$(CAM):ConvertPixelFormat "Mono16"
+dbpf $(PREFIX)$(CAM):PixelFormat "Mono12"
+dbpf $(PREFIX)$(CAM):DataType "UInt16"
+ 

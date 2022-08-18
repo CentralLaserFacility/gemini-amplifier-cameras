@@ -1,0 +1,156 @@
+record(seq, "$(P)$(CAM):SET_FULL_CHIP") {
+  field(DESC, "Set FOV to full chip")
+  field(DOL1, "0")
+  field(LNK1, "$(P)$(CAM):LINK_ROI_SIZE PP")
+  field(DOL2, "0")
+  field(LNK2, "$(P)$(CAM):ROI1:MinX PP")
+  field(DOL3, "$(P)$(CAM):MaxSizeX_RBV")
+  field(LNK3, "$(P)$(CAM):ROI1:SizeX PP")
+  field(DOL4, "0")
+  field(LNK4, "$(P)$(CAM):ROI1:MinY PP")
+  field(DOL5, "$(P)$(CAM):MaxSizeY_RBV PP")
+  field(LNK5, "$(P)$(CAM):ROI1:SizeY PP")
+  field(DOL6, "1")
+  field(LNK6, "$(P)$(CAM):OVER_X_CALC.PROC")
+  field(DOL7, "1")
+  field(LNK7, "$(P)$(CAM):OVER_Y_CALC.PROC")  
+}
+
+record(fanout, "$(P)$(CAM):SET_ROI_VIEW") {
+  field(DESC, "Set ROI to desired value")
+  field(LNK1, "$(P)$(CAM):ROI_X.PROC")
+  field(LNK2, "$(P)$(CAM):ROI_W.PROC")
+  field(LNK3, "$(P)$(CAM):ROI_Y.PROC")
+  field(LNK4, "$(P)$(CAM):ROI_H.PROC")
+}
+
+
+# Automatically switch to ROI view when in shot mode
+record(calcout, "$(P)$(CAM):SET_ROI_FOR_SHOT"){
+  field(DESC, "Move to ROI view in shot mode")
+  field(INPA, "$(P)POWER_MODE CP")
+  field(CALC, "A=6") # Full power mode
+  field(OOPT, "3") # Only write when calc result is non-zero (i.e. true)
+  field(OUT, "$(P)$(CAM):SET_ROI_VIEW.PROC")
+}
+
+
+###############################################################
+# Records for setting width and horizontal centre
+###############################################################
+
+record(longout, "$(P)$(CAM):ROI_X") {
+  field(DESC, "X start of the ROI")
+  field(OUT, "$(P)$(CAM):ROI1:MinX PP")
+  field(FLNK, "$(P)$(CAM):OVERX_CALC.PROC")
+}
+
+record(longout, "$(P)$(CAM):ROI_W") {
+  field(DESC, "Desired width of ROI")
+  field(OUT, "$(P)$(CAM):ROI1:SizeX PP")
+  field(FLNK, "$(P)$(CAM):OVERX_CALC.PROC")
+}
+
+###############################################################
+# Records for setting height and vertical centre
+###############################################################
+
+record(longout, "$(P)$(CAM):ROI_Y") {
+  field(DESC, "Y start of the ROI")
+  field(OUT, "$(P)$(CAM):ROI1:MinY PP")
+  field(FLNK, "$(P)$(CAM):OVERY_CALC.PROC")
+}
+
+record(longout, "$(P)$(CAM):ROI_H") {
+  field(DESC, "Desired heigh of ROI")
+  field(OUT, "$(P)$(CAM):ROI1:SizeY PP")
+  field(FLNK, "$(P)$(CAM):OVERY_CALC.PROC")
+}
+
+###############################################################
+# Records for setting ROI when height and width linked
+###############################################################
+
+record(calc, "$(P)$(CAM):ROI_SIZE_CALC") {
+    field(DESC, "Find the min of width and length")
+    field(CALC, "MIN(A,B)")
+    field(INPA, "$(P)$(CAM):ROI_H PP")
+    field(INPB, "$(P)$(CAM):ROI_W PP")
+}
+
+record(seq, "$(P)$(CAM):LINK_ROI_SIZE") {
+    field(DESC, "Set ROI linked height and width")
+    field(DOL1, "$(P)$(CAM):ROI_W PP")
+    field(LNK1, "$(P)$(CAM):ROI_H PP")
+    field(DOL2, "$(P)$(CAM):ROI_SIZE_CALC PP")
+    field(LNK2, "$(P)$(CAM):ROI_W PP")
+    field(DOL3, "$(P)$(CAM):ROI_SIZE_CALC")
+    field(LNK3, "$(P)$(CAM):ROI_H PP")
+    field(DOL4, "1")
+    field(LNK4, "$(P)$(CAM):ROI_Y_SET.PROC")
+    field(SDIS, "$(P)$(CAM):ROI_LINK")
+    field(DISV, "0")
+}
+    
+record(bo, "$(P)$(CAM):ROI_LINK") {
+    field(DESC, "Width and height of ROI linked")
+    field(VAL,  "0")
+    field(ZNAM, "unlinked")    
+    field(ONAM, "linked")     
+}
+
+###############################################################
+# Records for setting overlay
+###############################################################
+
+
+
+record(calcout, "$(P)$(CAM):OVER_X_CALC") {
+    field(DESC, "Calc X overlay position")
+    field(CALC, "a-b")
+    field(INPA, "$(P)$(CAM):OVER_X")
+    field(INPB, "$(P)$(CAM):ROI1:MinX CP")
+    field(OUT,  "$(P)$(CAM):Over1:1:CenterX CP")
+}
+
+record(calcout, "$(P)$(CAM):OVER_Y_CALC") {
+    field(DESC, "Calc Y overlay position")
+    field(CALC, "a-b") 
+    field(INPA, "$(P)$(CAM):OVER_Y")
+    field(INPB, "$(P)$(CAM):ROI1:MinY CP") 
+    field(OUT,  "$(P)$(CAM):Over1:1:CenterY CP")
+   }
+
+record(longin, "$(P)$(CAM):OVER_Y") {
+    field(DESC, "Y overlay position")
+    field(FLNK, "$(P)$(CAM):OVER_Y_CALC.PROC")
+}
+
+record(longin, "$(P)$(CAM):OVER_X") {
+    field(DESC, "X overlay position")
+    field(FLNK, "$(P)$(CAM):OVER_X_CALC.PROC")
+}
+
+
+record(dfanout, "$(P)$(CAM):OVER_WIDTH") {
+  field(DESC, "Width of overlay")
+  field(VAL, "2")
+  field(OMSL, "supervisory")
+  field(SELM, "All")
+  field(OUTA, "$(P)$(CAM):Over1:1:WidthX CP")
+  field(OUTB, "$(P)$(CAM):Over1:1:WidthY CP")
+}
+
+record(dfanout, "$(P)$(CAM):OVER_SIZE") {
+  field(DESC, "Size of overlay")
+  field(VAL, "10")
+  field(OMSL, "supervisory")
+  field(SELM, "All")
+  field(OUTA, "$(P)$(CAM):Over1:1:SizeX CP")
+  field(OUTB, "$(P)$(CAM):Over1:1:SizeY CP")
+}
+
+
+
+
+

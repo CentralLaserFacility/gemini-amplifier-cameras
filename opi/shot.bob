@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>830</width>
+  <height>560</height>
+  <actions>
+  </actions>
+  <widget type="rectangle" version="2.0.0">
+    <name>Rounded Rectangle</name>
+    <x>612</x>
+    <y>198</y>
+    <width>189</width>
+    <height>217</height>
+    <line_width>0</line_width>
+    <line_color>
+      <color red="128" green="0" blue="255">
+      </color>
+    </line_color>
+    <corner_width>16</corner_width>
+    <corner_height>16</corner_height>
+    <actions>
+    </actions>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam1-link-shot</name>
+    <macros>
+      <CAM>${CAM1}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>1</x>
+    <y>1</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam4-link-shot</name>
+    <macros>
+      <CAM>${CAM4}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>613</x>
+    <y>1</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam2-link-shot</name>
+    <macros>
+      <CAM>${CAM2}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>205</x>
+    <y>1</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam3-link-shot</name>
+    <macros>
+      <CAM>${CAM3}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>409</x>
+    <y>1</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam5-link-shot</name>
+    <macros>
+      <CAM>${CAM5}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>1</x>
+    <y>199</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam6-link-shot</name>
+    <macros>
+      <CAM>${CAM6}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>205</x>
+    <y>199</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>cam7-link-shot</name>
+    <macros>
+      <CAM>${CAM7}</CAM>
+    </macros>
+    <file>camera_intensity_view.bob</file>
+    <x>409</x>
+    <y>199</y>
+    <width>188</width>
+    <height>188</height>
+    <resize>1</resize>
+    <actions>
+    </actions>
+    <border_width>1</border_width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(P)PUMP_TRANS_E</pv_name>
+    <x>48</x>
+    <y>392</y>
+    <width>61</width>
+    <height>16</height>
+    <font>
+      <font family="Segoe UI Semibold" style="REGULAR" size="9.900990099009901">
+      </font>
+    </font>
+    <precision>1</precision>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Energy</text>
+    <y>387</y>
+    <width>62</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI Semibold" style="REGULAR" size="9.900990099009901">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_1</name>
+    <pv_name>$(P)PUMP_REF_E</pv_name>
+    <x>246</x>
+    <y>392</y>
+    <width>61</width>
+    <height>16</height>
+    <font>
+      <font family="Segoe UI Semibold" style="REGULAR" size="9.900990099009901">
+      </font>
+    </font>
+    <precision>1</precision>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>Energy</text>
+    <x>204</x>
+    <y>387</y>
+    <width>62</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI Semibold" style="REGULAR" size="9.900990099009901">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(P)AMP_E</pv_name>
+    <x>456</x>
+    <y>392</y>
+    <width>61</width>
+    <height>16</height>
+    <font>
+      <font family="Segoe UI Semibold" style="REGULAR" size="9.900990099009901">
+      </font>
+    </font>
+    <precision>1</precision>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>Energy</text>
+    <x>408</x>
+    <y>387</y>
+    <width>62</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI Semibold" style="REGULAR" size="9.900990099009901">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="xyplot" version="2.0.0">
+    <name>time-history</name>
+    <y>426</y>
+    <width>680</width>
+    <height>133</height>
+    <background_color>
+      <color red="240" green="240" blue="240">
+      </color>
+    </background_color>
+    <title_font>
+      <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </title_font>
+    <actions>
+    </actions>
+    <scripts>
+      <script file="scripts/convert_to_wfm.py">
+        <pv_name trigger="false">loc://max_wfm_length&lt;VLong&gt;(50)</pv_name>
+        <pv_name>$(P)AMP_E</pv_name>
+        <pv_name trigger="false">loc://AMP_E&lt;VDoubleArray&gt;(0)</pv_name>
+        <pv_name trigger="false">$(P)TOT_PUMP_E</pv_name>
+        <pv_name trigger="false">loc://TOT_PUMP_E&lt;VDoubleArray&gt;(0)</pv_name>
+        <pv_name trigger="false">$(P)PUMP_TRANS_E</pv_name>
+        <pv_name trigger="false">loc://PUMP_TRANS_E&lt;VDoubleArray&gt;(0)</pv_name>
+        <pv_name trigger="false">$(P)PUMP_REF_E</pv_name>
+        <pv_name trigger="false">loc://PUMP_REF_E&lt;VDoubleArray&gt;(0)</pv_name>
+        <pv_name trigger="false">$(P)COMP_POINTING_X</pv_name>
+        <pv_name trigger="false">loc://COMP_FF_X&lt;VDoubleArray&gt;(0)</pv_name>
+        <pv_name trigger="false">$(P)COMP_POINTING_Y</pv_name>
+        <pv_name trigger="false">loc://COMP_FF_Y&lt;VDoubleArray&gt;(0)</pv_name>
+      </script>
+    </scripts>
+    <x_axis>
+      <title></title>
+      <autoscale>true</autoscale>
+      <log_scale>false</log_scale>
+      <minimum>0.0</minimum>
+      <maximum>100.0</maximum>
+      <show_grid>true</show_grid>
+      <title_font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+      <visible>false</visible>
+    </x_axis>
+    <y_axes>
+      <y_axis>
+        <title></title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>100.0</maximum>
+        <show_grid>true</show_grid>
+        <title_font>
+          <font family="Liberation Sans" style="REGULAR" size="14.0">
+          </font>
+        </title_font>
+        <scale_font>
+          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+          </font>
+        </scale_font>
+        <visible>false</visible>
+      </y_axis>
+      <y_axis>
+        <title></title>
+        <autoscale>true</autoscale>
+        <log_scale>false</log_scale>
+        <minimum>0.0</minimum>
+        <maximum>100.0</maximum>
+        <show_grid>false</show_grid>
+        <title_font>
+          <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+          </font>
+        </title_font>
+        <scale_font>
+          <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+          </font>
+        </scale_font>
+        <visible>false</visible>
+      </y_axis>
+    </y_axes>
+    <traces>
+      <trace>
+        <name>Amp energy</name>
+        <x_pv></x_pv>
+        <y_pv>loc://AMP_E&lt;VDoubleArray&gt;(0)</y_pv>
+        <err_pv></err_pv>
+        <axis></axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="21" green="21" blue="196">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+      <trace>
+        <name>Tot. Pump E</name>
+        <x_pv></x_pv>
+        <y_pv>loc://TOT_PUMP_E&lt;VDoubleArray&gt;(0)</y_pv>
+        <err_pv></err_pv>
+        <axis></axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="242" green="26" blue="26">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+      <trace>
+        <name>Pump Trans. E.</name>
+        <x_pv></x_pv>
+        <y_pv>loc://PUMP_TRANS_E&lt;VDoubleArray&gt;(0)</y_pv>
+        <err_pv></err_pv>
+        <axis>0</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="33" green="179" blue="33">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+      <trace>
+        <name>Pump Ref. E.</name>
+        <x_pv></x_pv>
+        <y_pv>loc://PUMP_REF_E&lt;VDoubleArray&gt;(0)</y_pv>
+        <err_pv></err_pv>
+        <axis>0</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="0" green="0" blue="0">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+      <trace>
+        <name>Centroid X</name>
+        <x_pv></x_pv>
+        <y_pv>loc://COMP_FF_X&lt;VDoubleArray&gt;(0)</y_pv>
+        <err_pv></err_pv>
+        <axis>1</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="128" green="0" blue="255">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+      <trace>
+        <name>Centroid Y</name>
+        <x_pv></x_pv>
+        <y_pv>loc://COMP_FF_Y&lt;VDoubleArray&gt;(0)</y_pv>
+        <err_pv></err_pv>
+        <axis>1</axis>
+        <trace_type>1</trace_type>
+        <color>
+          <color red="255" green="170" blue="0">
+          </color>
+        </color>
+        <line_width>1</line_width>
+        <line_style>0</line_style>
+        <point_type>0</point_type>
+        <point_size>4</point_size>
+        <visible>true</visible>
+      </trace>
+    </traces>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>Action Button_4</name>
+    <pv_name>loc://comp_ff_x_visibility</pv_name>
+    <label>Comp FF X</label>
+    <x>691</x>
+    <y>512</y>
+    <width>129</width>
+    <height>22</height>
+    <actions execute_as_one="true">
+    </actions>
+    <scripts>
+      <script file="scripts/trace_visibility.py">
+        <pv_name>loc://comp_ff_x_visibility</pv_name>
+        <pv_name trigger="false">="trace_4_visible"</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Show trace</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>Action Button_3</name>
+    <pv_name>loc://pump_ref_e_visibility</pv_name>
+    <label>Pump Ref. E</label>
+    <x>691</x>
+    <y>490</y>
+    <width>129</width>
+    <height>22</height>
+    <actions execute_as_one="true">
+    </actions>
+    <scripts>
+      <script file="scripts/trace_visibility.py">
+        <pv_name>loc://pump_ref_e_visibility</pv_name>
+        <pv_name trigger="false">="trace_3_visible"</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Show trace</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>Action Button_2</name>
+    <pv_name>loc://pump_trans_e_visibility</pv_name>
+    <label>Pump Trans. E</label>
+    <x>691</x>
+    <y>468</y>
+    <width>129</width>
+    <height>22</height>
+    <actions execute_as_one="true">
+    </actions>
+    <scripts>
+      <script file="scripts/trace_visibility.py">
+        <pv_name>loc://pump_trans_e_visibility</pv_name>
+        <pv_name trigger="false">="trace_2_visible"</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Show trace</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>Action Button_1</name>
+    <pv_name>loc://tot_pump_e_visibility</pv_name>
+    <label>Tot. Pump E</label>
+    <x>691</x>
+    <y>446</y>
+    <width>129</width>
+    <height>22</height>
+    <actions execute_as_one="true">
+    </actions>
+    <scripts>
+      <script file="scripts/trace_visibility.py">
+        <pv_name>loc://tot_pump_e_visibility</pv_name>
+        <pv_name trigger="false">="trace_1_visible"</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Show trace</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>Amp-e-toggle</name>
+    <pv_name>loc://amp_e_trace_visibility</pv_name>
+    <label>Amp Energy</label>
+    <x>691</x>
+    <y>424</y>
+    <width>129</width>
+    <height>22</height>
+    <actions execute_as_one="true">
+    </actions>
+    <scripts>
+      <script file="scripts/trace_visibility.py">
+        <pv_name>loc://amp_e_trace_visibility</pv_name>
+        <pv_name trigger="false">="trace_0_visible"</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Show trace</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="checkbox" version="2.0.0">
+    <name>Action Button_5</name>
+    <pv_name>loc://comp_ff_y_visibility</pv_name>
+    <label>Comp FF Y</label>
+    <x>691</x>
+    <y>534</y>
+    <width>129</width>
+    <height>22</height>
+    <actions execute_as_one="true">
+    </actions>
+    <scripts>
+      <script file="scripts/trace_visibility.py">
+        <pv_name>loc://comp_ff_y_visibility</pv_name>
+        <pv_name trigger="false">="trace_5_visible"</pv_name>
+      </script>
+    </scripts>
+    <tooltip>Show trace</tooltip>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_3</name>
+    <pv_name>$(P)COMP_ENERGY</pv_name>
+    <x>621</x>
+    <y>232</y>
+    <width>76</width>
+    <height>25</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="11.881188118811881">
+      </font>
+    </font>
+    <precision>1</precision>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_4</name>
+    <pv_name>$(P)TOT_PUMP_E</pv_name>
+    <x>717</x>
+    <y>232</y>
+    <width>76</width>
+    <height>25</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="11.881188118811881">
+      </font>
+    </font>
+    <precision>1</precision>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_5</name>
+    <pv_name>GEM:LA3:SHOTNUM</pv_name>
+    <x>621</x>
+    <y>296</y>
+    <width>172</width>
+    <height>37</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="15.841584158415841">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name).PROC</pv_name>
+        <value>1</value>
+      </action>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_6</name>
+    <pv_name>$(P)AMP_E</pv_name>
+    <x>621</x>
+    <y>372</y>
+    <width>172</width>
+    <height>34</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="15.841584158415841">
+      </font>
+    </font>
+    <precision>1</precision>
+    <vertical_alignment>1</vertical_alignment>
+    <wrap_words>false</wrap_words>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>Comp E</text>
+    <x>621</x>
+    <y>207</y>
+    <width>91</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="11.881188118811881">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>Pump E</text>
+    <x>717</x>
+    <y>207</y>
+    <width>91</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="11.881188118811881">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>Amp Energy</text>
+    <x>621</x>
+    <y>347</y>
+    <width>187</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="11.881188118811881">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>Shot Number</text>
+    <x>621</x>
+    <y>271</y>
+    <width>187</width>
+    <height>26</height>
+    <font>
+      <font family="Segoe UI" style="BOLD" size="11.881188118811881">
+      </font>
+    </font>
+    <vertical_alignment>1</vertical_alignment>
+    <actions>
+    </actions>
+    <border_color>
+      <color red="0" green="128" blue="255">
+      </color>
+    </border_color>
+  </widget>
+</display>

@@ -1,0 +1,6 @@
+record(stringin, "$(PREFIX):NICKNAME") {
+    field(DTYP, "Soft record")
+    field(DESC, "Friendly name for camera")
+    field(VAL, "$(CAMERA_NICKNAME=$(PREFIX))")
+    field(PINI, "YES")
+}
