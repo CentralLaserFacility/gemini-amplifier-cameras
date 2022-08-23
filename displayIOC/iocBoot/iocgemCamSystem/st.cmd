@@ -52,7 +52,7 @@ dbLoadRecords("db/roi.db","P=$(PREFIX),CAM=$(CAM8)")
 
 set_requestfile_path("$(TOP)/autoSaveRestore")
 set_savefile_path("$(TOP)/autoSaveRestore")
-
+save_restoreSet_DatedBackupFiles(5)
 set_pass0_restoreFile("display_settings.sav")
 set_pass1_restoreFile("display_settings.sav")
 
