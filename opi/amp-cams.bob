@@ -6,7 +6,7 @@
     <CAM2>$(P):cam2</CAM2>
     <CAM3>$(P):cam3</CAM3>
     <CAM4>$(P):cam4</CAM4>
-    <P>GEM:N_AMP</P>
+    <P>GEM:S_AMP</P>
   </macros>
   <width>840</width>
   <height>610</height>

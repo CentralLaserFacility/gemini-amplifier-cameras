@@ -1,10 +1,11 @@
 #!../../bin/linux-x86_64/ampCams
 
 < envPaths
+< cameraIDs
 
 epicsEnvSet("CAM", "PINHOLE")
 epicsEnvSet("NICKNAME", "Pinhole")
-epicsEnvSet("CAMID", "172.16.71.10")
+epicsEnvSet("CAMID", $(PINHOLE))
 
 < st-common.cmd
 
