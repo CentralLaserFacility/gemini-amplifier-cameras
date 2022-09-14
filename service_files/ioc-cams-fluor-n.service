@@ -9,9 +9,9 @@ StartLimitBurst=5
 Type=forking
 User=jqg93617
 # Note that PrivateTmp is implied
-WorkingDirectory= /opt/gemini/la3/north_amp/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
+WorkingDirectory=/opt/gemini/la3/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
+Environment="AMPLIFIER=NorthAmplifier"
 ExecStart=/usr/bin/procServ -n ioc-cams-fluor-n -i ^D^C -P 20024 ./st-fluor.cmd
-#PIDFile=/tmp/pid.txt
 Restart=always
 RestartSec=10
 

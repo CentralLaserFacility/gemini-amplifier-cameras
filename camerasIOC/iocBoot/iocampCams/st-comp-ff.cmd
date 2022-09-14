@@ -1,7 +1,7 @@
 #!../../bin/linux-x86_64/ampCams
 
 < envPaths
-< cameraIDs
+< $(AMPLIFIER)
 
 epicsEnvSet("CAM", "COMP_FF")
 epicsEnvSet("NICKNAME", "Comp FF")

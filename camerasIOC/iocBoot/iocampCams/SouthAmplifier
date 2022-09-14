@@ -1,3 +1,7 @@
+# Prefix for all records
+epicsEnvSet("PREFIX", "GEM:S_AMP:")
+
+# Camera IP addresses
 epicsEnvSet("COMP_FF_ID", "172.16.71.13")
 epicsEnvSet("COMP_NF_ID", "172.16.71.12")
 epicsEnvSet("FLUOR_ID", "172.16.71.14")

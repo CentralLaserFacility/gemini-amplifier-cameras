@@ -1,0 +1,12 @@
+# Prefix for all records
+epicsEnvSet("PREFIX", "GEM:N_AMP:")
+
+# Camera IP addresses
+epicsEnvSet("COMP_FF_ID", "")
+epicsEnvSet("COMP_NF_ID", "")
+epicsEnvSet("FLUOR_ID", "")
+epicsEnvSet("INP_NF_ID", "")
+epicsEnvSet("LEG1_GREEN_NF_ID", "")
+epicsEnvSet("LEG2_GREEN_NF_ID", "")
+epicsEnvSet("PINHOLE_ID", "")
+epicsEnvSet("UNCOMP_NF_ID", "")

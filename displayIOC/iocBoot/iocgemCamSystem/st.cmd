@@ -4,9 +4,8 @@
 ## everywhere it appears in this file
 
 < envPaths
+< $(AMPLIFIER)
 
-epicsEnvSet(PREFIX, "GEM:S_AMP:")
-epicsEnvSet(THROUGHPUT_PV, "GEM:LA3:CAL:COMPTHRUPUT:S")
 epicsEnvSet(PUMP_T_CAM, "$(PREFIX)LEG1_GREEN_NF")
 epicsEnvSet(PUMP_R_CAM, "$(PREFIX)LEG2_GREEN_NF")
 epicsEnvSet(COMP_FF_CAM, "$(PREFIX)COMP_FF")

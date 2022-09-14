@@ -9,9 +9,9 @@ StartLimitBurst=5
 Type=forking
 User=jqg93617
 # Note that PrivateTmp is implied
-WorkingDirectory= /opt/gemini/la3/south_amp/gemini-amplifier-cameras/displayIOC/iocBoot/iocgemCamSystem
+WorkingDirectory=/opt/gemini/la3/gemini-amplifier-cameras/displayIOC/iocBoot/iocgemCamSystem
+Environment="AMPLIFIER=SouthAmplifier"
 ExecStart=/usr/bin/procServ -n ioc-amp-cams-s -i ^D^C -P 20018 ./st.cmd
-#PIDFile=/tmp/pid.txt
 Restart=always
 RestartSec=30
 

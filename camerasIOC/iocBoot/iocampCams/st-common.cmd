@@ -1,5 +1,3 @@
-# Prefix for all records
-epicsEnvSet("PREFIX", "GEM:S_AMP:")
 epicsEnvSet("GENICAM_GENTL64_PATH", "$(ADVIMBA)/bin/$(ARCH)")
 # The port name for the detector
 epicsEnvSet("PORT", "$(PREFIX)$(CAM)")
