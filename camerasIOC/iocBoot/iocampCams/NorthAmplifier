@@ -12,4 +12,4 @@ epicsEnvSet("PINHOLE_ID", "")
 epicsEnvSet("UNCOMP_NF_ID", "")
 
 # Where to save files
-epicsEnvSet("AUTOSAVE_PATH", "south_settings")
+epicsEnvSet("AUTOSAVE_PATH", "north_settings")
