@@ -2,4 +2,4 @@
 epicsEnvSet("PREFIX", "GEM:S_AMP:")
 epicsEnvSet("THROUGHPUT_PV", "GEM:LA3:CAL:COMPTHRUPUT:S")
 epicsEnvSet("LIST_READ_FN", "readlist_south")
-epicsEnvSet("SAVE_FILE", "south_display_settings")
+epicsEnvSet("AUTOSAVE_PATH", "south_settings")
