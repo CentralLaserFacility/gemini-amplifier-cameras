@@ -51,10 +51,10 @@ dbLoadRecords("db/roi.db","P=$(PREFIX),CAM=$(CAM8)")
 
 set_requestfile_path("$(TOP)/autoSaveRestore")
 set_savefile_path("$(TOP)/autoSaveRestore")
-set_savefile_name("display_settings.req", "$(PREFIX)_display_settings.sav")
+set_savefile_name("display_settings.req", "$(SAVE_FILE).sav")
 save_restoreSet_DatedBackupFiles(0)
-set_pass0_restoreFile("$(PREFIX)_display_settings.sav")
-set_pass1_restoreFile("$(PREFIX)_display_settings.sav")
+set_pass0_restoreFile("$(SAVE_FILE).sav")
+set_pass1_restoreFile("$(SAVE_FILE).sav")
 
 
 cd "${TOP}/iocBoot/${IOC}"

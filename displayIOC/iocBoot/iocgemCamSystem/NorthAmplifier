@@ -2,3 +2,5 @@
 epicsEnvSet(PREFIX, "GEM:N_AMP:")
 epicsEnvSet(THROUGHPUT_PV, "GEM:LA3:CAL:COMPTHRUPUT:N")
 epicsEnvSet("LIST_READ_FN", "readlist_south")
+epicsEnvSet("SAVE_FILE", "north_display_settings")
+
