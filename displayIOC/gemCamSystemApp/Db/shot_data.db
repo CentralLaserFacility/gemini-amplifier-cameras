@@ -1,7 +1,7 @@
 
 record(aSub, "$(P):LIST_READ")
 {
-    field(SNAM, "readlist")
+    field(SNAM, "$(LIST_READ_FN)")
     field(PINI, "YES")
     field(OUTA, "$(P):CAMERA_LIST")
     field(FTVA, "STRING")
