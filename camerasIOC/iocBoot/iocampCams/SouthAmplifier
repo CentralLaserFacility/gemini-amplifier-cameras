@@ -10,3 +10,6 @@ epicsEnvSet("LEG1_GREEN_NF_ID", "172.16.71.15")
 epicsEnvSet("LEG2_GREEN_NF_ID", "172.16.71.16")
 epicsEnvSet("PINHOLE_ID", "172.16.71.10")
 epicsEnvSet("UNCOMP_NF_ID", "172.16.71.11")
+
+# Where to save files
+epicsEnvSet("AUTOSAVE_PATH", "south_settings")
