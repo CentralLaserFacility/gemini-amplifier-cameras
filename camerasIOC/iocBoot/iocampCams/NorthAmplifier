@@ -2,14 +2,14 @@
 epicsEnvSet("PREFIX", "GEM:N_AMP:")
 
 # Camera IP addresses
-epicsEnvSet("COMP_FF_ID", "")
-epicsEnvSet("COMP_NF_ID", "")
-epicsEnvSet("FLUOR_ID", "")
-epicsEnvSet("INP_NF_ID", "")
-epicsEnvSet("LEG1_GREEN_NF_ID", "")
-epicsEnvSet("LEG2_GREEN_NF_ID", "")
-epicsEnvSet("PINHOLE_ID", "")
-epicsEnvSet("UNCOMP_NF_ID", "")
+epicsEnvSet("COMP_FF_ID", "172.16.71.23")
+epicsEnvSet("COMP_NF_ID", "172.16.71.22")
+epicsEnvSet("FLUOR_ID", "172.16.71.24")
+epicsEnvSet("INP_NF_ID", "172.16.71.27")
+epicsEnvSet("LEG1_GREEN_NF_ID", "172.16.71.25")
+epicsEnvSet("LEG2_GREEN_NF_ID", "172.16.71.26")
+epicsEnvSet("PINHOLE_ID", "172.16.71.20")
+epicsEnvSet("UNCOMP_NF_ID", "172.16.71.21")
 
 # Where to save files
 epicsEnvSet("AUTOSAVE_PATH", "north_settings")
