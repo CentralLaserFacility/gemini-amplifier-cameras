@@ -1,0 +1,19 @@
+[Unit]
+Description=IOC for LA3 South Amp camera display
+Wants=network-online.target
+After=network-online.target
+StartLimitInterval=200
+StartLimitBurst=5
+
+[Service]
+Type=forking
+User=jqg93617
+# Note that PrivateTmp is implied
+WorkingDirectory=/opt/gemini/la3/gemini-amplifier-cameras/displayIOC/iocBoot/iocgemCamSystem
+Environment="AMPLIFIER=SouthAmplifier"
+ExecStart=/usr/bin/procServ -n ioc-amp-cams-s -i ^D^C -P 20018 ./st.cmd
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

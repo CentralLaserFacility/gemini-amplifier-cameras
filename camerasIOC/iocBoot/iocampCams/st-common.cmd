@@ -1,5 +1,3 @@
-# Prefix for all records
-epicsEnvSet("PREFIX", "GEM:S_AMP:")
 epicsEnvSet("GENICAM_GENTL64_PATH", "$(ADVIMBA)/bin/$(ARCH)")
 # The port name for the detector
 epicsEnvSet("PORT", "$(PREFIX)$(CAM)")
@@ -83,7 +81,7 @@ set_requestfile_path("$(ADVIMBA)/vimbaApp/Db")
 set_requestfile_path("$(CALC)/calcApp/Db")
 set_requestfile_path("$(SSCAN)/sscanApp/Db")
 set_requestfile_path("$(TOP)/autoSaveRestore")
-set_savefile_path("$(TOP)/autoSaveRestore/")
+set_savefile_path("$(TOP)/autoSaveRestore/$(AUTOSAVE_PATH)")
 save_restoreSet_DatedBackupFiles(0)
 set_pass0_restoreFile("$(CAM).sav")
 set_pass1_restoreFile("$(CAM).sav")

@@ -1,0 +1,6 @@
+# Amplifier specific settings
+epicsEnvSet("PREFIX", "GEM:N_AMP:")
+epicsEnvSet("THROUGHPUT_PV", "GEM:LA3:CAL:COMPTHRUPUT:N")
+epicsEnvSet("LIST_READ_FN", "readlist_north")
+epicsEnvSet("AUTOSAVE_PATH", "north_settings")
+

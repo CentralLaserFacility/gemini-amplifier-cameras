@@ -1,10 +1,11 @@
 #!../../bin/linux-x86_64/ampCams
 
 < envPaths
+< $(AMPLIFIER)
 
 epicsEnvSet("CAM", "FLUOR")
 epicsEnvSet("NICKNAME", "Fluorescence")
-epicsEnvSet("CAMID", "172.16.71.14")
+epicsEnvSet("CAMID", $(FLUOR_ID))
 
 < st-common.cmd
 

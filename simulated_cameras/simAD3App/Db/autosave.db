@@ -1,5 +1,0 @@
-record(stringout, "$(P)$(R):SAVENAMEPV"){
-    field(DESC, "Filename for autosave file")
-    field(VAL, "$(R).sav")
-    field(PINI, "YES")
-}
