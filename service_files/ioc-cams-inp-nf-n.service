@@ -1,0 +1,19 @@
+[Unit]
+Description=IOC for LA3 North Amp input NF camera
+Wants=network-online.target
+After=network-online.target
+StartLimitInterval=200
+StartLimitBurst=5
+
+[Service]
+Type=forking
+User=jqg93617
+# Note that PrivateTmp is implied
+WorkingDirectory=/opt/gemini/la3/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
+Environment="AMPLIFIER=NorthAmplifier"
+ExecStart=/usr/bin/procServ -n ioc-cams-inp-nf-n -i ^D^C -P 20027 ./st-inp-nf.cmd
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>870</width>
+  <height>640</height>
+  <actions>
+  </actions>
+  <widget type="tabs" version="2.0.0">
+    <name>Tabbed Container</name>
+    <macros>
+      <CAM1>${P}INP_NF</CAM1>
+      <CAM2>${P}COMP_NF</CAM2>
+      <CAM3>${P}COMP_FF</CAM3>
+      <CAM4>$(P)FLUOR</CAM4>
+      <CAM5>$(P)LEG1_GREEN_NF</CAM5>
+      <CAM6>$(P)LEG2_GREEN_NF</CAM6>
+      <CAM7>${P}UNCOMP_NF</CAM7>
+      <CAM8>$(P)PINHOLE</CAM8>
+      <P>GEM:S_AMP:</P>
+    </macros>
+    <tabs>
+      <tab>
+        <name>Align</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>Embedded Display_1</name>
+            <file>align-fine.bob</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Shot</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>shot_link_cont</name>
+            <file>shot.opi</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+            <actions>
+            </actions>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Single</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>Embedded Display</name>
+            <file>single_cam.bob</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Settings</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>settings_link_cont</name>
+            <file>settings.opi</file>
+            <x>8</x>
+            <y>5</y>
+            <width>830</width>
+            <height>565</height>
+            <actions>
+            </actions>
+            <border_color>
+              <color red="0" green="128" blue="255">
+              </color>
+            </border_color>
+          </widget>
+        </children>
+      </tab>
+      <tab>
+        <name>Advanced</name>
+        <children>
+          <widget type="embedded" version="2.0.0">
+            <name>shot_link_cont_1</name>
+            <file>advanced.opi</file>
+            <x>10</x>
+            <y>10</y>
+            <width>830</width>
+            <height>565</height>
+            <resize>1</resize>
+            <actions>
+            </actions>
+          </widget>
+        </children>
+      </tab>
+    </tabs>
+    <x>10</x>
+    <y>10</y>
+    <width>850</width>
+    <height>605</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="14.0">
+      </font>
+    </font>
+    <active_tab>1</active_tab>
+    <tab_height>10</tab_height>
+    <actions>
+    </actions>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Status Ticker</name>
+    <pv_name>GEM:CONTROL:NOWTIME</pv_name>
+    <x>750</x>
+    <y>620</y>
+    <width>110</width>
+  </widget>
+  <widget type="rectangle" version="2.0.0">
+    <name>Rectangle</name>
+    <width>870</width>
+    <height>640</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color name="Header_Background" red="77" green="77" blue="77">
+      </color>
+    </line_color>
+    <background_color>
+      <color name="Transparent" red="255" green="255" blue="255" alpha="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+  </widget>
+</display>

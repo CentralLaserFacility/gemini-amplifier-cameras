@@ -8,10 +8,9 @@
 #include <epicsExport.h>
 #include <sys/types.h>
 
-
-// getline() not defined for all compilers  
-//typedef intptr_t ssize_t;
-//ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+// getline() not defined for all compilers
+// typedef intptr_t ssize_t;
+// ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 
 const int MAX_STRING_LENGTH = 40;
 
@@ -20,10 +19,10 @@ static long _readlist(char filename[], void *destination)
     FILE *fp;
 
     // open file and make sure it's opened properly
-    fp = fopen(filename,"r");
-    if(NULL == fp) 
+    fp = fopen(filename, "r");
+    if (NULL == fp)
     {
-        fprintf(stderr,"cannot open file\n");
+        fprintf(stderr, "cannot open file\n");
         return 1;
     }
 
@@ -32,16 +31,16 @@ static long _readlist(char filename[], void *destination)
     char *line = malloc(buffer_size * sizeof(char));
 
     // read each line
-    int i=0;
-    while(-1 != getline(&line, &buffer_size, fp))
+    int i = 0;
+    while (-1 != getline(&line, &buffer_size, fp))
     {
 
         // getting rid of the trailing '\n'
-        if ( '\n' == line[strlen(line) - 1])      
+        if ('\n' == line[strlen(line) - 1])
             line[strlen(line) - 1] = 0;
 
         // copy string to destination record
-        memcpy((char *)destination+MAX_STRING_LENGTH*i, line, MAX_STRING_LENGTH*sizeof(char));
+        memcpy((char *)destination + MAX_STRING_LENGTH * i, line, MAX_STRING_LENGTH * sizeof(char));
         i++;
     }
 
@@ -51,20 +50,28 @@ static long _readlist(char filename[], void *destination)
     return 0;
 }
 
-static long readlist(aSubRecord *prec)
+static long readlist_south(aSubRecord *prec)
 {
     long e = 0;
-    
-    e &= _readlist("camera.list", prec->vala);
+
+    e &= _readlist("south_camera.list", prec->vala);
 
     return e;
 }
 
-epicsRegisterFunction(readlist);
+static long readlist_north(aSubRecord *prec)
+{
+    long e = 0;
 
+    e &= _readlist("north_camera.list", prec->vala);
 
+    return e;
+}
 
-/* getline() not defined for all compilers so here's a version taken from Stack Overflow: 
+epicsRegisterFunction(readlist_south);
+epicsRegisterFunction(readlist_north);
+
+/* getline() not defined for all compilers so here's a version taken from Stack Overflow:
 ssize_t getline(char **lineptr, size_t *n, FILE *stream) {
     size_t pos;
     int c;

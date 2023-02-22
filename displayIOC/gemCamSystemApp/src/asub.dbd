@@ -1,1 +1,2 @@
-function(readlist)
+function(readlist_north)
+function(readlist_south)

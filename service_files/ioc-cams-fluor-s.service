@@ -1,0 +1,19 @@
+[Unit]
+Description=IOC for LA3 South Amp fluorescence camera
+Wants=network-online.target
+After=network-online.target
+StartLimitInterval=200
+StartLimitBurst=5
+
+[Service]
+Type=forking
+User=jqg93617
+# Note that PrivateTmp is implied
+WorkingDirectory=/opt/gemini/la3/gemini-amplifier-cameras/camerasIOC/iocBoot/iocampCams
+Environment="AMPLIFIER=SouthAmplifier"
+ExecStart=/usr/bin/procServ -n ioc-cams-fluor-s -i ^D^C -P 20014 ./st-fluor.cmd
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
