@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <width>330</width>
+  <height>250</height>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Energy Calibrations (Joules/count)</text>
+    <x>10</x>
+    <y>10</y>
+    <width>300</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>Current</text>
+    <x>100</x>
+    <y>67</y>
+    <width>70</width>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>New</text>
+    <x>220</x>
+    <y>67</y>
+    <width>60</width>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>Amp</text>
+    <x>10</x>
+    <y>95</y>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>Pump T</text>
+    <x>10</x>
+    <y>145</y>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>Pump R</text>
+    <x>10</x>
+    <y>195</y>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="byte_monitor" version="2.0.0">
+    <name>Byte Monitor</name>
+    <x>190</x>
+    <y>370</y>
+    <width>1</width>
+    <height>1</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(P)NF_E_CAL</pv_name>
+    <x>100</x>
+    <y>95</y>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(P)PMP_T_E_CAL</pv_name>
+    <x>100</x>
+    <y>145</y>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_3</name>
+    <pv_name>$(P)PMP_R_E_CAL</pv_name>
+    <x>100</x>
+    <y>195</y>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Update_4</name>
+    <pv_name>$(P)NF_E_CAL</pv_name>
+    <x>220</x>
+    <y>95</y>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
+    <wrap_words>true</wrap_words>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Update_5</name>
+    <pv_name>$(P)PMP_T_E_CAL</pv_name>
+    <x>220</x>
+    <y>145</y>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
+    <wrap_words>true</wrap_words>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Update_6</name>
+    <pv_name>$(P)PMP_R_E_CAL</pv_name>
+    <x>220</x>
+    <y>195</y>
+    <width>90</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="REGULAR" size="18.0">
+      </font>
+    </font>
+    <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
+    <wrap_words>true</wrap_words>
+  </widget>
+</display>

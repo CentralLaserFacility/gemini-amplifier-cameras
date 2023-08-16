@@ -714,4 +714,29 @@ $(pv_value)</tooltip>
       </color>
     </border_color>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="open_display">
+        <file>energy_calibration.bob</file>
+        <macros>
+          <P>$(P)</P>
+        </macros>
+        <target>window</target>
+        <description>Open Display</description>
+      </action>
+    </actions>
+    <text>Calibrate</text>
+    <x>548</x>
+    <y>390</y>
+    <width>50</width>
+    <height>20</height>
+    <font>
+      <font family="Segoe UI" style="REGULAR" size="10.0">
+      </font>
+    </font>
+    <show_confirm_dialog>true</show_confirm_dialog>
+    <confirm_message>Password needed</confirm_message>
+    <password>la3</password>
+  </widget>
 </display>
