@@ -71,8 +71,8 @@
     <name>Byte Monitor</name>
     <x>190</x>
     <y>370</y>
-    <width>0</width>
-    <height>0</height>
+    <width>1</width>
+    <height>1</height>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update</name>
@@ -86,6 +86,8 @@
       </font>
     </font>
     <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_2</name>
@@ -99,6 +101,8 @@
       </font>
     </font>
     <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_3</name>
@@ -112,6 +116,8 @@
       </font>
     </font>
     <format>3</format>
+    <precision>3</precision>
+    <show_units>false</show_units>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Update_4</name>
@@ -125,6 +131,7 @@
       </font>
     </font>
     <format>3</format>
+    <precision>3</precision>
     <show_units>false</show_units>
     <wrap_words>true</wrap_words>
   </widget>
@@ -140,6 +147,7 @@
       </font>
     </font>
     <format>3</format>
+    <precision>3</precision>
     <show_units>false</show_units>
     <wrap_words>true</wrap_words>
   </widget>
@@ -155,6 +163,7 @@
       </font>
     </font>
     <format>3</format>
+    <precision>3</precision>
     <show_units>false</show_units>
     <wrap_words>true</wrap_words>
   </widget>
